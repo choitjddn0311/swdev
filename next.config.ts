@@ -1,3 +1,5 @@
+// next.js용 설정파일
+
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
