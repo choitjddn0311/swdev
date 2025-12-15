@@ -6,7 +6,8 @@ const Header = () => {
         <header className="w-full h-25 flex justify-center bg-background text-foreground">
             <div className="w-300 flex justify-between items-center ">
                 <Link href="/" className="w-50 h-full content-center font-bold text-4xl text-cyan-400">
-                    <h1 className="group">S<sub className="text-s hidden group-hover:inline">ung</sub>W<sub className="text-s hidden group-hover:inline">oo</sub> dev</h1>
+                {/* className="text-s hidden group-hover:inline" sub className */}
+                    <h1 className="group">S<sub className="text-s">ung</sub>W<sub className="text-s">oo</sub> dev</h1>
                 </Link>
                 <div className="w-250 flex justify-end gap-10">
                     <nav className="w-200 h-full flex justify-end">
