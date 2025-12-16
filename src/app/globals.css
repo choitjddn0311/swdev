@@ -7,13 +7,13 @@
 }
 @theme {
   --color-background: #fafafa;
-  --color-foreground: #2c2c2c /*2c2c2c*/;
+  --color-foreground: #2c2c2c;
   --color-maincolor: #22D3EE;
   --font-griun: 'Griun';
 }
 @layer theme {
   .dark {
-    --color-background: #2c2c2c; /*#1a1a1a*/
+    --color-background: #1a1a1a;
     --color-foreground: #fafafa;
     --color-maincolor: #22D3EE;
   }
