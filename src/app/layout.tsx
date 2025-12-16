@@ -16,14 +16,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Theme>
-      <html lang="ko" className={Griun.className} suppressHydrationWarning>
-        <body className="bg-background text-foreground">
-          <Header />
-          <main>{children}</main>
-          <Footer />
+      <html lang="ko" suppressHydrationWarning>
+        <body className={Griun.className}>
+          <Theme>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </Theme>
         </body>
       </html>
-    </Theme>
   )
 }

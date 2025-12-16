@@ -4,11 +4,13 @@
   :root {
     --background: #fafafa;
     --foreground: #2c2c2c;
+    --maincolor: #22D3EE;
     --font-griun: 'Griun';
   }
   .dark {
     --background: #1a1a1a;
     --foreground: #fafafa;
+    --maincolor: #22D3EE;
   }
 }
 
@@ -17,3 +19,4 @@ body {
   color: var(--foreground);
   font-family: var(--font-griun), sans-serif;
 }
+
