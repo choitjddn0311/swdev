@@ -13,7 +13,7 @@ const Header = () => {
                     <nav className="w-200 h-full flex justify-end">
                         <ul className="w-full h-full flex justify-end gap-10 items-center">
                             <li className="font-semibold"><Link href="/">home</Link></li>
-                            <li className="font-semibold"><Link href="/posts">posts</Link></li>
+                            <li className="font-semibold"><Link href="posts">posts</Link></li>
                             <li className="font-semibold"><Link href="/about">about me</Link></li>
                             <li className="font-semibold"><Link href="/contacts">contact</Link></li>
                         </ul>

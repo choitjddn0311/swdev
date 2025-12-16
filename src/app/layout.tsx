@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import Header from "@/_components/layout/header";
 import Footer from "@/_components/layout/footer";
+import Posts from "./posts/page";
 import { Griun } from "@/fonts/fonts"
 import Theme from "@/_provider/themeProvider";
 
