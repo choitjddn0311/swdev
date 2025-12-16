@@ -92,7 +92,7 @@ const Home = () => {
                 <h2 className="text-xl">최성우 | Sungwoo choi</h2>
               </div>
               <div className="interesting">
-                <p><span>분야</span>: Web, Ai</p>
+                <p><span>분야</span>: Web, AI</p>
               </div>
             </div>
             <div className="w-200 h-150 p-20 flex flex-col justify-start gap-10">
