@@ -15,7 +15,6 @@ const Header = () => {
                             <li className="font-semibold"><Link href="/">home</Link></li>
                             <li className="font-semibold"><Link href="posts">posts</Link></li>
                             <li className="font-semibold"><Link href="/about">about me</Link></li>
-                            <li className="font-semibold"><Link href="/contact">contact</Link></li>
                         </ul>
                     </nav>
                     <ThemeToggle/>

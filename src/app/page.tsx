@@ -1,6 +1,7 @@
 import Button from "@/components/common/button";
 import { FaGithub, FaInstagram, FaLongArrowAltDown,FaHtml5,FaCss3Alt,FaJs,FaReact,FaPhp,FaNodeJs,FaJava,FaLinux,FaUbuntu,FaDocker } from "react-icons/fa";
 import { SiVelog,SiOracle,SiMysql } from "react-icons/si";
+import { MdOutlineEmail } from "react-icons/md";
 import Link from "next/link";
 import { PiHandWaving } from "react-icons/pi";
 import Image from "next/image";
@@ -103,11 +104,19 @@ const Home = () => {
               <div className="interesting">
                 <p><span>분야</span>: Web, AI</p>
               </div>
+              <div>
+                <p><span>연락처</span></p>
+                <ul>
+                  <li className="flex items-center gap-1"><MdOutlineEmail/>:<Link href="mailto:choitjddn0311@naver.com">choitjddn0311@naver.com</Link></li>
+                  <li className="flex items-center gap-1"><FaInstagram/>:<Link href="https://www.instagram.com/choitjddn31">choitjddn31</Link></li>
+                  <li className="flex items-center gap-1"><FaGithub/>:<Link href="https://www.github.com/choitjddn0311">choitjddn0311</Link></li>
+                </ul>
+              </div>
             </div>
             <div className="w-200 h-150 p-20 flex flex-col justify-start gap-10">
                 <h1 className="text-2xl">빠르진않지만 꾸준히, 열심히 배우고 있습니다.</h1>
                 <ul className="aboutme flex flex-col justify-start gap-2">
-                  <li><span className="font-bold">소속:</span> 인평자동차고등학교 자동차IT과(재학) | <span className="bg-maincolor">국민대학교</span> 인공지능학부 26학번 (입학예정)</li>
+                  <li><span className="font-bold">소속:</span> <span className="bg-maincolor">국민대학교</span> 인공지능학부 26학번 | 인평자동차고등학교 <span className="bg-maincolor">자동차IT과</span>(졸업)</li>
                   <li><span className="font-bold">경력:</span> 산학일체형도제학교 8기 <span className="bg-maincolor"><Link href="https://www.slexn.com/" className="underline decoration-1">(유)슬렉슨</Link></span> 근무 | 2024.08.01 ~ 2026.01.30</li>
                   <li><span className="font-bold">수상실적:</span> 
                     <ul>
