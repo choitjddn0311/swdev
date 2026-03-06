@@ -20,7 +20,7 @@ const Home = () => {
               </div>
           </div>
           <div className="w-300 h-200 flex flex-col justify-start gap-20">
-              <h1 className="text-4xl">제가 다룰 수 있는 <span className="bg-cyan-300">기술들</span>이에요.</h1>
+              <h1 className="text-4xl">아래는 제가 다룰 수 있는 <span className="bg-cyan-300">기술들</span>이에요.</h1>
               <div className="flex w-full flex-wrap justify-between items-center h-130">
                   <ul className="w-130 h-50 p-3 border-2 border-maincolor rounded-lg flex flex-col justify-start gap-3 bg-background">
                     <h1 className="text-xl ">frontend</h1>
@@ -91,7 +91,7 @@ const Home = () => {
             <div className="w-100 h-150 flex flex-col justify-start items-center gap-10 pt-20">
               <div className="profile w-60 h-60 rounded-[50%]">
                 <Image
-                  src="/img/profile.jpg"
+                  src="/img/profile2.jpg"
                   alt="profile"
                   width={240}
                   height={240}
