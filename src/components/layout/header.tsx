@@ -18,7 +18,7 @@ const Header = () => {
                     <nav className="w-200 h-full flex justify-end">
                         <ul className="w-full h-full flex justify-end gap-10 items-center">
                             {headerMenu.map((item,index) => (
-                                <li className="font-semibold"><Link href={item.href}>{item.label}</Link></li>
+                                <li key={index} className="font-semibold"><Link href={item.href}>{item.label}</Link></li>
                             ))}
                         </ul>
                     </nav>
