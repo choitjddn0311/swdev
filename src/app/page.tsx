@@ -116,21 +116,21 @@ const Home = () => {
             <div className="w-200 h-150 p-20 flex flex-col justify-start gap-10">
                 <h1 className="text-2xl">빠르진않지만 꾸준히, 열심히 배우고 있습니다.</h1>
                 <ul className="aboutme flex flex-col justify-start gap-2">
-                  <li><span className="font-bold">소속:</span> <span className="bg-maincolor">국민대학교</span> 인공지능학부 26학번 | 인평자동차고등학교 <span className="bg-maincolor">자동차IT과</span>(졸업)</li>
+                  <li><span className="font-bold">소속:</span> <span className="bg-maincolor">국민대학교</span> 인공지능학부 26학번 | <Link href="https://inpyung.icehs.kr/main.do" className="underline decoration-1">인평자동차고등학교</Link> <span className="bg-maincolor">자동차IT과</span>(졸업)</li>
                   <li><span className="font-bold">경력:</span> 산학일체형도제학교 8기 <span className="bg-maincolor"><Link href="https://www.slexn.com/" className="underline decoration-1">(유)슬렉슨</Link></span> 근무 | 2024.08.01 ~ 2026.01.30</li>
                   <li><span className="font-bold">수상실적:</span> 
                     <ul>
                       <li>2024 인천지방기능경기대회 웹 디자인 및 개발 <span className="bg-maincolor">동메달</span></li>
                       <li>2025 인천지방기능경기대회 웹 디자인 및 개발 <span className="bg-maincolor">은메달</span></li>
                       <li>2025 광주전국기능경기대회 웹 디자인 및 개발 <span className="bg-maincolor">장려상(14위)</span></li>
-                      <li>2025 progate hackathon <span className="">2등</span></li>
+                      <li>2025 progate hackathon <span className="bg-maincolor">2등</span></li>
                     </ul>
                   </li>
                   <li><span className="font-bold">자격증:</span> 
                     <ul>
-                      <li>정보처리기능사</li>
-                      <li>웹디자인개발기능사</li>
-                      <li>정보처리산업기사(과정평가형)</li>
+                      <li>2025.01.06 정보처리기능사(프로그래밍기능사)</li>
+                      <li>2025.06.05 웹디자인개발기능사</li>
+                      <li>2025.03.19 정보처리산업기사(과정평가형)</li>
                     </ul>
                   </li>
                 </ul>

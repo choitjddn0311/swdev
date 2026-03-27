@@ -36,7 +36,8 @@ export function getAllPosts(): PostMeta[] {
 }
 
 export function getPostBySlug(slug: string) {
-  const filePath = path.join(postsDirectory, `${slug}.mdx`);
+  const decoded = decodeURIComponent(slug);
+  const filePath = path.join(postsDirectory, `${decoded}.mdx`);
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
 

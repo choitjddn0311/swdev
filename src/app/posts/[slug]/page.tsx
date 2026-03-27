@@ -19,7 +19,7 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { meta, content } = getPostBySlug(slug);
 
   return (
-    <div className="w-full flex justify-center bg-background text-foreground">
+    <div className="w-full flex justify-center bg-background text-foreground min-h-165">
       <article className="w-300 py-20">
         <Link
           href="/posts"

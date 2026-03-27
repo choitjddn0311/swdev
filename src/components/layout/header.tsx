@@ -2,6 +2,11 @@ import Link from "next/link";
 import ThemeToggle from "../common/themeToggle";
 
 const Header = () => {
+    const headerMenu = [
+        {label: "home" , href: "/"},
+        {label: "posts" , href: "/posts"},
+        {label: "about me" , href: "/about"}
+    ]
     return (
         <header className="w-full h-25 flex justify-center sticky top-0 z-10 bg-background text-foreground dark:bg-foreground">
             <div className="w-300 flex justify-between items-center ">
@@ -12,9 +17,9 @@ const Header = () => {
                 <div className="w-250 flex justify-end gap-10">
                     <nav className="w-200 h-full flex justify-end">
                         <ul className="w-full h-full flex justify-end gap-10 items-center">
-                            <li className="font-semibold"><Link href="/">home</Link></li>
-                            <li className="font-semibold"><Link href="posts">posts</Link></li>
-                            <li className="font-semibold"><Link href="/about">about me</Link></li>
+                            {headerMenu.map((item,index) => (
+                                <li className="font-semibold"><Link href={item.href}>{item.label}</Link></li>
+                            ))}
                         </ul>
                     </nav>
                     <ThemeToggle/>
