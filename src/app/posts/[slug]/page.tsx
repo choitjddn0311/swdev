@@ -62,3 +62,6 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 };
 
 export default PostPage;
+
+
+// 연관글 보이게 하기, github 댓글 사용, 오른쪽 상단에 글 순서 보이기
