@@ -19,14 +19,21 @@ const About = () => {
                 </div>
                 <div className="w-300 flex flex-col justify-start items-center">
                     {/* 여기에는 많은걸 도전하는것을 좋아한다. 이런분야 이런분야 */}
-                    <h1 className="text-2xl w-full items-start">저는 제 인생의 모토인 <span className="bg-cyan-300">"make life what i dream"</span>을 실현하고 싶습니다</h1>
+                    <h1 className="text-2xl w-full items-start">제 인생의 모토는 <span className="bg-cyan-300">"make life what i dream"</span>입니다</h1>
+                    <p className="text-l w-full item-start pt-5 pb-5">저는 개발을 통해서 사람들에게 편리한 삶을 제공하고, 제가 원하는 삶을 개발을 통해 이루고싶습니다.</p>
                     <div className="w-full h-170 pt-5 pb-5 flex items-center">
                         {/* 중3 첫 개발 함. 고등학교(특성화)입학, 대회 자격증, 사진 등등 나의 연혁 소개 */}
                         <ul className="w-full h-150">
                             <li className="w-full h-150 flex flex-col justify-between">
                                 {myLifeItems.map((item, index) => (
-                                    <div key={index} className="flex justify-start w-full gap-10 items-center">
+                                    <div key={index} className="flex justify-start w-full gap-3 items-center">
                                         <div className="w-7 h-7 rounded-full border-8 border-cyan-500 flex "></div>
+                                        <ul className="flex w-12 justify-between">
+                                            <li className="w-2 bg-cyan-500 h-1 "></li>
+                                            <li className="w-2 bg-cyan-500 h-1 "></li>
+                                            <li className="w-2 bg-cyan-500 h-1 "></li>
+                                            <li className="w-2 bg-cyan-500 h-1 "></li>
+                                        </ul>
                                         <div className="list-disc">{item}</div>
                                     </div>
                                 ))}
