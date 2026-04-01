@@ -31,9 +31,9 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   return (
     <aside className="hidden xl:block w-60 shrink-0">
       <div className="fixed top-30">
-        <p className="text-m font-semibold uppercase tracking-widest text-foreground/80 mb-3">
+        {/* <p className="text-m font-semibold uppercase tracking-widest text-foreground/80 mb-3">
           On this page
-        </p>
+        </p> */}
         <ul className="space-y-1">
           {items.map((item) => (
             <li
@@ -45,7 +45,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
                 className={`block text-sm py-0.5 transition-all duration-150 truncate ease-in-out
                   ${
                     activeId === item.id
-                      ? "text-cyan-500 scale-105 font-medium"
+                      ? "text-cyan-500 scale-101 font-medium"
                       : "text-foreground/50 hover:text-foreground/80 scale-100"
                   }`}
               >
