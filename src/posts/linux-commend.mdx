@@ -1,0 +1,103 @@
+---
+title: "리눅스 디렉토리 관련 기초 명령어"
+date: "2026-04-02"
+summary: "linux를 공부하며 꼭 필요한 디렉토리 조작 명령어를 정리해봤습니다."
+tags: ["linux", "server", "directory","commend"]
+---
+
+
+![인생망하기 직전](https://velog.velcdn.com/images/choitjddn0311/post/1277dcf4-be18-4ca7-9fbe-911f860c35cf/image.png)
+
+리눅스를 공부해오면서 익힌 기본 명령어를 정리해볼것이다.
+
+## 디렉토리 조작 명령어
+
+1) **make directory**
+필요한 디렉토리를 **만드는 명령어**
+```
+mkdir (dir name)
+```
+2) **change directory**
+디렉토리의 경로를 **옮기는 명령어** _ex) /home -> /home/user_
+```
+cd (dir name)
+```
+3) **print working directory**
+현재 속해있는 디렉토리의 **경로를 출력하는 명령어**
+```
+pwd
+```
+4) **remove directory**
+필요없는 디렉토리를 **지우는 명령어**
+```
+rmdir (dir name)
+```
+
+5) **list**
+지금 속해있는 디렉토리의 파일 **목록을 띄워주는 명령어**
+```
+ls (부가적으로 -a -l -al등 다양하게 쓸수있다)
+```
+6) **touch**
+텅 빈 용량이 0인 파일을 **만드는 명령어**
+```
+touch (file name)
+```
+7) **move**
+파일의 이름을 변경하거나 위치를 **옮기는 명령어**
+```
+mv a.txt /your/dir/path <- 위치 옮기기
+mv a.txt b.txt <- a파일을 b로 바꿈
+```
+8) **conCATenate**
+파일의 내용을 화면에 **출력하는 명령어**
+```
+cat a.txt ex) hello, world
+```
+9) **Substitute User and do(sudo)**
+루트 권한을 **사용할 수 있는 명령어**
+```
+sudo ~~ 
+```
+10) **CoPy(cp)**
+파일이나 디렉토리를 **복사하는 명령어**
+```
+cp example.txt a.txt -> example.txt를 a.txt로 이름 바꿔 복사
+
+```
+11) **head,tail**
+텍스트 형식으로 작성된 파일을 앞 또는 뒤에서 **10행만 출력하는 명령어**
+```
+head /your/dir/path -> 앞쪽 10행만 출력
+head -3 /your/dir/path -> 앞쪽 3행만 출력
+tail -5 /your/dir/path -> 뒷쪽 5행만 출력
+```
+12) **more**
+텍스트 형식으로 작성된 파일을 페이지 단위로 화면에 출력하고
+*space bar*를 누르면 다음페이지로 *b*는 앞으로 *q*를 누르면 종료됨
+```
+more /your/dir/path
+more +10 /your/dir/path -> 10행부터 출력
+```
+13) **less**
+more 명령어와 용도가 비슷하지만 기능확장 된 명령어
+화살표키 또는 *pageUp* , *pageDown* 도 사용할 수 있음
+```
+less /your/dir/path
+less +10 /your/dir/path -> 10행부터 출력
+```
+14) **file**
+해당 파일이 어떠한 종류의 파일인지 표시해주는 명령어
+```
+file your/dir/path
+```
+15) **clear**
+현재 사용 중인 터미널 화면을 깨끗하게 지워주는 명령어
+```
+clear
+```
+
+[출처 - 한빛출판네트워크 15가지 리눅스 기본 명령어](https://www.hanbit.co.kr/channel/category/category_view.html?cms_code=CMS6390061632)
+출처 - 이것이 우분투 리눅스다 3판 (한빛미디어)
+
+감사합니다❗
