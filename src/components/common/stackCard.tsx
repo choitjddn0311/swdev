@@ -1,30 +1,37 @@
+import React from "react";
+
 interface StackItem {
-    stack: string;
-    icon: React.ReactNode;
-    iconColor: string;
+  stack: string;
+  icon: React.ReactNode;
+  iconColor: string;
 }
 
 interface StackCardProps {
-    title: string;
-    items: StackItem[];
+  title: string;
+  items: StackItem[];
 }
 
 const StackCard = ({ title, items }: StackCardProps) => {
-    return (
-        <ul className="w-130 h-50 p-3 border-2 border-maincolor rounded-lg flex flex-col justify-between">
-            <h1 className="text-xl ">{title}</h1>
-            <div className="flex justify-start gap-2 items-center">
-              {items.map((item) => (
-                <li key={item.stack} className="w-30 text-center text-foreground">{item.stack}</li>
-              ))}
-            </div>
-            <div className="flex justify-start gap-2 items-center">
-              {items.map((item) => (
-                <li key={item.stack} className={`w-30 h-25 flex justify-center items-center text-2xl ${item.iconColor}`}>{item.icon}</li>
-              ))}
-            </div>
-        </ul>
-    )
-}
+  return (
+    // w130 h50
+    <ul className="w-full h-25 2xl:w-130 2xl:h-50 xl:w-130 xl:h-50 p-3 border-2 border-maincolor rounded-lg flex flex-col gap-3">
+      <h1 className="text-md font-semibold">{title}</h1>
+      <div className="flex flex-wrap gap-1 items-center justify-start w-full">
+        {items.map((item) => (
+          <li
+            key={item.stack}
+            // 30 30
+            className="flex flex-col items-center justify-center w-15 h-7"
+          >
+            <span className={`text-3xl ${item.iconColor}`}>
+              {item.icon}
+            </span>
+            <span className="text-sm hidden sm:block md:block lg:block xl:block 2xl:block text-foreground text-center">{item.stack}</span>
+          </li>
+        ))}
+      </div>
+    </ul>
+  );
+};
 
 export default StackCard;
