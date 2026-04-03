@@ -18,7 +18,7 @@ const Header = () => {
                     <h1>S<sub className="text-s">ung</sub>W<sub className="text-s">oo</sub> dev</h1>
                 </Link>
 
-                <div className="h-full flex items-center gap-5 2xl:gap-10 xl:gap-10">
+                <div className="h-full flex items-center gap-5 2xl:gap-10 xl:gap-10 lg:gap-10 md:gap-10 sm:gap-10">
                     {/* 햄버거 버튼: 모바일(0~639px)에서만 표시 */}
                     <button
                         className="sm:hidden flex flex-col justify-center gap-0.75 w-8 h-8"
