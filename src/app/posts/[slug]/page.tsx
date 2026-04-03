@@ -34,8 +34,8 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
           </Link>
 
           <header className="mb-10">
-            <h1 className="text-4xl font-bold mb-3">{meta.title}</h1>
-            <time className="text-foreground/50">{meta.date}</time>
+            <h1 className="text-2xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl font-bold mb-3">{meta.title}</h1>
+            <time className="text-foreground/50 text-sm 2xl:text-base xl:text-base lg:text-base md:text-base sm:text-s ">{meta.date}</time>
             {meta.tags.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-2">
                 {meta.tags.map((tag) => (

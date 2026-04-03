@@ -29,7 +29,7 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <aside className="hidden xl:block w-60 shrink-0">
+    <aside className="hidden 2xl:block xl:block lg:block md:hidden sm:hidden w-60 shrink-0">
       <div className="fixed top-30">
         {/* <p className="text-m font-semibold uppercase tracking-widest text-foreground/80 mb-3">
           On this page
