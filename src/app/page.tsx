@@ -53,7 +53,7 @@ const Home = () => {
                 <FaLongArrowAltDown className="text-maincolor"/>
               </div>
           </div>
-          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-30 h-150 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex flex-col justify-start gap-0 2xl:gap-20 xl:gap-20 lg:gap-15 md:gap-15 sm:gap-10">
+          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-150 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex flex-col justify-start gap-0 2xl:gap-20 xl:gap-20 lg:gap-15 md:gap-15 sm:gap-10">
               <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 sm:block md:block lg:block xl:block 2xl:block w-full ">아래는 제가 다룰 수 있는 <span className="bg-cyan-300">기술들</span>이에요.</h1>
               {/* flex-wrap justify-between items-center flex */}
               <div className="w-full h-130 2xl:h-130 xl:h-130 flex flex-col justify-center items-center gap-5 2xl:flex-wrap 2xl:justify-between 2xl:items-center 2xl: flex xl:flex-wrap xl:justify-between xl:items-center xl: flex px-5 2xl:p-0 xl:p-0 lg:p-0 md:p-0 sm:p-0">
@@ -65,7 +65,7 @@ const Home = () => {
                 <StackCard title="server" items={ServerStack}/>
               </div>
           </div>
-          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-30 h-250 2xl:h-160 xl:h-160 lg:h-160 md:h-150 sm:h-150 flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row">
+          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-250 2xl:h-160 xl:h-160 lg:h-160 md:h-150 sm:h-150 flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row">
             {/* gap 10 pt-20 */}
             <div className="w-full 2xl:w-100 xl:w-100 h-130 2xl:h-full xl:h-full flex flex-col justify-center items-center gap-5 2xl:gap-10 xl:gap-10 py-10 2xl:py-15 xl:py-15">
               <div className="profile w-50 h-50 2xl:w-60 2xl:h-60 xl:w-60 xl:h-60 rounded-[50%]">

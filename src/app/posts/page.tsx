@@ -8,7 +8,7 @@ const Posts = () => {
   return (
     <div className="w-full flex justify-center bg-background text-foreground">
       {posts.length === 0 ? (
-        <div className="w-300 py-20 h-165">
+        <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 py-20 h-165">
         <h1 className="text-4xl font-bold mb-10">Posts</h1>
           <div className="w-full h-15 flex flex-col justify-between">
             <p className="text-foreground/70 text-m">아직 작성된 글이 없습니다.</p>
