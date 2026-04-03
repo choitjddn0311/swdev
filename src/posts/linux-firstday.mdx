@@ -1,0 +1,77 @@
+---
+title: "리눅스 공부 day1"
+date: "2025-01-08"
+summary: "swdev의 탄생부터, 왜, 어떻게 만들어졌는지!?"
+tags: ["vm","가상머신","기초","리눅스","서버","우분투","가상환경구축"]
+---
+
+**노력하면 배신은 안하겠지!**
+
+오늘부터 리눅스에 대해 공부해나갈것이다!
+물론 혼자선 안되니 책과 함께 배울예정🙃
+일단 가장먼저 리눅스가 뭔지 부터 알아볼것이다❗
+
+## 리눅스
+```code
+1991년도에 리누스 토발스에 의해 어셈블리어로 만들어져 리눅스라는 os가 등장했다.
+리눅스의 운영체제는 리눅스 커널이라고 하고 유닉스계열의 운영체제이다.
+gui와 터미널 두가지로 사용할 수 있고, 무료이며 오픈소스이기에 대부분의 기업에서 많이 사용한다
+```
+### 목표
+> virtualbox를 사용해서 리눅스를 구축하고 그 안에서 다양한 기능을 살펴볼예정
+
+
+## virtualbox 설치 및 생성
+virtualbox를 사용하는 이유는 지금 내가 사용하는 os는 window이고 하나의 기기에서 가상머신을 활용하여 리눅스를 설치할것이다.
+
+**1.virtualbox 검색 후 설치**
+virtualbox를 검색후 상단에 나오는 [사이트](https://www.virtualbox.org/)에 들어가 자신의 환경과 맞는 것을 다운로드한다. 
+(본인은 윈도우이기에 window로 설치)
+
+
+아래보이는 순서대로 다운로드 하면 된다
+
+1.사이트 접속
+![아래보이는 순서대로 다운로드 하면 된다](https://velog.velcdn.com/images/choitjddn0311/post/11fc1b6e-70fe-45b0-9035-6b691a51c75f/image.png)
+
+2.자신의 os에 맞게 클릭 및 설치![](https://velog.velcdn.com/images/choitjddn0311/post/96edb0aa-f3ee-4bff-a1e8-fcbdb543b95c/image.png)
+
+3.다운로드가 완료되었으면 클릭 후 설치 진행
+![](https://velog.velcdn.com/images/choitjddn0311/post/675bf626-5975-4bb8-a87d-9345bcea4087/image.png)
+
+4.결과
+다 다운로드가 되어 실행하면 현재와 같은 창이 뜸
+![](https://velog.velcdn.com/images/choitjddn0311/post/a7e922dc-30fb-4e3e-9b64-15495d405798/image.png)
+
+이렇게 virtualbox설치를 마쳤다.
+
+## ubuntu구축
+이제 설정을 마쳤으니 가상머신을 만들 차례이다.
+4개의 가상머신을 만들 예정이다
+
+1. 서버 전용(desktop 버전)
+2. 서버 전용(text 버전)
+3. 사용자 전용(ubuntu budgie 사용)
+4. 윈도우 사용자전용(window 10)
+
+이렇게 4가지를 만들것이다
+
+각각의 가상 머신 iso를 다운로드 해줘야한다
+- [서버전용 iso(desktop version)](https://ubuntu.com/download/desktop)
+- [서버전용 iso(text version)](https://ubuntu.com/download/server)
+- [사용자전용 iso(ubuntu budgie)](https://ubuntubudgie.org/downloads/)
+- [윈도우전용 iso(window10)](https://www.microsoft.com/ko-kr/software-download/windows10)
+
+각각의 페이지에 들어가 iso를 다운로드 해준다
+그 후 virtualbox에서 가상머신 4개를 구축해주면 된다
+![](https://velog.velcdn.com/images/choitjddn0311/post/991215bc-8004-4c91-a215-7fa31fc4d5bb/image.png)
+
+각 가상머신 설정은 글을 따로 작성할거같으니 그걸 참고하면 된다.
+
+오늘 포스팅은 여기서 마치겠다❗
+
+**실습내용 출처 - 이것이 우분투 리눅스다 3판 (한빛미디어)**
+
+
+
+
