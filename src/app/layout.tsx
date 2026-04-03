@@ -6,7 +6,7 @@ import { Griun } from "@/fonts/fonts"
 import Theme from "@/_provider/themeProvider";
 
 export const metadata: Metadata = {
-  title: "SW dev",
+  title: "SungWoo Blog",
   description: "this is sungwoo dev blog",
 };
 
