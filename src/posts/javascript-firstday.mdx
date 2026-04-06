@@ -1,0 +1,771 @@
+---
+title: "javascript 기초 문법"
+date: "2026-04-06"
+summary: "javascript의 기초적인 특징과 문법, 자료형, 조건문을 정리해보았습니다"
+tags: ["javascript", "grammer", "structure","study","web"]
+---
+
+## 자바스크립트(Javascript)란?
+
+**웹 사이트 제작을 위해 만들어진 언어**
+
+-   html,css는 웹페이지를 구성하는 간단한 마크업 언어
+-   기능을 구현하기 위해 프로그래밍 언어인 javascript를 사용
+
+### 자바스크립트의 특징
+
+-   인터프리터 언어
+-   동적 자료형을 가짐(변수 값을 string, boolean, object, array, function으로 바꿀수 있다)
+-   하지만 동적 자료형을 가져 종종 오류의 여지를 만듬
+-   프로토타입 기반으로 만들어진 언어
+
+---
+
+## 콘솔과 주석
+
+### 콘솔
+
+**사용자를 위한 값을 출력하는것이 아닌, 개발자가 확인을 하기위한 역할**
+
+```javascript
+console.log("hello world!");
+```
+
+console.log()는 python의 print(), c의 printf()와 같은 역할
+
+세미콜론 ";"은 한 문단 끝에 붙임(javascript에서는 필수는 아니지만 쓰면 좋음)
+
+```javascript
+console.log(1, 2, 3);
+```
+
+쉼표를 통해서 다수의 데이터를 한 번에 출력할 수 있음
+
+### 주석
+
+```javascript
+console.log("hello");
+
+// 이건 주석이라고 합니다.
+
+console.log("world");
+```
+
+주석은 개발 코드에 영향을 주지않음  
+코드를 읽거나 설명하기 위한 메시지를 작성하거나, 추후에 추가해야할 기능들을 적어놓기도 함
+
+#### javascript 주석 작성법
+
+-   기본 주석: **//** or **cmd + /**
+-   여러줄 주석: **/\* + \*/** or **shift + drag + cmd + /** ( 주석 사용시 이 방법이 가장 좋음)
+
+---
+
+## 변수와 상수에 데이터 담기
+
+```javascript
+let darkModeOn = true;
+const PI = 3.1415926535;
+```
+
+변수는 어떠한 데이터나 문자열에 의미를 부여할 수 있음  
+하나의 데이터가 여러곳에서 사용될 때 용이함 (수정하거나 동일한 값을 사용 or 고정된 값)  
+반복문, 로직 구현등에 좋음
+
+javascript에서 변수를 선언할 때에는 `let, const`만 사용됨(es6 버전 이후)  
+var는 javascript 초창기에 만들어져 사용되었기에 여러 오류를 가지고 있음(쓰지않음)
+
+### let과 const
+
+-   let: 변수  
+    넣은 데이터를 바꿀 수 있음
+-   const:상수  
+    넣은 데이터를 바꿀 수 없음
+
+### 변수
+
+```javascript
+let a = 1;
+console.log(a);
+```
+
+a라는 변수에 1이라는 값을 넣음
+
+```javascript
+let b = a;
+console.log(b);
+```
+
+b라는 변수에 a변수의 값과 같은 값을 넣음
+
+```javascript
+a = 2;
+console.log(a,b);
+
+--> 2,1
+```
+
+a변수의 값을 2로 바꿀 수 있음(let으로 선언했기때문)
+
+```javascript
+a = 'helloooooo';
+b = true;
+
+console.log(a,b);
+
+--> helloooooo, true
+```
+
+javascript는 다른 문자에 비해 데이터 종류에 대해 엄격하지 않아서 이와같이 string이든 boolean이든 자료형이 달라도 let으로 선언되었기때문에 값이 바뀌고 출력된걸 볼 수 있음
+
+```javascript
+let c = 2;
+let c = 2;
+```
+
+똑같은 변수를 선언 할 수 없음
+
+### 상수
+
+```javascript
+const A = 1;
+console.log(A);
+```
+
+상수는 보통 대문자로 작성해야함(규칙)
+
+```javascript
+let a;
+
+const A;
+```
+
+변수는 위와 같이 선언만 할 수 있지만, 상수는 불가능함
+
+### 식별자 identifier 명명 규칙
+
+-   영문, 한글 및 유니코드(대부분 문자) 글자, 숫자 등 사용 가능
+-   특수문자는 `$` 또는 `_` 만 사용 가능
+-   숫자로 시작해 선언할 수 없음 ex) 406monday
+-   선언시 스페이스(공백) 사용 불가
+-   사전에 설정된 예약어 사용 불가
+
+---
+
+## 기본 자료형들과 연산자
+
+### 자료형
+
+-   프로그램에서 사용되는 데이터 종류
+    -   숫자, 텍스트, boolean 등...
+-   자바스크립트 = 동적 자료형
+    -   변수/상수 등 데이터를 지정할 때에 들어갈 변수의 자료형 제한이 없음
+
+### 기본 자료형
+
+**boolean** 연산자
+
+```javascript
+let bool1 = true;
+let bool2 = false;
+
+console.log(bool1,bool2);
+```
+
+참과 거짓을 나타냄
+
+**typeof** 연산자
+
+```javascript
+console.log(typeof bool1);
+```
+
+해당하는 데이터의 자료형 반환
+
+```javascript
+const bool3 = 1 < 2;
+const bool4 = 1 > 2;
+
+console.log(bool3, bool4);
+
+-> true, false
+```
+
+**!** 연산자
+
+```javascript
+let bool5 = !true;
+--> false
+
+let bool6 = !bool5;
+--> true
+
+ley bool7 = !!bool6;
+--> true
+
+console.log(bool5, bool6, bool7);
+```
+
+!연산자는 boolean값의 반대값을 반환함
+
+**number** 연산자
+
+-   정수/실수 구분 없음
+
+```javascript
+let num1 = 10; // 정수
+let num2 = 3.14; // 실수
+
+console.log(typeof 2);
+
+let num1 = 10; // 정수
+let num2 = 3.14; // 실수
+
+console.log(typeof 2);
+
+javascript
+console.log(1 + 2);
+console.log(3 - num1);
+console.log(num1 * num2);
+console.log(num1 / num2);
+
+console.log(10 % 3);
+```
+
+```javascript
+const num3 = (num1 + num2) * 10;
+
+console.log(num3);
+```
+
+위의 연산들은 값을 반환
+
+**string** 문자열
+
+```javascript
+const str1 = 'Hello';
+const str2 = "월드 🌐";
+
+console.log(typeof '안녕하세요~');
+console.log(typeof '1');
+```
+
+작은 따옴표 또는 큰 따옴표로 둘러쌈  
+이모티콘이나 다양한 것들을 출력할 수 있음
+
+```javascript
+let str3 = str1 + ' World!';
+console.log(str3);
+```
+
+```javascript
+str3 = str3 + " 🙂";
+console.log(str3);
+```
+
+문자열끼리도 더하는 더하기 연산자 존재  
+\-> str1 + world! = hello world!
+
+**undefined**와 **null**
+
+-   undefined: 변수에 어떤 것이 들어있는지 명시되지 않음
+-   null: 변수가 비어있다(값이 있어야하는데 안나옴)
+
+```javascript
+let x;
+console.log(x, typeof x);
+```
+
+undefined가 출력됨, typeof는 string
+
+```javascript
+x = 1;
+console.log(x);
+
+x = null;
+console.log(x, typeof x); 
+```
+
+null, object로 출력됨(object로 출력되는 이유: 초기 설계 오류)
+
+---
+
+## 연산자 더 알아보기
+
+### 비교연산자
+
+-   기본적으로 boolean을 반환
+-   `==`: 양쪽 값이 같으면 true, 다르면 false(자료형 상관없음) ex) 1==true, 1=="1"
+    -   `!=`: 양쪽의 값이 다르면 true, 다르면 false
+-   `===`: 값과 자료형이 둘다 같을경우에만 true가 나옴
+    -   `!==`: 자료형과 값이 둘다 같을때 falser가 나옴
+
+```javascript
+const a = 1;
+const b = 1;
+const c = '1';
+const d = 2;
+
+console.log(a == b, a != b);
+console.log(a == c, a != c);
+console.log(a == d, a != d);
+
+console.log(a === c, a !== c);
+
+console.log(a > b, a >= b, a <= b); 
+
+console.log(a > d, a < d, a <= d);
+```
+
+문자열의 경우 뒷쪽에 있는게 기본적으로 크다고 인식함
+
+### 부수효과 연산자
+
+-   `~++` or `++~`: 값을 증가시키는 연산자
+    -   둘의 차이: ~++ 은 선언한 부분은 증가하지않고 그 뒤로부터 증가함 하지만 ++~는 바로 그 위치부터 증가시작
+-   `--`: 감소
+
+```javascript
+let num1 = 1;
+
+console.log(num1++); -> 1
+console.log(num1); -> 2
+
+console.log(++num1); -> 3
+console.log(num1); -> 3
+```
+
+```javascript
+let num2 = 2;
+let num3 = 3;
+
+let num4 = num2-- * --num3; 2 * 2
+
+console.log(num2, num3, num4); 1,2,4
+```
+
+### 할당산술연산자
+
+```javascript
+x+=y => x = x+y
+x-=y => x = x-y
+x*=y => x = x*y
+x/=y => x = x/y
+x%=y => x = x%y
+x**=y = x = x**y -> 제곱
+```
+
+```javascript
+let x = 3;
+
+x += 2;
+console.log(x); -> 5
+
+x -= 3;
+console.log(x); -> 2
+
+x *= 12;
+console.log(x); -> 24
+
+x /= 3;
+console.log(x); -> 8
+
+x %= 5;
+console.log(x); -> 3
+
+x **= 4;
+console.log(x); -> 81
+```
+
+**문자열**
+
+```javascript
+let str3 = "안녕";
+str3 += '하세요';
+
+console.log(str3);
+```
+
+문자열은 +=만 가능
+
+### boolean 관련 연산자
+
+-   `&&`: AND - 양쪽 모두 true 일때만 true 반환
+-   `||`: OR - 한쪽만 true 이면 true 반환
+
+```javascript
+console.log(
+  true && true, -> true
+  true && false, -> false
+  false && true, -> false
+  false && false, -> false
+);
+```
+
+### 삼항연산자
+
+-   조건 ? when true : when false;
+
+```javascript
+let bool1 = true;
+
+let result = bool1 ? '참' : '거짓';
+
+--> 참
+```
+
+```javascript
+let num5 = 103247;
+
+console.log(
+  'num5는 3의 배수' +
+  (num5 % 3 === 0 ? '입니다.' : '가 아닙니다.')
+);
+
+-> num5는 3의 배수가 아닙니다
+```
+
+---
+
+## 객체와 배열
+
+### 객체
+
+-   데이터의 묶음(프로퍼티 property)
+-   javascript는 다른 언어와 다르게 원시 자료형을 제외하면 모든 데이터는 객체
+-   키 : 값 조합
+
+```javascript
+const person1 = {
+  name: '최성우',
+  age: 20,
+  married: false
+};
+```
+
+위에서 key는 name,age,married이며, value는 최성우,20,false 이다.
+
+```javascript
+console.log(typeof person1);
+--> object
+console.log(person1);
+--> {name: '최성우',age: 20, married:false}
+```
+
+#### 객체 값에 접근하는 법
+
+```javascript
+console.log(
+    person1.name, --> 최성우
+    person1['name'] --> 최성우
+);
+```
+
+```javascript
+const person1Age = person1.age; --> 20
+const typeOfMarried = typeof person1['married']; --> boolean
+
+console.log(person1Age, typeOfMarried); --> 20, boolean
+```
+
+#### property를 추가하는 법
+
+```javascript
+person1.job = 'programmer'; --> 원하는 key값을 입력하고 value도 입력
+person1['bloodtype'] = 'O'; --> []안에 원하는 key값과 그 뒤에 value를 입력
+
+console.log(person1); --> {name: '최성우',age: 20, married:false, job: 'programmer', bloodtype: '0'}
+```
+
+#### 기존 property를 수정하는 법
+
+```javascript
+person1.age++; --> 증가 ++ 순서는 상관없음 age: 21
+person1['job'] = 'PM'; --> job: 'PM'
+
+console.log(person1);
+```
+
+#### 중요한점
+
+-   객체나 배열에서는 자료형이 상수더라도 값은 변경할 수 있음. 하지만 아예 새로운 값을 넣으려는건 안됨
+
+```javascript
+person1 = {};
+```
+
+### 배열
+
+-   다수의 데이터 저장
+-   객체의 근본
+
+```javascript
+const myArray = [true, 3.14, 'Hello', person1];
+
+console.log(myArray, myArray.length);
+```
+
+모든 자료형을 다 넣을 수 있음  
+인덱스의 순서는 0부터 시작함. myArray의 경우 0,1,2 순서
+
+#### 배열 값에 접근하는 법
+
+```javascript
+console.log(
+    myArray[0], -> true
+    myArray[1], -> 3.14
+    myArray[2], -> 'Hello'
+    myArray[3] -> person1{object}
+);
+```
+
+myArray.1와 같이 접근 할 수 없음  
+  
+
+```javascript
+myArray[0] = !myArray[0]; -> false
+myArray[1] *= 100; -> 314
+myArray[2] += ' world!'; -> 'Hello world!'
+
+console.log(myArray);
+```
+
+#### 요소 추가 및 삭제
+
+```javascript
+myArray.push(123); -> 요소 추가
+
+console.log(myArray);
+
+const popped1 = myArray.pop(); -> 마지막요소 반환 후 제거
+
+console.log(popped1, myArray);
+
+myArray.pop(); -> 단순 제거
+
+console.log(myArray);
+```
+
+#### 객체 및 배열 중첩
+
+```javascript
+const person2 = {
+  name: '최성우',
+  age: 20,
+  languages: ['Korean', 'English'],
+  education: {
+    school: '국민대',
+    major: ['인공지능학부','영상학부(있나?)'],
+    graduated: false,
+  }
+};
+
+console.log(person2);
+
+console.log(person2.languages[1]); -> 'English'
+console.log(person2.education.graduated); -> False
+```
+
+---
+
+## if/else 문
+
+### if문
+
+```javascript
+if (true) console.log('사실'); --> 사실
+if (false) console.log('거짓'); --> 실행안됨
+```
+
+```javascript
+let open = true;
+
+if (open) console.log('안녕하세요.'); -> 안녕하세요
+```
+
+한줄로 작성할때는 위와같이 쓰면됨
+
+```javascript
+if (open) {
+  console.log('안녕하세요.');
+  console.log('자리로 안내하겠습니다.');
+}
+```
+
+여러 줄로 작성할때는 블록 {}으로 감싸줘야함
+
+### if ... else 문
+
+```javascript
+if (open) {
+  console.log('안녕하세요.');
+  console.log('자리로 안내하겠습니다.');
+} else {
+    console.log('영업종료되었습니다. 죄송합니다.');
+}
+```
+
+if(open) ~~ -> 참일때 출력될 내용  
+else -> 거짓일때 출력될 내용  
+  
+
+```javascript
+const x = 10;
+
+if (x % 4) { --> 10일 경우 0이 아니기때문에 true
+  if (x % 2) { --> 0이 되기때문에 '짝수입니다'가 출력
+    console.log('홀수입니다.');
+  } else {
+    console.log('짝수입니다.');
+  }
+} else {
+  console.log('4의 배수입니다.');
+}
+```
+
+if else문을 중첩해서 사용해도 됨
+
+### if ... else if 문
+
+```javascript
+const a = 1;
+const b = 2;
+
+if (a < b) {
+    console.log('a가 b보다 작다.');
+} else if (a > b) {
+    console.log('a가 b보다 크다.');
+} else {
+    console.log('a와 b는 같다.');
+}
+```
+
+if elseif 문은 여러 조건을 걸어서 사용할 수 있다. else if는 한번만 쓸 수 있는것이 아니라 n번 사용할 수 있음.
+
+#### 윳놀이 예시
+
+```javascript
+const yootThrow = '도';
+
+if (yootThrow === '도') {
+    console.log('1칸 전진')
+} else if (yootThrow === '개') {
+    console.log('2칸 전진')
+} else if (yootThrow === '걸') {
+    console.log('3칸 전진')
+} else if (yootThrow === '윷') {
+    console.log('4칸 전진')
+} else {
+    console.log('5칸 전진')
+}
+```
+
+---
+
+## switch 문
+
+-   특정 변수/상수 의 값이나 어떠한 값을 통해 여러가지 작업을 해야할때 사용함
+
+```javascript
+const firePower = 1;
+
+switch (firePower) {
+    case 1: -> firePower가 1일때 조건
+        console.log('레어');
+        break;
+    case 2: -> firePower가 2일때 조건
+        console.log('미디움');
+        break;
+    case 3: -> firePower가 3일때 조건
+        console.log('웰던');
+        break;
+    default: -> 위에 조건에 해당되는게 없을때
+        console.log('오류');
+}
+
+--> '레어' 출력
+```
+
+switch 문에서 break는 코드가 해당 조건에 맞다면 동작을 멈출 수 있게 해주는 코드  
+ex) break가 없고 firePower가 2라면 미디움, 웰던, 오류 3개가 모두 출력됨
+
+```javascript
+const yootThrow = '도';
+
+switch (yootThrow) {
+    case '도':
+        console.log('1칸 전진');
+        break;
+    case '개':
+        console.log('2칸 전진');
+        break;
+    case '걸':
+        console.log('3칸 전진');
+        break;
+    case '윷':
+        console.log('4칸 전진');
+        break;
+    case '모':
+        console.log('5칸 전진');
+        break;
+    default:
+        console.log('무효');
+}
+```
+
+위 코드와 같이 도가 yootThrow이면 1칸 전진이 출력된다. case와 yootThrow의 값이 같은게 없다면 무효가 출려됨
+
+```javascript
+const yootThrow = '도';
+
+switch (yootThrow) {
+    case '모':
+        console.log('1칸 전진');
+    case '윷':
+        console.log('1칸 전진')
+    case '걸':
+        console.log('1칸 전진')
+    case '개':
+        console.log('1칸 전진');
+    case '도':
+        console.log('1칸 전진');
+        break;
+    default:
+        console.log('무효');
+}
+```
+
+break문의 특성을 이용해 반대로 로직을 구현 할 수도 있음  
+잘 응용하면 좋은 조건문이다
+
+```javascript
+const dayOfWeek = '월';
+
+switch (dayOfWeek) {
+    case '월':
+    case '화':
+    case '수':
+    case '목':
+        console.log('6시 퇴근');
+        break;
+    case '금':
+        console.log('12시 퇴근');
+        break;
+    case '토':
+    case '일':
+        console.log('휴무');
+        break;
+    default:
+        console.log('잘못된 요일입니다.');
+}
+```
+
+월 화 수 목이 입력되면 6시 퇴근이 출력되고, 금이 입력되면 12시 퇴근, 토 일이 입력되면 휴무, 다른 값이 입력되면 잘못된 요일입니다. 가 출력되게 할  
+수 있음
+
+## 마치며
+
+웹 개발에 필요한 프로그래밍 언어인 javascript의 문법을 switch문까지 배웠습니다. 지금의 javascript는 다방면으로 사용할 수 있어 열심히 배워나가야할거같다는 생각이 들었습니다. 아직 많은 진도를 나간건 아니지만 javascript를 시작으로 프론트엔드와 백엔드 등등,.. 다양한 분야에서 쓸 수 있도록 배워나가겠다고 생각했습니다. 문법을 많이 까먹어 새롭기도 반갑기도 합니다😅
+
+- 출처
+얄코 - [뉴비를 위한 자바스크립트 강의](https://www.inflearn.com/courses/lecture?courseId=332327&tab=curriculum&type=LECTURE&unitId=190934&subtitleLanguage=ko)
