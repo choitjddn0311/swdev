@@ -48,8 +48,8 @@ export const mdxComponents: MDXComponents = {
   // 나머지는 그대로 유지
   p: (props) => <p className="my-4 leading-7 text-foreground" {...props} />,
   a: (props) => <a className="text-cyan-500 underline hover:text-cyan-400" {...props} />,
-  ul: (props) => <ul className="list-disc list-inside my-4 space-y-1" {...props} />,
-  ol: (props) => <ol className="list-decimal list-inside my-4 space-y-1" {...props} />,
+  ul: (props) => <ul className="list-disc my-4 space-y-1 pl-6" {...props} />,
+  ol: (props) => <ol className="list-decimal my-4 space-y-1 pl-6" {...props} />,
   li: (props) => <li className="leading-7" {...props} />,
   blockquote: (props) => (
     <blockquote className="border-l-4 border-cyan-400 pl-4 my-4 italic text-foreground/70" {...props} />
