@@ -13,7 +13,7 @@ tags: ["linux", "user", "group","commend"]
 root사용자일때를 가정해서 알아보겠다
 vi에디터를 활용하여 아래와 같은 명령어를 입력하면 
 
-```javascript
+```linux
  vi /etc/passwd
 ```
 이와같이 출력된다
@@ -23,7 +23,7 @@ vi에디터를 활용하여 아래와 같은 명령어를 입력하면
 ### 그룹 리스트
 
 또 아래와 같이 vi에디터를 활용해 그룹 명령어를 입력하면
-```javascript
+```linux
 vi /etc/group
 ```
 
@@ -48,7 +48,7 @@ vi /etc/group
 1) **adduser**
 새로운 사용자를 추가하는 명령어이다
 사용 예)
-```javascript
+```linux
 #adduser newuser1 -> newuser1이라는 사용자 생성
  
  #adduser -uid 1111 newuser2 -> newuse2 사용자를 생성하면서 사용자 ID를 1111로 지정
@@ -64,13 +64,13 @@ vi /etc/group
 명령어 그대로 사용자의 비밀번호를 변경 또는 지정하는 명령어이다
 root사용자는 **passwd 사용자명**명령으로 모든 사용자의 비밀번호를 지정 및 변경할 수 있다
 사용 예)
-```javascript
+```linux
 #passwd newuser1 -> newuser1 사용자의 비밀번호를 지정(또는 변경, root권한)
 ```
 3) **usermod**
 사용자의 속성을 변경하는 명령어이다
 사용 예)
-```javascript
+```linux
 #usermod --shell /bin/csh newuser1 -> newuser1 사용자의 기본 셸을 /bin/csh로 설정
 
 #usermod --groups ubuntu newuser1 -> newuser1 사용자의 보조 그룹을 ubuntu 그룹추가
@@ -79,7 +79,7 @@ root사용자는 **passwd 사용자명**명령으로 모든 사용자의 비밀�
 4) **userdel**
 사용자를 삭제하는 명령어
 사용 예)
-```javascript
+```linux
 #userdel newuser2 -> newuser2 사용자 삭제. 단 다 제거되지 않음
 
 #userdel -r newuser3 -> newuser3 사용자를 삭제하면서 모든 내용 삭제
@@ -87,39 +87,39 @@ root사용자는 **passwd 사용자명**명령으로 모든 사용자의 비밀�
 5) **chage**
 사용자의 암호를 주기적으로 변경하도록 설정하는 명령어(**CH**ange **AGE**의 약자)
 사용 예)
-```javascript
+```linux
 #chage -l newuser1 -> newuser1 사용자에 설정된 사항 확인
 #chage -m 2 newuser1 -> newuser1 사용자에 설정한 암호를 사용해야 하는 최소 일자(변경 후 2일은 사용해야함)
 ```
 6) **groups**
 사용자가 소속된 그룹을 보여주는 명령어
 사용 예)
-```javascript
+```linux
 #groups -> 현재의 사용자가 속해있는 그룹을 보여줌
 #groups newuser1 -> newuser1이 속해있는 그룹을 보여줌
 ```
 7) **groupadd**
 새로운 그룹을 생성하는 명령어
 사용 예)
-```javascript
+```linux
 #groupadd newgroup1 -> newgroup1이라는 그룹을 만듬
 ```
 8) **groupmod**
 그룹의 속성을 변경하는 명령어
 사용 예)
-```javascript
+```linux
 groupmod --new-name mygroup1 newgroup1 -> newgroup1 그룹의 이름을 mygroup1로 변경
 ```
 9) **groupdel**
 그룹을 삭제하는 명령어
 사용 예)
-```javascript
+```linux
 #groupdel newgroup2 -> newgroup2라는 그룹 삭제(그룹이 비어있어야 함)
 ```
 10) **gpasswd**
 그룹의 비밀번호를 설정하거나 그룹을 관리하는 명령어
 사용 예)
-```javascript
+```linux
 #gpasswd mygroup1 -> mygroup1 그룹 암호 지정
 #gpasswd -A newuser1 mygroup1 -> newuser1 사용자를 mygroup1 그룹의 관리자로 설정
 ```
