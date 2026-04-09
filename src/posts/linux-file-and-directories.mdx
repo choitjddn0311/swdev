@@ -1,0 +1,414 @@
+---
+title: "Linux 파일과 디렉토리"
+date: "2026-04-08"
+summary: "linux 파일과 디렉토리에 관한 정보와 명령어들을 정리했습니다"
+tags: ["linux", "file", "directories","commend"]
+---
+
+## 파일(file)이란?
+컴퓨터에서 정보 저장을 위한 논리적인 단위
+*파일의 종류*
+- 텍스트
+- 이미지
+- 오디오
+- 실행
+
+### 파일시스템(file system)
+파일을 조직화해 관리하고, 운영체제의 일부
+window, linux, mac etc... 에서 기본적으로 이용되는 파일 시스템의 종류는 다 다름
+
+### 리눅스 파일의 종류 (file types of linux)
+
+- regular files 보통의 파일
+    - text files 텍스트 파일
+        - 읽을 수 있는 문자 (ascii) 코드들이 있음
+            - 프로그램 소스, 설정 파일, 텍스트 파일 etc..
+    - binary files
+        - 날 것의 데이터(이진 표현)가 들어있음
+        - 텍스트 파일이 아닌 모든 파일
+            - 실행 프로그램, 그림 파일, 오디오 파일 etc..
+- directories 디렉토리 < 파일로 취급
+- device file 장치 파일
+    - block devices 블록 단위로 입출력
+    - character devices 캐릭터 단위로 입출력
+- symbolic links 다른 파일을 가리키고 있는 것(이름만 가리킴)
+- pipes 선입선출을 위한 특수 파일
+- sockets 네트워크 입출력을 위한 파일
+
+### 파일의 종류를 알아보는 명령어
+```bash
+file <filename>
+
+cs00@kmu-cs:~$ file 1_test.c 
+1_test.c: C source, ASCII text
+
+cs00@kmu-cs:~$ cat 1_test.c
+
+#include <stdio.h>
+
+int main() {
+	printf("hello world!");
+	return 0;
+}
+
+
+```
+위와 같이 c언어 파일을 file 1_test.c를 했을때 C source, ASCII text 라고 나온다.
+
+### 파일의 상태를 알아보는 명령어
+```bash
+stat <filename>
+
+cs00@kmu-cs:~$ stat 1_test.c 
+
+  File: 1_test.c
+  Size: 71        	Blocks: 8          IO Block: 4096   regular file
+Device: 252,0	Inode: 5011035     Links: 1
+Access: (0664/-rw-rw-r--)  Uid: ( 1000/    cs00)   Gid: ( 1000/    cs00)
+Access: 2026-04-08 05:02:49.169183187 +0000
+Modify: 2026-04-06 05:03:04.129759334 +0000
+Change: 2026-04-06 05:03:04.129759334 +0000 
+ Birth: 2026-04-06 04:57:45.384446106 +0000
+```
+위와 같이 파일의 세세한 정보까지 다 보여준다.
+
+### 파일이 가진 속성들
+```bash
+cs00@kmu-cs:~$ ls -l
+total 52
+-rw-rw-r--  1 cs00 cs00    71 Apr  6 05:03 1_test.c
+-rw-rw-r--  1 cs00 cs00    20 Apr  6 04:58 2_test.c
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 a.out
+drwxrwxr-x 12 cs00 cs00  4096 Aug 30  2025 bsc
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 hello
+-rw-r--r--  1 root root    58 Apr  8 04:59 userInfo.json
+drwxrwxr-x 17 cs00 cs00  4096 Aug 30  2025 yosys
+(파일 접근 권한) (파일 소유자) (크기)(파일 생성 일자)(파일명)
+```
+
+#### 파일에 대한 접근 권한(permission)
+```bash
+-rwx    rwx    rwx
+(user)(group)(other) 
+```
+r: 읽기 권한
+w: 쓰기 권한
+x: 실행 권한
+
+단 디렉터리에서 x는 진입 권한
+
+#### 절대 경로와 상대 경로
+- 절대 경로: Root(/) directory로부터 경로를 모두 일일히 나열
+- 상대 경로: 현재 작업 디렉토리 기준 경로를 나열
+
+```bash
+cs00@kmu-cs:~$ ls -l /home/cs00/1_test.c 
+-rw-rw-r-- 1 cs00 cs00 71 Apr  6 05:03 /home/cs00/1_test.c
+
+cs00@kmu-cs:~$ ls -l 1_test.c 
+-rw-rw-r-- 1 cs00 cs00 71 Apr  6 05:03 1_test.c
+```
+
+
+## 디렉토리(directories)
+디렉토리는 엄연히 폴더와 다른 정의
+리눅스 etc.. 에서는 트리의 형태로 파일시스템을 구성함
+![linux file tree](https://linuxhandbook.com/content/images/2020/06/linux-directory-structure.png)
+
+파일시스템에서는 디렉토리도 하나의 파일로 간주한다
+
+### 홈 디렉토리(home directory)
+A(특정)사용자가 접속하면 기본적으로 접근해있는 디렉토리
+```bash
+a@a-ubuntu: ~$ pwd
+
+/home/a(사용자명)
+```
+이 명령어는 사용자가 현재 있는 경로를 보여주는 명령어
+```bash
+a@a-ubuntu: ~$ ls -l
+합계 n
+~
+~
+~
+
+```
+이 명령어는 로그인한 사용자의 홈디렉토리를 나타내는 명령어
+
+### directory 구조
+*/bin과 /sbin*  
+대부분 시스템 기본 제공 실행 프로그램(명령어) 파일들이 들어있는 위치  
+/sbin에서는 주로 시스템 관리, 관리자가 실행할만한 프로그램이 위치해있음
+
+```bash
+cs00@kmu-cs:~$ ls -l /bin/ls
+-rwxr-xr-x 1 root root 199464 Apr  5  2024 /bin/ls
+
+cs00@kmu-cs:~$ ls -l /sbin/fsck
+-rwxr-xr-x 1 root root 67792 Mar  6 16:00 /sbin/fsck
+```
+
+*/dev*  
+입 출력 장치 파일을 모아둔 곳
+```bash
+cs00@kmu-cs:~$ ls -l /dev/sd*
+brw-rw---- 1 root disk 8, 0 Apr  8 04:21 /dev/sda
+brw-rw---- 1 root disk 8, 1 Apr  6 04:04 /dev/sda1
+brw-rw---- 1 root disk 8, 2 Apr  6 04:04 /dev/sda2
+brw-rw---- 1 root disk 8, 3 Apr  6 04:04 /dev/sda3
+```
+파일접근 권한 부분에서 맨 앞에 있는 글자는 다음과 같은 뜻을 가지고있다.  
+b: 블록 장치, -: 일반 파일, d: 디렉토리, c: 캐릭터 장치, l: 심볼릭 링크, p: pipes, s: sockets
+
+*/etc*  
+시스템 설정 파일을 모아둔 곳
+```bash
+cs00@kmu-cs:~$ ls -l /etc/passwd
+-rw-r--r-- 1 root root 1650 Apr  8 05:02 /etc/passwd
+```
+
+*/lib과 /lib64*  
+시스템이 기본적 활동을 위해 필요한 라이브러리들이 위치해있음.  
+이 라이브러리들은 운영체제의 일부로 제공
+```bash
+cs00@kmu-cs:~$ ls -ld /lib/s*
+drwxr-xr-x  2 root root  4096 Aug  9  2024 /lib/sasl2
+lrwxrwxrwx  1 root root    19 Mar  4 17:55 /lib/sftp-server -> openssh/sftp-server
+drwxr-xr-x  3 root root  4096 Aug 30  2025 /lib/shim
+drwxr-xr-x  2 root root  4096 Apr  8 04:19 /lib/snapd
+drwxr-xr-x  2 root root  4096 Aug  6  2025 /lib/software-properties
+drwxr-xr-x  3 root root  4096 Apr  8 04:21 /lib/ssl
+drwxr-xr-x  2 root root  4096 Apr  8 04:19 /lib/sysctl.d
+drwxr-xr-x  2 root root  4096 Aug  6  2025 /lib/sysstat
+drwxr-xr-x 18 root root 12288 Apr  8 04:19 /lib/systemd
+drwxr-xr-x  2 root root  4096 Apr  8 04:19 /lib/sysusers.d
+```
+
+*/usr*  
+운영체제에서 기본적으로 제공하는 많은 프로그램과 그에 딸린 파일이 존재하는 위치(가장 큰 양을 가지고있음)
+```bash
+cs00@kmu-cs:~$ ls -l /usr/bin/vi
+lrwxrwxrwx 1 root root 20 Aug  6  2025 /usr/bin/vi -> /etc/alternatives/vi
+
+cs00@kmu-cs:~$ ls -l /usr/lib/python3/dist-packages/httplib2
+total 112
+-rw-r--r-- 1 root root  2158 Jan  3  2023 auth.py
+-rw-r--r-- 1 root root   930 Jan  3  2023 certs.py
+-rw-r--r-- 1 root root   954 Jan  3  2023 error.py
+-rw-r--r-- 1 root root 68417 Jan  3  2023 __init__.py
+-rw-r--r-- 1 root root  4153 Jan  3  2023 iri2uri.py
+drwxr-xr-x 2 root root  4096 Aug  6  2025 __pycache__
+-rw-r--r-- 1 root root 19701 Jan  3  2023 socks.py
+```
+
+*/bin과 usr/bin의 차이점*   
+> /bin은 usr/bin의 심볼릭 링크로 차이가 없다  
+옛날에는 /bin에는 부팅에 필요한 최소 파일을 넣어두고, usr/bin에는 일반 프로그램을 담아놓았다
+
+*/var*  
+시스템 운용에 따라 동적으로 변화하는 파일이 있는 곳  
+ex) 사용자 메일박스, 프린터 스풀, 로그 etc..
+```bash
+cs00@kmu-cs:~$ ls -l /var
+total 44
+drwxr-xr-x  2 root root   4096 Apr  9 02:25 backups
+drwxr-xr-x 18 root root   4096 Aug 30  2025 cache
+drwxrwsrwt  2 root root   4096 Aug  6  2025 crash
+drwxr-xr-x 50 root root   4096 Apr  8 04:20 lib
+drwxrwsr-x  2 root staff  4096 Apr 22  2024 local
+lrwxrwxrwx  1 root root      9 Aug  6  2025 lock -> /run/lock
+drwxr-xr-x 10 root syslog 4096 Apr  6 04:04 log
+drwxrwsr-x  2 root mail   4096 Aug  6  2025 mail
+drwxr-xr-x  2 root root   4096 Aug  6  2025 opt
+lrwxrwxrwx  1 root root      4 Aug  6  2025 run -> /run
+drwxr-xr-x  2 root root   4096 May 21  2025 snap
+drwxr-xr-x  4 root root   4096 Aug  6  2025 spool
+drwxrwxrwt  8 root root   4096 Apr  9 03:15 tmp
+```
+
+*/home*  
+여러 사용자의 홈 디렉토리들을 모아 둔 곳(필수로 여기 위치해야하는건 아님)
+```bash
+cs00@kmu-cs:~$ ls -l /home
+total 4
+drwxr-x--- 8 cs00 cs00 4096 Apr  8 05:02 cs00
+```
+
+*/tmp*  
+임시로 만들어졌다가 곧 사라질 파일들이 위치함
+```bash
+cs00@kmu-cs:~$ ls -l /tmp
+total 28
+drwxr-xr-x 2 root root 4096 Apr  8 04:20 hsperfdata_root
+drwx------ 2 root root 4096 Apr  6 04:04 snap-private-tmp
+drwx------ 3 root root 4096 Apr  8 04:20 systemd-private-391a29a19d714a5c97f323ecf86a1a92-ModemManager.service-TYOvLi
+drwx------ 3 root root 4096 Apr  8 04:20 systemd-private-391a29a19d714a5c97f323ecf86a1a92-polkit.service-EAZ6Iv
+drwx------ 3 root root 4096 Apr  6 04:04 systemd-private-391a29a19d714a5c97f323ecf86a1a92-systemd-logind.service-BG4aYQ
+drwx------ 3 root root 4096 Apr  8 04:21 systemd-private-391a29a19d714a5c97f323ecf86a1a92-systemd-resolved.service-6Bb15r
+drwx------ 3 root root 4096 Apr  8 04:21 systemd-private-391a29a19d714a5c97f323ecf86a1a92-systemd-timesyncd.service-2nOKvM
+```
+
+## 파일 조작 실습
+### 새 디렉토리 만들기
+```bash
+cs00@kmu-cs:~$ mkdir newdir
+cs00@kmu-cs:~$ ls
+1_test.c  2_test.c  a.out  bsc  hello  newdir  userInfo.json  yosys
+```
+
+### 파일 복사
+새로 만든 디렉토리 아래 "/usr/lib/os-release" 파일 복사
+```bash
+cs00@kmu-cs:~/newdir$ cp /usr/lib/os-release /home/cs00/newdir
+
+cs00@kmu-cs:~/newdir$ ls -l
+total 4
+-rw-r--r-- 1 cs00 cs00 400 Apr  9 03:24 os-release
+```
+
+### 심볼릭 링크 생성
+newdir아래 /bin/ls 에 대해 생성
+```bash
+cs00@kmu-cs:~/newdir$ ln -s /bin/ls /home/cs00/newdir
+
+cs00@kmu-cs:~/newdir$ ls -l
+total 4
+lrwxrwxrwx 1 cs00 cs00   7 Apr  9 03:25 ls -> /bin/ls
+-rw-r--r-- 1 cs00 cs00 400 Apr  9 03:24 os-release
+```
+
+심볼릭에 대해 자세히 알지 못해서 정리해보았다
+**심볼릭이란**  
+> 다른 파일이나 디렉토리의 경로를 가리키는 특수 파일  
+원본 파일을 복제하는것보다 파일을 참조하기에 유연성에서 좋다
+
+**심볼릭의 장단점**
+- 장점: 원본파일의 이름과 위치만 저장하기의 용량이 적음
+- 장점: 파일뿐만아니라 디렉토리, 서로다른 파일시스템에 있는 파일도 링크걸수 있음
+- 단점(?): 링크로 연결되어있기에 원본이 사라지면 의미가 사라짐
+
+**생성 및 삭제 명령어**
+- 생성 `ln -s [원본 파일 또는 폴더] [심볼릭 링크 파일명]`
+- 삭제 `rm [심볼릭 링크 파일명]`
+
+
+### 디렉토리 접근 권한 변경
+/newdir에 대한 권한을 dr-x-r--r--로 변경
+```bash
+cs00@kmu-cs:~/newdir$ chmod 544 /home/cs00/newdir/
+
+cs00@kmu-cs:~$ ls -l
+total 56
+-rw-rw-r--  1 cs00 cs00    71 Apr  6 05:03 1_test.c
+-rw-rw-r--  1 cs00 cs00    20 Apr  6 04:58 2_test.c
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 a.out
+drwxrwxr-x 12 cs00 cs00  4096 Aug 30  2025 bsc
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 hello
+dr-xr--r--  2 cs00 cs00  4096 Apr  9 03:25 newdir < -----
+-rw-r--r--  1 root root    58 Apr  8 04:59 userInfo.json
+drwxrwxr-x 17 cs00 cs00  4096 Aug 30  2025 yosys
+```
+
+### 파일명 변경 및 삭제 시도  
+파일 이동  
+```bash
+cs00@kmu-cs:~/newdir$ mv os-release newname
+mv: cannot move 'os-release' to 'newname': Permission denied
+```
+쓰기 권한을 부여하지 않았기때문에 permission denied가 발생
+
+파일 삭제
+```bash
+cs00@kmu-cs:~/newdir$ rm os-release 
+rm: cannot remove 'os-release': Permission denied
+```
+이 또한 쓰긱 쓰기 권한이 없기에 premission denied가 발생
+
+
+### 디렉토리 접근 권한 재설정
+/newdir에 대해 user에게 w권한 부여하기
+```bash
+cs00@kmu-cs:~/newdir$ chmod u+w .
+
+cs00@kmu-cs:~$ ls -l
+total 60
+-rw-rw-r--  1 cs00 cs00    71 Apr  6 05:03 1_test.c
+-rw-rw-r--  1 cs00 cs00    20 Apr  6 04:58 2_test.c
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 a.out
+drwxrwxr-x 12 cs00 cs00  4096 Aug 30  2025 bsc
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 hello
+drwxr--r--  2 cs00 cs00  4096 Apr  9 03:25 newdir <-- w권한이 user에게 부여된 걸 볼 수 있음
+drwxrwxr-x  2 cs00 cs00  4096 Apr  9 03:42 newname
+-rw-r--r--  1 root root    58 Apr  8 04:59 userInfo.json
+drwxrwxr-x 17 cs00 cs00  4096 Aug 30  2025 yosys
+```
+
+*group와 user의 읽기 권한 삭제*
+```bash
+cs00@kmu-cs:~/newdir$ chmod ug-r os-release 
+
+cs00@kmu-cs:~/newdir$ ls -l
+total 12
+drwxr--r--  2 cs00 cs00 4096 Apr  9 03:25 .
+drwxr-x--- 10 cs00 cs00 4096 Apr  9 03:42 ..
+lrwxrwxrwx  1 cs00 cs00    7 Apr  9 03:25 ls -> /bin/ls
+--w----r--  1 cs00 cs00  400 Apr  9 03:24 os-release
+```
+위와 같이 읽기 권한을 삭제하면 파일을 읽을 수 없다
+```bash
+cs00@kmu-cs:~/newdir$ cat os-release 
+cat: os-release: Permission denied
+```
+root의 권한을 활용하면 읽을 수 있다
+```bash
+cs00@kmu-cs:~/newdir$ sudo cat os-release 
+[sudo] password for cs00: 
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.3 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+```
+
+파일 이름을 변경하거나 삭제할때에는 파일에 대한 권한이 없어도 쓰기 권한만 있으면 가능
+
+### 디렉토리 삭제
+```bash
+cs00@kmu-cs:~$ rmdir newdir
+rmdir: failed to remove 'newdir': Directory not empty
+```
+비어있지않은 디렉토리는 단순 명령어로만 삭제할 수 없다
+
+rm -rf를 사용하면 디렉토리 전체를 삭제할 수 있다.  
+하지만 명령어를 습관적으로 사용하면 안된다.  
+```bash
+cs00@kmu-cs:~$ rm -rf newdir
+
+cs00@kmu-cs:~$ ls -l
+total 56
+-rw-rw-r--  1 cs00 cs00    71 Apr  6 05:03 1_test.c
+-rw-rw-r--  1 cs00 cs00    20 Apr  6 04:58 2_test.c
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 a.out
+drwxrwxr-x 12 cs00 cs00  4096 Aug 30  2025 bsc
+-rwxrwxr-x  1 cs00 cs00 70320 Apr  6 05:03 hello
+drwxrwxr-x  2 cs00 cs00  4096 Apr  9 03:42 newname
+-rw-r--r--  1 root root    58 Apr  8 04:59 userInfo.json
+drwxrwxr-x 17 cs00 cs00  4096 Aug 30  2025 yosys
+```
+
+링크가 걸려있는 디렉토리를 지웠기때문에 링크는 지워지지만 원본은 남아있다.
+```bash
+cs00@kmu-cs:~$ ls -l /bin/ls
+-rwxr-xr-x 1 root root 199464 Apr  5  2024 /bin/ls
+```
+
+## 마치며
+리눅스는 간단하고 복잡한 많은 명령어와 환경들이 있는거같다. 다 외워야하는 건 아닌거같지만 자주 사용하거나 써야할 명령어들을 익혀둬야할거같다.
