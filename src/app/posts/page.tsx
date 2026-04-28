@@ -18,7 +18,7 @@ const Posts = () => {
       ): (
         <div className="w-300 py-20">
         <h1 className="text-2xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl font-bold mb-10 pl-5 2xl:pl-0 xl:pl-0 lg:pl-5 md:pl-5 sm:pl-5">Posts</h1>
-<div className="flex flex-col gap-6 px-5 2xl:px-0 xl:px-0 lg:px-5 md:px-5 sm:px-5">
+          <div className="flex flex-col flex-wrap gap-6 px-5 2xl:px-0 xl:px-0 lg:px-5 md:px-5 sm:px-5 w-full">
             {posts.map((post) => (
               <PostCard key={post.slug} post={post} />
             ))}

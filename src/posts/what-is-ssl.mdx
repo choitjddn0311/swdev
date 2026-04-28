@@ -1,0 +1,90 @@
+---
+title: "SSL 인증서는 뭘까?"
+date: "2025-03-25"
+summary: "ssl 인증서가 무엇인지, 어떤 기능을 하는지 알아봤습니다"
+tags: ["web", "http", "https", "ssl"]
+---
+
+![](https://velog.velcdn.com/images/choitjddn0311/post/040997bf-83b5-4455-9c2e-4a00970afd3a/image.png)
+
+> 오늘 알아볼 것은 SSL 인증서이다.
+SSL 인증서를 알아보기 전 http와 https가 뭔지 먼저 알아볼것이다
+
+## HTTP와 HTTPS 비교
+
+### HTTP
+
+- **HTTP**는 **H**yper **T**ext **T**ransfer **P**rotocol 의 약자
+- World Wide Web(WWW 웹)에서 데이터를 주고 받기 위한 프로토콜
+- HTTP는 클라이언트와 서버 간의 요청(request), 응답(response)을 통해서 실행
+- HTML , CSS , JavaScript , 사진파일을 전송할 수 있는 프로토콜
+- TCP/IP 통신을 기반으로 작동하는 프로토콜
+- 주로 80포트를 사용
+
+
+#### HTTP의 단점
+- HTTP는 데이터를 암호화 하지 않기때문에 정보가 노출 되어 해커가 데이터를 중간에서 가로 채갈 수 있어 로그인 정보나, 개인정보가 쉽게 노출 될 가능성이 있음
+- 이외에 무결성 부족, 상태 비저장, 성능문제, 중간 공격자의 위험등 다양한 보안문제에 노출 될 가능성이 큼
+
+#### HTTP의 구조
+![](https://velog.velcdn.com/images/choitjddn0311/post/abf4e815-ee5b-4877-b169-cee882bdea7e/image.png)
+위 사진과 같이 모든 부분이 HTTP의 웹을 이루는 구조이고 우리가 실제로 사용하며 볼 수 있는 부분은 Client부분이다.
+
+### HTTPS
+- **HTTPS**는 **T**yper**T**ext **T**ransfer **P**rotocol over **S**ecure Socket Layer 의 약자
+- HTTP 프로토콜의 보안이 강화된 버전의 프로토콜이다
+- HTTP와 같이 TCP/IP 통신을 기반으로 작동하는 프로토콜
+- 주로 443포트를 사용
+- 웹 상에서 정보를 암호화하는 TLS 또는 SSL을 사용해 데이터를 암호화하여 사용하는 프로토콜
+
+#### HTTPS의 단점
+- TLS / SSL 을 사용해 데이터를 암호화하여 HTTP보다 클라이언트와 서버간의 응답이 느림 (많이 개선됨)
+- HTTPS를 사용하기 위해 TLS / SSL 인증서를 구매하고 설치해야하고, 인증서를 주기적으로 갱신해야하기에 비용적으로 부담이 있을 수 있음
+- HTTPS를 제대로 설정하지 않을 시 보안이 오히려 악화될 수 있는 위험이 있음
+
+
+### HTTP와 HTTPS 차이점
+**HTTP:** 노출될 정보가 없고 개인적으로나 간단하게 정보를 저장하기 위한 사이트 구현시에 사용 할 수 있음, 정보노출의 우려가 있음
+**HTTPS:** 중요한 정보를 담고 있는 사이트라면 사용해야함, 하지만 비용적인 문제가 생길 수도 있고 HTTP 프로토콜보다 속도가 느림
+
+
+> HTTP의 보안문제와 같은 이유로 HTTPS를 사용한다
+이를 설정하기위한 **SSL 인증서**에 대해 알아볼 것이다
+
+
+## SSL 인증서
+- **SSL**은 **S**ecure **S**ocket **L**ayer의 약자
+- SSL 인증서는 인터넷상에서 웹브라우저(Client)와 웹서버(Server)간의 데이터를 안전하게 주고받기 위한 통신 프로토콜
+
+### SSL 인증서의 작동원리
+1. 클라이언트가 서버에 접속하여 사용자가 HTTPS URL로 사이트에 접속하게 되면 클라이언트가 서버에 연결 요청을 보냄
+
+2. 서버 인증서 제공: 서버는 클라이언트에 SSL 인증서 제공
+
+3. 클라이언트 인증서 검증:클라이언트는 인증서를 검증해 신뢰할 수 있는 기관에서 발급했는지 확인함
+
+4. 암호화된 연결 설정: 검증이 완료된 브라우저와 서버간에 암호화된 연결을 설정
+
+
+### SSL 인증서 발급 과정
+> **CA** (**C**ertificate **A**uthority)
+디지털 인증서를 발급해주는 기관
+TLS / SSL 기반의 통신을 위해선 CA의 인증서 발급이 있어야함
+
+1. 웹사이트에서 공개키와 개인키를 쌍으로 생성함
+
+2. CA에 웹사이트의 정보와 생성된 공개키를 바탕으로 CSR을 작성해서 보냄 
+(CSR[인증서 서명 요청]: 신청자가 보내는 인코딩된 메시지로 조직명,도메인 이름, 지역, 국가 정보 와 인증서에 포함될 공개 키)
+
+3. 받은 공개키를 HASH후 CA의 개인키로 암호화를 하여 디지털 서명을 만들어줌
+
+4. 서명과 웹의 정보가 포함된 인증서를 웹사이트에 발급
+
+
+
+
+## 참고사이트
+[Office Keeper](https://www.officekeeper.co.kr/blog-type-dictionary/view/204)
+[Mdn](https://developer.mozilla.org/ko/docs/Web/HTTP/Guides/Overview)
+[Tistory 글](https://bruders.tistory.com/143)
+[Tistory 글](https://growth-coder.tistory.com/260)

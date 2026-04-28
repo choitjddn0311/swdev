@@ -1,50 +1,48 @@
+import Image from "next/image";
 const About = () => {
-    // const myLifeItems = [
-    //     "2007년 3월 11일 출생",
-    //     "2014년 3월 인천삼산초등학교 입학",
-    //     "2020년 3월 삼산중학교 입학",
-    //     "2022년 12월 웹 개발 시작",
-    //     "2023년 3월 인평자동차고등학교 자동차it과 입학",
-    //     "2024년 3월 인천지방기능경기대회 웹 디자인 및 개발 부분 동메달 수상",
-    //     "2025년 3월 인천지방기능경기대회 웹 디자인 및 개발 부분 은메달 수상",
-    //     "2025년 9월 광주전국기능경기대회 웹 디자인 및 개발 부분 장려상(14등) 수상",
-    //     "2026월 1월 인평자동차고등학교 40기 졸업",
-    //     "2026년 3월 국민대학교 인공지능학부 26학번 입학"
-    // ]
-    return (
-        // <div>
-        //     <main className="w-full flex items-center flex-col bg-background text-foreground">
-        //         <div className="w-300 flex flex-col justify-start items-center h-20">
-        //             <h1 className="text-3xl w-full text-start">저에 대해 조금 더 <span className="text-cyan-500">소개</span>해드릴게요!</h1>
-        //         </div>
-        //         <div className="w-300 flex flex-col justify-start items-center">
-        //             {/* 여기에는 많은걸 도전하는것을 좋아한다. 이런분야 이런분야 */}
-        //             <h1 className="text-2xl w-full items-start">제 인생의 모토는 <span className="bg-cyan-300">"make life what i dream"</span>입니다</h1>
-        //             <p className="text-l w-full item-start pt-5 pb-5">저는 개발을 통해서 사람들에게 편리한 삶을 제공하고, 제가 원하는 삶을 개발을 통해 이루고싶습니다.</p>
-        //             <div className="w-full h-170 pt-5 pb-5 flex items-center">
-        //                 {/* 중3 첫 개발 함. 고등학교(특성화)입학, 대회 자격증, 사진 등등 나의 연혁 소개 */}
-        //                 <ul className="w-full h-150">
-        //                     <li className="w-full h-150 flex flex-col justify-between">
-        //                         {myLifeItems.map((item, index) => (
-        //                             <div key={index} className="flex justify-start w-full gap-3 items-center">
-        //                                 <div className="w-7 h-7 rounded-full border-8 border-cyan-500 flex "></div>
-        //                                 <ul className="flex w-12 justify-between">
-        //                                     <li className="w-2 bg-cyan-500 h-1 "></li>
-        //                                     <li className="w-2 bg-cyan-500 h-1 "></li>
-        //                                     <li className="w-2 bg-cyan-500 h-1 "></li>
-        //                                     <li className="w-2 bg-cyan-500 h-1 "></li>
-        //                                 </ul>
-        //                                 <div className="list-disc">{item}</div>
-        //                             </div>
-        //                         ))}
-        //                     </li>
-        //                 </ul>
-        //             </div>
-        //         </div>
-        //     </main>
-        // </div>
-        <div className="w-full h-165 bg-background flex justify-center items-center">
-            <h1 className="text-9xl text-cyan-500">공사중 입니다...</h1>
+    const hashTag = [
+        'frontend',
+        'react',
+        'next',
+        'javascript',
+        'typescript',
+        'tailwindcss',
+        'backend',
+        'php',
+        'nodejs',
+        'express.js',
+        'etc'
+    ]
+    return(
+        <div className="bg-background w-full flex flex-col items-center">
+            <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex py-5">
+                <div className="w-80 h-80">
+                    <Image
+                      src="/img/about_profile.jpg"
+                      alt="profile"
+                      width={320}
+                      height={320}
+                      className="rounded-full"
+                    />
+                </div>
+                <div className="flex flex-col justify-between p-20 py-0 w-220">
+                    <div className="h-20 w-full flex flex-col justify-center gap-2">
+                        <h1 className="w-full text-3xl text-start content-center">Make life what i dream! </h1>
+                        <p className="w-full">꿈꾸는 삶과 세상을 만들어나가고싶습니다!</p>
+                    </div>
+                    <div className="h-20 w-full flex items-center">
+                        <h1 className="text-4xl">최성우 | (원하는 직업 또는 수식어)</h1>
+                    </div>
+                    <div className="w-full h-20 flex items-center">
+                        <ul className="flex gap-5 overflow-y-scroll">
+                            {hashTag.map((items,index) => (
+                                <li className="underline" key={index}>#{items}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300"></div>
         </div>
     )
 }
