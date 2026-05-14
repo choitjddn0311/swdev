@@ -1,6 +1,7 @@
 import Button from "@/components/common/button";
 import { FaGithub, FaInstagram, FaLongArrowAltDown,FaHtml5,FaCss3Alt,FaJs,FaReact,FaPhp,FaNodeJs,FaJava,FaLinux,FaUbuntu,FaDocker } from "react-icons/fa";
-import { SiVelog,SiOracle,SiMysql } from "react-icons/si";
+import { SiVelog,SiMysql } from "react-icons/si";
+// SiOracle 없
 import { MdOutlineEmail } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
@@ -20,7 +21,7 @@ const Home = () => {
     {stack: "jsp" , icon: <FaJava/> , iconColor: "text-red-500"}
   ]
   const DbStack = [
-    {stack: "oracle" , icon: <SiOracle/> , iconColor: "text-red-600"},
+    {stack: "oracle" , iconColor: "text-red-600"},
     {stack: "jsp" , icon: <SiMysql/> , iconColor: "text-cyan-700"}
   ]
   const ServerStack = [
