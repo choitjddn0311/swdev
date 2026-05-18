@@ -1,11 +1,17 @@
 import Button from "@/components/common/button";
 import { FaGithub, FaInstagram, FaLongArrowAltDown,FaHtml5,FaCss3Alt,FaJs,FaReact,FaPhp,FaNodeJs,FaJava,FaLinux,FaUbuntu,FaDocker } from "react-icons/fa";
-import { SiVelog,SiMysql } from "react-icons/si";
-// SiOracle 없
+import { SiMysql } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
 import Link from "next/link";
 import Image from "next/image";
 import StackCard from "@/components/common/stackCard";
+import { GrOracle } from "react-icons/gr";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "home",
+  description: "최성우의 포트폴리오 홈페이지입니다.",
+};
 
 const Home = () => {
   // stack을 정의할때 구조는 다음과 같다: 스텍명(language name) , icon() from react-icons, iconColor()
@@ -21,7 +27,7 @@ const Home = () => {
     {stack: "jsp" , icon: <FaJava/> , iconColor: "text-red-500"}
   ]
   const DbStack = [
-    {stack: "oracle" , iconColor: "text-red-600"},
+    {stack: "oracle" , icon: <GrOracle /> , iconColor: "text-red-600"},
     {stack: "jsp" , icon: <SiMysql/> , iconColor: "text-cyan-700"}
   ]
   const ServerStack = [
