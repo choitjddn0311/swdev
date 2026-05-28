@@ -1,5 +1,6 @@
 import Button from "@/components/common/button";
 import RecentPostsWidget from "@/components/home/RecentPostsWidget";
+import HeroSpotlight from "@/components/home/HeroSpotlight";
 import { FaGithub, FaInstagram, FaLongArrowAltDown,FaHtml5,FaCss3Alt,FaJs,FaReact,FaPhp,FaNodeJs,FaJava,FaLinux,FaUbuntu,FaDocker } from "react-icons/fa";
 import { SiMysql } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
@@ -61,7 +62,8 @@ const Home = () => {
   return (
     <div className="w-full">
         <main className="w-full flex items-center flex-col bg-background text-foreground">
-          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300  flex flex-col justify-center items-center h-160 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 gap-50">
+          <div className="relative overflow-hidden w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300  flex flex-col justify-center items-center h-160 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 gap-50">
+              <HeroSpotlight />
               <div className="flex flex-col gap-2 px-5">
                 <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl text-center">안녕하세요. <span className="bg-cyan-300">무궁무진한 개발자</span>를 꿈꾸는 <span className="text-cyan-500">최성우</span>입니다! </h1>
                 <h2 className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl  text-center">hello. thank you for comming! i'm <span className="text-cyan-500">sungwoo Choi</span> && <span className="bg-cyan-300">dreaming fullstack developer</span></h2>
