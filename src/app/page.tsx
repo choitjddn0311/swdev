@@ -7,14 +7,18 @@ import Image from "next/image";
 import StackCard from "@/components/common/stackCard";
 import { GrOracle } from "react-icons/gr";
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
-  title: "홈",
+  title: { absolute: siteConfig.name },
   description: "개발자를 꿈꾸는 최성우의 포트폴리오 홈페이지입니다.",
   openGraph: {
-    title: "홈 | sungwoo dev blog",
+    type: "website",
+    locale: "ko_KR",
+    siteName: siteConfig.name,
+    title: siteConfig.name,
     description: "개발자를 꿈꾸는 최성우의 포트폴리오 홈페이지입니다.",
-    url: "/",
+    url: siteConfig.url,
   },
 };
 

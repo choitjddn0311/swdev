@@ -6,6 +6,7 @@ import Link from "next/link";
 import { extractToc } from "@/lib/toc";
 import TableOfContents from "@/components/posts/TableOfContents";
 import Comments from "@/components/posts/Comments";
+import { siteConfig } from "@/lib/siteConfig";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -20,9 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     keywords: meta.tags,
     openGraph: {
       type: "article",
+      locale: "ko_KR",
+      siteName: siteConfig.name,
       title: meta.title,
       description: meta.summary,
-      url: `/posts/${slug}`,
+      url: `${siteConfig.url}/posts/${slug}`,
       publishedTime: meta.date,
       tags: meta.tags,
     },

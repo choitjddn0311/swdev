@@ -4,14 +4,18 @@ import SearchInput from "@/components/posts/SearchInput";
 import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
   title: "Posts",
   description: "최성우의 개발 블로그 포스트 목록입니다. Web, Linux, AI 등 다양한 주제를 다룹니다.",
   openGraph: {
-    title: "Posts | sungwoo dev blog",
+    type: "website",
+    locale: "ko_KR",
+    siteName: siteConfig.name,
+    title: `Posts | ${siteConfig.name}`,
     description: "최성우의 개발 블로그 포스트 목록입니다.",
-    url: "/posts",
+    url: `${siteConfig.url}/posts`,
   },
 };
 
