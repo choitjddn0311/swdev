@@ -63,22 +63,6 @@ const Home = () => {
     <div className="w-full">
         <main className="w-full flex items-center flex-col bg-background text-foreground">
           <div className="relative w-full h-160 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex justify-center">
-              {/* 점 그리드 — 라이트 모드 */}
-              <div
-                className="dark:hidden absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: "radial-gradient(circle, rgba(34, 211, 238, 0.45) 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
-                }}
-              />
-              {/* 점 그리드 — 다크 모드 */}
-              <div
-                className="hidden dark:block absolute inset-0 pointer-events-none"
-                style={{
-                  backgroundImage: "radial-gradient(circle, rgba(34, 211, 238, 0.2) 1px, transparent 1px)",
-                  backgroundSize: "24px 24px",
-                }}
-              />
               <HeroSpotlight />
               <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex flex-col justify-center items-center gap-50">
                 <div className="flex flex-col gap-2 px-5">
