@@ -92,7 +92,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
     >
       {/* 드래그 핸들 (헤더) */}
       <div
-        className={`flex items-center justify-between px-4 py-3 bg-cyan-400 text-white ${
+        className={`flex items-center justify-between px-4 py-3 bg-cyan-300 text-white ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
         onMouseDown={(e) => {
@@ -104,7 +104,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
           startDrag(touch.clientX, touch.clientY);
         }}
       >
-        <span className="text-sm font-semibold select-none">📌 최신 글</span>
+        <span className="text-sm font-semibold select-none">최신 글</span>
         <div className="flex items-center gap-2">
           <button
             onMouseDown={(e) => e.stopPropagation()}

@@ -46,21 +46,28 @@ const About = () => {
     {
       year: "2025",
       items: [
-        { icon: "🏅", text: "광주 전국기능경기대회 웹 디자인 및 개발 장려상(14위)" },
-        { icon: "🏅", text: "인천 지방기능경기대회 웹 디자인 및 개발 은메달" },
         { icon: "🏅", text: "progate hackathon 2등" },
-        { icon: "📜", text: "정보처리산업기사(과정평가형) 취득" },
+        { icon: "🏅", text: "광주 전국기능경기대회 웹 디자인 및 개발 장려상(14위)" },
         { icon: "📜", text: "웹디자인개발기능사 취득" },
+        { icon: "🏅", text: "인천 지방기능경기대회 웹 디자인 및 개발 은메달" },
+        { icon: "📜", text: "정보처리산업기사(과정평가형) 취득" },
       ],
     },
     {
       year: "2024",
       items: [
-        { icon: "🏅", text: "인천 지방기능경기대회 웹 디자인 및 개발 동메달" },
-        { icon: "💼", text: "산학일체형도제학교 8기 (유)슬렉슨 근무 시작" },
         { icon: "📜", text: "프로그래밍기능사(구 정보처리기능사) 취득" },
+        { icon: "💼", text: "산학일체형도제학교 8기 (유)슬렉슨 근무 시작" },
+        { icon: "🏅", text: "인천 지방기능경기대회 웹 디자인 및 개발 동메달" },
       ],
     },
+    {
+      year: "2023",
+      items: [
+        {icon: "💻", text: "웹 디자인 및 개발 기능반 입부"},
+        {icon: "🏫", text: "인평자동차고등학교 자동차it과 입학"}
+      ]
+    }
   ];
 
   // ✏️ 목표 내용을 여기서 수정하세요
@@ -180,7 +187,7 @@ const About = () => {
             {timeline.map((group, gi) => (
               <div key={gi} className="relative mb-10 last:mb-0">
                 {/* 타임라인 점 */}
-                <div className="absolute -left-[33px] w-6 h-6 rounded-full bg-cyan-400 flex items-center justify-center">
+                <div className="absolute -left-[45px] w-6 h-6 rounded-full bg-cyan-400 flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
 
