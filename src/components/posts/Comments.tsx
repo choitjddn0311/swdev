@@ -1,0 +1,47 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
+
+const REPO = "choitjddn0311/swdev";
+
+const Comments = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
+
+  const utterancesTheme = resolvedTheme === "dark" ? "github-dark" : "github-light";
+
+  // 최초 마운트 시 스크립트 삽입
+  useEffect(() => {
+    if (!ref.current || ref.current.hasChildNodes()) return;
+
+    const script = document.createElement("script");
+    script.src = "https://utteranc.es/client.js";
+    script.setAttribute("repo", REPO);
+    script.setAttribute("issue-term", "pathname");
+    script.setAttribute("theme", utterancesTheme);
+    script.setAttribute("crossorigin", "anonymous");
+    script.async = true;
+    ref.current.appendChild(script);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // 테마 변경 시 utterances iframe에 동기화
+  useEffect(() => {
+    const iframe = document.querySelector<HTMLIFrameElement>(".utterances-frame");
+    if (!iframe) return;
+    iframe.contentWindow?.postMessage(
+      { type: "set-theme", theme: utterancesTheme },
+      "https://utteranc.es"
+    );
+  }, [utterancesTheme]);
+
+  return (
+    <section className="mt-16 pt-10 border-t border-foreground/10">
+      <h2 className="text-lg font-semibold mb-6">댓글</h2>
+      <div ref={ref} />
+    </section>
+  );
+};
+
+export default Comments;

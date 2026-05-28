@@ -1,5 +1,17 @@
 import Image from "next/image";
 import IntroCard from "@/components/common/introCard"
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About",
+  description: "개발자 최성우를 소개합니다. Web, AI 분야에 관심이 있으며 사진·영상도 즐기는 개발자입니다.",
+  openGraph: {
+    title: "About | sungwoo dev blog",
+    description: "개발자 최성우를 소개합니다.",
+    url: "/about",
+  },
+};
+
 const About = () => {
     const hashTag = [
         'developer',

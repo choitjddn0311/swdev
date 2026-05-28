@@ -9,8 +9,13 @@ import { GrOracle } from "react-icons/gr";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "home",
-  description: "최성우의 포트폴리오 홈페이지입니다.",
+  title: "홈",
+  description: "개발자를 꿈꾸는 최성우의 포트폴리오 홈페이지입니다.",
+  openGraph: {
+    title: "홈 | sungwoo dev blog",
+    description: "개발자를 꿈꾸는 최성우의 포트폴리오 홈페이지입니다.",
+    url: "/",
+  },
 };
 
 const Home = () => {

@@ -3,8 +3,9 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/components/posts/mdxComponents";
 import rehypePrettyCode from "rehype-pretty-code";
 import Link from "next/link";
-import { extractToc } from "@/lib/toc";           // ← 추가
-import TableOfContents from "@/components/posts/TableOfContents"; // ← 추가
+import { extractToc } from "@/lib/toc";
+import TableOfContents from "@/components/posts/TableOfContents";
+import Comments from "@/components/posts/Comments";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -13,7 +14,24 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { meta } = getPostBySlug(slug);
-  return { title: `${meta.title} | SW dev` };
+  return {
+    title: meta.title,
+    description: meta.summary,
+    keywords: meta.tags,
+    openGraph: {
+      type: "article",
+      title: meta.title,
+      description: meta.summary,
+      url: `/posts/${slug}`,
+      publishedTime: meta.date,
+      tags: meta.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.summary,
+    },
+  };
 }
 
 const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
@@ -61,9 +79,7 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
               }}
             />
           </div>
-          <div className="w-full h-50 pt-50 text-xl">
-            <h1>댓글기능은 추후에 추가될 예정입니다.</h1>
-          </div>
+          <Comments />
         </article>
 
         {/* ↓ TOC — article 오른쪽에 배치 */}

@@ -1,6 +1,17 @@
 import { getAllPosts } from "@/lib/posts";
 import PostCard from "@/components/posts/postCard";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Posts",
+  description: "최성우의 개발 블로그 포스트 목록입니다. Web, Linux, AI 등 다양한 주제를 다룹니다.",
+  openGraph: {
+    title: "Posts | sungwoo dev blog",
+    description: "최성우의 개발 블로그 포스트 목록입니다.",
+    url: "/posts",
+  },
+};
 
 const Posts = () => {
   const posts = getAllPosts().sort((a,b) => new Date(b.date).getTime() - new Date(a.date).getTime());

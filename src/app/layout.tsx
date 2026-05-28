@@ -4,16 +4,49 @@ import Footer from "@/components/layout/footer";
 import { Griun } from "@/fonts/fonts"
 import Theme from "@/_provider/themeProvider";
 import { Metadata } from "next";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "sungwoo dev blog",
-    template: "sungwoo dev blog | %s",
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
-  description: "개발자를 꿈꾸는 최성우의 포트폴리오입니다. Web, AI 분야에 관심이 있습니다.",
-  keywords: ["최성우", "포트폴리오", "풀스택", "AI", "프론트엔드", "백엔드","웹개발","컴퓨터비전"],
-  authors: [{ name: "최성우" }],
-  creator: "최성우",
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.author }],
+  creator: siteConfig.author,
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png" }],
+  },
 };
 
 export default function RootLayout({
