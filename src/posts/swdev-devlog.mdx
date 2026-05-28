@@ -1,0 +1,211 @@
+---
+title: "swdev 개발기 - 나만의 블로그를 직접 만들어보았습니다"
+date: "2026-05-28"
+summary: "Next.js와 MDX로 직접 만든 개발 블로그, swdev의 개발 과정을 기록합니다. 기술 스택 선택부터 SEO, 댓글 기능, 검색까지."
+tags: ["swdev", "블로그", "Next.js", "개발기", "MDX", "SEO"]
+---
+
+안녕하세요! 이번 글은 제가 직접 만든 이 블로그, **swdev**의 개발 과정을 기록한 글입니다.
+어떤 기술을 썼고, 어떤 고민을 했는지 솔직하게 적어보려 합니다.
+
+---
+
+## 왜 직접 만들었는데?
+
+처음엔 velog나 tistory 같은 기존 플랫폼을 사용했습니다.
+근데 쓰다 보니 내가 원하는 디자인이 아니고, 커스텀하는 데 한계가 느껴졌습니다.
+그래서 "그냥 직접 만들자!" 라는 생각으로 시작하게 됐습니다.
+
+처음엔 단순히 예쁜 블로그를 만들겠다는 생각이었는데,
+만들다 보니 SEO, 성능 최적화, 접근성까지 신경 쓰게 되더라고요.
+결과적으로 단순한 블로그 하나 만드는 게 아니라 꽤 많은 걸 배웠습니다.
+
+---
+
+## 기술 스택
+
+기술 스택을 고를 때 가장 먼저 고민했던 부분은 **"백엔드 없이 만들 수 있을까?"** 였습니다.
+개인 블로그에 데이터베이스까지 붙이는 건 오버엔지니어링 같았거든요.
+결론은 **정적 MDX 파일**로 포스트를 관리하는 방식으로 결정했습니다.
+
+### 주요 기술
+
+- **Next.js 15** - App Router 기반, 서버 컴포넌트 활용
+- **TypeScript** - 타입 안정성
+- **Tailwind CSS 4** - 빠른 스타일링
+- **MDX** - 마크다운 안에서 React 컴포넌트 사용 가능
+- **next-mdx-remote** - MDX 파일 렌더링
+- **gray-matter** - MDX frontmatter 파싱
+- **rehype-pretty-code** - 코드 블록 하이라이팅
+
+특히 **Next.js App Router**를 선택한 이유는 서버 컴포넌트와 파일 기반 메타데이터 API 덕분에 SEO 설정이 훨씬 깔끔해지기 때문이었습니다.
+
+---
+
+## 주요 기능 구현
+
+### MDX 기반 블로그 포스트
+
+포스트는 `src/posts/` 폴더에 `.mdx` 파일로 관리합니다.
+각 파일 상단에 frontmatter로 제목, 날짜, 요약, 태그를 작성하면 됩니다.
+
+```markdown
+---
+title: "포스트 제목"
+date: "2026-05-28"
+summary: "포스트 요약"
+tags: ["태그1", "태그2"]
+---
+
+# 본문 시작
+```
+
+`gray-matter`로 frontmatter를 파싱하고, `next-mdx-remote`로 MDX를 렌더링합니다.
+새 포스트를 추가하고 싶으면 파일 하나 만들면 끝입니다.
+
+### 검색 + 태그 필터링
+
+처음에는 검색과 태그 필터를 각각 별도 컴포넌트로 만들었습니다.
+근데 만들고 나니 둘 다 `useSearchParams()`를 각각 호출해서 **Suspense 경계가 2개** 생기는 문제가 있었습니다.
+
+최적화 과정에서 두 컴포넌트를 `PostsFilter`라는 하나의 컴포넌트로 합쳤습니다.
+덕분에 `useSearchParams()` 호출이 1번으로 줄고, Suspense 경계도 1개로 줄었습니다.
+
+초기 버전에서는 검색할 때 태그 파라미터가 날아가는 버그도 있었는데,
+`useRef`로 최신 태그 값을 유지해서 debounce 클로저 안에서도 올바른 파라미터를 유지하도록 수정했습니다.
+
+```typescript
+const selectedTagRef = useRef(selectedTag);
+selectedTagRef.current = selectedTag;
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    const params = new URLSearchParams();
+    if (searchValue.trim()) params.set("q", searchValue.trim());
+    if (selectedTagRef.current) params.set("tag", selectedTagRef.current);
+    router.replace(...);
+  }, 300);
+  return () => clearTimeout(timer);
+}, [searchValue, router]);
+```
+
+### SEO 설정
+
+블로그를 만들고 나서 "이걸 구글에서 찾을 수 있어야지" 라는 생각이 들었습니다.
+Next.js App Router는 파일 기반으로 SEO를 설정할 수 있어서 꽤 편리합니다.
+
+설정한 항목들입니다.
+
+- **Metadata API** - 페이지별 title, description, keywords
+- **Open Graph** - SNS 공유 시 미리보기 (og:type, og:locale, og:siteName 등)
+- **sitemap.xml** - 크롤러가 포스트 목록을 쉽게 찾도록
+- **robots.txt** - 검색엔진 크롤링 허용
+- **동적 OG 이미지** - 포스트마다 다른 썸네일 자동 생성
+
+OG 이미지는 Next.js의 `ImageResponse`를 사용해서 포스트 제목과 태그가 담긴 이미지를 서버에서 자동 생성합니다.
+카카오톡이나 트위터로 공유할 때 포스트 제목이 이미지로 보이는 방식입니다.
+
+### Utterances 댓글
+
+댓글 기능은 **GitHub Issues**를 백엔드로 사용하는 **Utterances**를 선택했습니다.
+별도 서버 없이 GitHub 계정으로 댓글을 달 수 있고, 관리도 GitHub에서 할 수 있어서 편리합니다.
+
+블로그가 다크모드/라이트모드를 지원하다 보니 Utterances 테마도 같이 바뀌어야 했습니다.
+`next-themes`의 `resolvedTheme`을 구독해서 테마가 바뀔 때 iframe에 `postMessage`를 보내는 방식으로 동기화했습니다.
+
+```typescript
+useEffect(() => {
+  const iframe = document.querySelector<HTMLIFrameElement>(".utterances-frame");
+  if (!iframe) return;
+  iframe.contentWindow?.postMessage(
+    { type: "set-theme", theme: utterancesTheme },
+    "https://utteranc.es"
+  );
+}, [utterancesTheme]);
+```
+
+### 목차 (TOC)
+
+포스트 오른쪽에 붙어있는 목차는 `IntersectionObserver`를 활용해서
+현재 읽고 있는 섹션을 자동으로 하이라이트합니다.
+
+MDX 본문에서 `#`, `##`, `###` 헤딩을 파싱해서 목차 아이템을 만들고,
+스크롤 위치에 따라 `activeId`를 업데이트하는 방식입니다.
+
+---
+
+## 어려웠던 점
+
+### React cache()로 중복 파일 읽기 해결
+
+posts 페이지에서 `getAllPosts()`와 `getTagList()`를 각각 호출하는데,
+`getTagList()` 내부에서도 `getAllPosts()`를 호출하고 있었습니다.
+즉, 요청 한 번에 파일시스템을 **두 번** 읽고 있었던 거죠.
+
+React 18의 `cache()` 함수로 감싸주니 한 요청 안에서 두 번째 호출부터는 캐시된 결과를 반환합니다.
+
+```typescript
+import { cache } from "react";
+
+export const getAllPosts = cache((): PostMeta[] => {
+  // 한 요청 안에서 여러 번 호출해도 FS 읽기는 1번만 실행됨
+  const files = fs.readdirSync(postsDirectory)...
+});
+```
+
+### 동적 OG 이미지에서 한국어 폰트
+
+`ImageResponse`는 내부적으로 Satori를 사용하는데, 기본 폰트가 한국어를 지원하지 않습니다.
+블로그에서 쓰는 `Griun.ttf` 폰트 파일을 직접 읽어서 넘겨주는 방식으로 해결했습니다.
+
+```typescript
+const fontData = readFileSync(join(process.cwd(), "src/fonts/Griun.ttf"));
+
+new ImageResponse(<div>포스트 제목</div>, {
+  fonts: [{ name: "Griun", data: fontData }],
+});
+```
+
+### Next.js 15에서 params가 Promise
+
+Next.js 15부터 `params`와 `searchParams`가 비동기 Promise로 바뀌었습니다.
+처음엔 왜 타입 에러가 나는지 몰라서 한참 헤맸는데, 15 버전 변경사항이었습니다.
+
+```typescript
+// Next.js 14 이하
+const PostPage = ({ params }: { params: { slug: string } }) => { ... }
+
+// Next.js 15 이상
+const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
+  const { slug } = await params;
+  ...
+}
+```
+
+---
+
+## 만들면서 배운 것들
+
+이 블로그를 만들면서 단순히 "기능을 구현하는 것" 이상을 배웠습니다.
+
+- **SEO**: 단순히 태그 넣는 게 아니라 `og:type`, `og:locale`, `siteName`이 왜 필요한지
+- **성능**: 서버 컴포넌트와 클라이언트 컴포넌트를 어떻게 분리할지
+- **사용자 경험**: 검색 debounce, useTransition, 로딩 스켈레톤 같은 세부 UX
+- **Next.js App Router**: 파일 기반 메타데이터, 동적 라우팅, Suspense 경계
+
+처음엔 "블로그 하나 만드는 게 뭐가 어렵겠어" 했는데 생각보다 고려해야 할 게 많았습니다.
+하나하나 해결해나가면서 실력이 늘어가는 게 느껴져서 재미있었습니다.
+
+---
+
+## 앞으로는?
+
+지금도 계속 기능을 추가하고 개선하고 있습니다.
+블로그 자체가 저의 개발 연습장이 되고 있는 느낌이라 좋습니다.
+앞으로 더 많은 포스트를 올리면서 이 블로그를 채워나갈 예정입니다.
+
+소스코드는 [GitHub](https://github.com/choitjddn0311/swdev)에서 확인할 수 있습니다.
+
+---
+
+긴 글 읽어주셔서 감사합니다.
