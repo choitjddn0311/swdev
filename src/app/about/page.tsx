@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/siteConfig";
-import { FaGithub, FaInstagram } from "react-icons/fa";
+import type { ReactNode } from "react";
+import {
+  FaGithub, FaInstagram,
+  FaGraduationCap, FaMedal, FaCertificate,
+  FaBriefcase, FaLaptopCode, FaSchool,
+  FaBullseye, FaRocket, FaDesktop, FaCamera,
+} from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
 export const metadata: Metadata = {
@@ -36,49 +42,49 @@ const About = () => {
   ];
 
   // ✏️ 연대기 내용을 여기서 수정하세요
-  const timeline = [
+  const timeline: { year: string; items: { icon: ReactNode; text: string }[] }[] = [
     {
       year: "2026",
       items: [
-        { icon: "🎓", text: "국민대학교 인공지능학부 26학번 입학" },
+        { icon: <FaGraduationCap />, text: "국민대학교 인공지능학부 26학번 입학" },
       ],
     },
     {
       year: "2025",
       items: [
-        { icon: "🏅", text: "progate hackathon 2등" },
-        { icon: "🏅", text: "광주 전국기능경기대회 웹 디자인 및 개발 장려상(14위)" },
-        { icon: "📜", text: "웹디자인개발기능사 취득" },
-        { icon: "🏅", text: "인천 지방기능경기대회 웹 디자인 및 개발 은메달" },
-        { icon: "📜", text: "정보처리산업기사(과정평가형) 취득" },
+        { icon: <FaMedal />, text: "progate hackathon 2등" },
+        { icon: <FaMedal />, text: "광주 전국기능경기대회 웹 디자인 및 개발 장려상(14위)" },
+        { icon: <FaCertificate />, text: "웹디자인개발기능사 취득" },
+        { icon: <FaMedal />, text: "인천 지방기능경기대회 웹 디자인 및 개발 은메달" },
+        { icon: <FaCertificate />, text: "정보처리산업기사(과정평가형) 취득" },
       ],
     },
     {
       year: "2024",
       items: [
-        { icon: "📜", text: "프로그래밍기능사(구 정보처리기능사) 취득" },
-        { icon: "💼", text: "산학일체형도제학교 8기 (유)슬렉슨 근무 시작" },
-        { icon: "🏅", text: "인천 지방기능경기대회 웹 디자인 및 개발 동메달" },
+        { icon: <FaCertificate />, text: "프로그래밍기능사(구 정보처리기능사) 취득" },
+        { icon: <FaBriefcase />, text: "산학일체형도제학교 8기 (유)슬렉슨 근무 시작" },
+        { icon: <FaMedal />, text: "인천 지방기능경기대회 웹 디자인 및 개발 동메달" },
       ],
     },
     {
       year: "2023",
       items: [
-        {icon: "💻", text: "웹 디자인 및 개발 기능반 입부"},
-        {icon: "🏫", text: "인평자동차고등학교 자동차it과 입학"}
-      ]
-    }
+        { icon: <FaLaptopCode />, text: "웹 디자인 및 개발 기능반 입부" },
+        { icon: <FaSchool />, text: "인평자동차고등학교 자동차it과 입학" },
+      ],
+    },
   ];
 
   // ✏️ 목표 내용을 여기서 수정하세요
-  const goals = [
+  const goals: { icon: ReactNode; title: string; description: string }[] = [
     {
-      icon: "🎯",
+      icon: <FaBullseye />,
       title: "목표 제목을 여기에 입력하세요",
       description: "목표에 대한 설명을 여기에 입력하세요.",
     },
     {
-      icon: "🚀",
+      icon: <FaRocket />,
       title: "목표 제목을 여기에 입력하세요",
       description: "목표에 대한 설명을 여기에 입력하세요.",
     },
@@ -143,7 +149,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* ✏️ 카드 내용을 여기서 수정하세요 */}
             <div className="p-6 rounded-xl border border-foreground/10 hover:border-cyan-400/50 transition-colors">
-              <div className="text-3xl mb-4">🖥️</div>
+              <FaDesktop className="text-3xl mb-4 text-foreground/60" />
               <h3 className="text-lg font-bold mb-3">개발</h3>
               <p className="text-sm text-foreground/60 leading-relaxed">
                 웹 개발을 주로 했기 때문에, 프론트와 백을 다루는 것을 좋아합니다.
@@ -151,7 +157,7 @@ const About = () => {
               </p>
             </div>
             <div className="p-6 rounded-xl border border-foreground/10 hover:border-cyan-400/50 transition-colors">
-              <div className="text-3xl mb-4">📷</div>
+              <FaCamera className="text-3xl mb-4 text-foreground/60" />
               <h3 className="text-lg font-bold mb-3">사진 · 영상</h3>
               <p className="text-sm text-foreground/60 leading-relaxed">
                 세상을 작은 프레임 안에 담는 사진과 영상을 찍는 걸 좋아합니다.
@@ -170,7 +176,7 @@ const About = () => {
                 key={i}
                 className="flex items-start gap-5 p-5 rounded-xl border border-foreground/10 hover:border-cyan-400/50 transition-colors"
               >
-                <span className="text-2xl shrink-0 mt-0.5">{goal.icon}</span>
+                <span className="text-2xl shrink-0 mt-0.5 text-cyan-500">{goal.icon}</span>
                 <div>
                   <h3 className="font-semibold mb-1">{goal.title}</h3>
                   <p className="text-sm text-foreground/60 leading-relaxed">{goal.description}</p>
@@ -187,16 +193,16 @@ const About = () => {
             {timeline.map((group, gi) => (
               <div key={gi} className="relative mb-10 last:mb-0">
                 {/* 타임라인 점 */}
-                <div className="absolute -left-[45px] w-6 h-6 rounded-full bg-cyan-400 flex items-center justify-center">
+                <div className="absolute -left-[45px] w-6 h-6 rounded-full bg-cyan-500 flex items-center justify-center">
                   <div className="w-2 h-2 rounded-full bg-white" />
                 </div>
 
-                <time className="text-cyan-500 font-bold text-lg">{group.year}</time>
+                <time className="text-black font-bold text-lg">{group.year}</time>
 
                 <ul className="mt-3 flex flex-col gap-2">
                   {group.items.map((item, ii) => (
-                    <li key={ii} className="flex items-start gap-2 text-sm md:text-base text-foreground/70">
-                      <span className="shrink-0 mt-0.5">{item.icon}</span>
+                    <li key={ii} className="flex items-start gap-2 text-sm md:text-base text-foreground/70 hover:text-black hover:cursor-pointer">
+                      <span className="shrink-0 mt-1">{item.icon}</span>
                       {item.text}
                     </li>
                   ))}
