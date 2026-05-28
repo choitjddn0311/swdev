@@ -47,8 +47,11 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
   if (items.length === 0) return null;
 
   return (
-    <aside className="hidden 2xl:block xl:block lg:block md:hidden sm:hidden w-60 shrink-0">
-      <div className="fixed top-30 w-60 max-h-[calc(100vh-500px)] overflow-y-auto overflow-x-hidden">
+    <div>
+      <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">
+        목차
+      </p>
+      <div className="max-h-[40vh] overflow-y-auto overflow-x-hidden">
         <ul className="space-y-1" ref={tocRef}>
           {items.map((item) => (
             <li
@@ -70,6 +73,6 @@ export default function TableOfContents({ items }: { items: TocItem[] }) {
           ))}
         </ul>
       </div>
-    </aside>
+    </div>
   );
 }

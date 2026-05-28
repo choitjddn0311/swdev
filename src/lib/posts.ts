@@ -60,3 +60,27 @@ export function getAllSlugs(): string[] {
     .filter((f) => f.endsWith(".mdx"))
     .map((f) => f.replace(/\.mdx$/, ""));
 }
+
+export function getAdjacentPosts(slug: string): { prev: PostMeta | null; next: PostMeta | null } {
+  const posts = getAllPosts(); // newest first
+  const index = posts.findIndex((p) => p.slug === slug);
+  if (index === -1) return { prev: null, next: null };
+  return {
+    prev: posts[index + 1] ?? null, // older post
+    next: posts[index - 1] ?? null, // newer post
+  };
+}
+
+export function getRelatedPosts(slug: string, tags: string[], limit = 4): PostMeta[] {
+  const posts = getAllPosts().filter((p) => p.slug !== slug);
+  if (tags.length === 0) return posts.slice(0, limit);
+
+  return posts
+    .map((post) => ({
+      post,
+      score: post.tags.filter((t) => tags.includes(t)).length,
+    }))
+    .sort((a, b) => b.score - a.score || (b.post.date > a.post.date ? 1 : -1))
+    .slice(0, limit)
+    .map(({ post }) => post);
+}
