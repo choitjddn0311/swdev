@@ -61,6 +61,19 @@ export function getAllSlugs(): string[] {
     .map((f) => f.replace(/\.mdx$/, ""));
 }
 
+export function getTagList(): { tag: string; count: number }[] {
+  const posts = getAllPosts();
+  const tagMap = new Map<string, number>();
+  posts.forEach((post) => {
+    post.tags.forEach((tag) => {
+      tagMap.set(tag, (tagMap.get(tag) ?? 0) + 1);
+    });
+  });
+  return Array.from(tagMap.entries())
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+}
+
 export function getAdjacentPosts(slug: string): { prev: PostMeta | null; next: PostMeta | null } {
   const posts = getAllPosts(); // newest first
   const index = posts.findIndex((p) => p.slug === slug);

@@ -1,6 +1,7 @@
-import { getAllPosts } from "@/lib/posts";
+import { getAllPosts, getTagList } from "@/lib/posts";
 import PostCard from "@/components/posts/postCard";
 import SearchInput from "@/components/posts/SearchInput";
+import TagFilter from "@/components/posts/TagFilter";
 import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
@@ -21,36 +22,55 @@ export const metadata: Metadata = {
 
 const POSTS_PER_PAGE = 12;
 
-const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; q?: string }> }) => {
-  const { page, q } = await searchParams;
+const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; q?: string; tag?: string }> }) => {
+  const { page, q, tag } = await searchParams;
   const query = q?.trim() ?? "";
+  const selectedTag = tag?.trim() ?? "";
 
   const allPosts = getAllPosts();
-  const filteredPosts = query
-    ? allPosts.filter(
-        (post) =>
-          post.title.toLowerCase().includes(query.toLowerCase()) ||
-          post.summary.toLowerCase().includes(query.toLowerCase()) ||
-          post.tags.some((tag) => tag.toLowerCase().includes(query.toLowerCase()))
-      )
-    : allPosts;
+  const tagList = getTagList();
+
+  const filteredPosts = allPosts
+    .filter((post) => !selectedTag || post.tags.includes(selectedTag))
+    .filter((post) =>
+      !query ||
+      post.title.toLowerCase().includes(query.toLowerCase()) ||
+      post.summary.toLowerCase().includes(query.toLowerCase()) ||
+      post.tags.some((t) => t.toLowerCase().includes(query.toLowerCase()))
+    );
 
   const totalPages = Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE));
   const currentPage = Math.min(Math.max(1, Number(page) || 1), totalPages);
   const posts = filteredPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
-  const paginationHref = (p: number) =>
-    query ? `/posts?q=${encodeURIComponent(query)}&page=${p}` : `/posts?page=${p}`;
+  const paginationHref = (p: number) => {
+    const params = new URLSearchParams();
+    if (query) params.set("q", query);
+    if (selectedTag) params.set("tag", selectedTag);
+    params.set("page", String(p));
+    return `/posts?${params.toString()}`;
+  };
 
   return (
     <div className="w-full flex justify-center bg-background text-foreground">
       <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 py-20 px-5 xl:px-0">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+
+        {/* 헤더 행: 제목 + 검색 */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <h1 className="text-2xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl font-bold">Posts</h1>
           <Suspense fallback={<div className="w-full sm:w-80 h-9 rounded-lg bg-foreground/10 animate-pulse" />}>
             <SearchInput />
           </Suspense>
         </div>
+
+        {/* 태그 필터 행 */}
+        {tagList.length > 0 && (
+          <div className="mb-10">
+            <Suspense fallback={<div className="h-8 rounded-lg bg-foreground/10 animate-pulse" />}>
+              <TagFilter tags={tagList} />
+            </Suspense>
+          </div>
+        )}
 
         {allPosts.length === 0 ? (
           <div className="flex flex-col gap-3 h-100 justify-start">
@@ -60,15 +80,19 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
         ) : filteredPosts.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-60 gap-3 text-foreground/50">
             <p className="text-lg">검색 결과가 없습니다.</p>
-            <p className="text-sm">
-              &apos;<span className="text-cyan-500">{query}</span>&apos; 와 일치하는 포스트를 찾을 수 없어요.
+            <p className="text-sm text-center">
+              {selectedTag && <><span className="text-cyan-500">#{selectedTag}</span> 태그{query && " · "}</>}
+              {query && <>&apos;<span className="text-cyan-500">{query}</span>&apos;</>}
+              {" "}와 일치하는 포스트를 찾을 수 없어요.
             </p>
           </div>
         ) : (
           <>
-            {query && (
+            {(query || selectedTag) && (
               <p className="text-sm text-foreground/50 mb-6">
-                &apos;<span className="text-cyan-500">{query}</span>&apos; 검색 결과 {filteredPosts.length}개
+                {selectedTag && <span className="text-cyan-500 mr-1">#{selectedTag}</span>}
+                {query && <>&apos;<span className="text-cyan-500">{query}</span>&apos; </>}
+                검색 결과 {filteredPosts.length}개
               </p>
             )}
 
@@ -88,7 +112,6 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
                     &larr; 이전
                   </Link>
                 )}
-
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                   <Link
                     key={p}
@@ -102,7 +125,6 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
                     {p}
                   </Link>
                 ))}
-
                 {currentPage < totalPages && (
                   <Link
                     href={paginationHref(currentPage + 1)}
