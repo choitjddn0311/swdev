@@ -1,6 +1,7 @@
 import Button from "@/components/common/button";
 import RecentPostsWidget from "@/components/home/RecentPostsWidget";
 import HeroSpotlight from "@/components/home/HeroSpotlight";
+import { getTranslations, getLocale } from "next-intl/server";
 import { FaGithub, FaInstagram, FaLongArrowAltDown,FaHtml5,FaCss3Alt,FaJs,FaReact,FaPhp,FaNodeJs,FaJava,FaLinux,FaUbuntu,FaDocker } from "react-icons/fa";
 import { SiMysql } from "react-icons/si";
 import { MdOutlineEmail } from "react-icons/md";
@@ -24,7 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
-const Home = () => {
+const Home = async () => {
+  const t = await getTranslations("home");
+  const locale = await getLocale();
   // stack을 정의할때 구조는 다음과 같다: 스텍명(language name) , icon() from react-icons, iconColor()
   const FrontStack = [
     {stack: "html", icon: <FaHtml5/> , iconColor: "text-orange-500"},
@@ -66,8 +69,18 @@ const Home = () => {
               <HeroSpotlight />
               <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex flex-col justify-center items-center gap-50">
                 <div className="flex flex-col gap-2 px-5">
-                  <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl text-center">안녕하세요. <span className="bg-cyan-300">무궁무진한 개발자</span>를 꿈꾸는 <span className="text-cyan-500">최성우</span>입니다! </h1>
-                  <h2 className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl  text-center">hello. thank you for comming! i'm <span className="text-cyan-500">sungwoo Choi</span> && <span className="bg-cyan-300">dreaming fullstack developer</span></h2>
+                  {locale === "ko" ? (
+                    <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl text-center">
+                      {t("greeting")} <span className="bg-cyan-300">{t("greetingHighlight")}</span>를 꿈꾸는 <span className="text-cyan-500">{t("greetingName")}</span>{t("greetingEnd")}
+                    </h1>
+                  ) : (
+                    <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl text-center">
+                      {t("greeting")} <span className="text-cyan-500">{t("greetingName")}</span>{t("greetingEnd")}
+                    </h1>
+                  )}
+                  <h2 className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl text-center">
+                    {t("greetingSub")} <span className="text-cyan-500">{t("greetingSubName")}</span> && <span className="bg-cyan-300">{t("greetingSubEnd")}</span>
+                  </h2>
                 </div>
                 <div className="border-2 border-cyan-400 w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 lg:w-15 lg:h-15 xl:w-15 xl:h-15 2xl:w-15 2xl:h-15 flex justify-center items-center rounded-[50%] animate-bounce text-xl hover:cursor-pointer">
                   <FaLongArrowAltDown className="text-maincolor"/>
@@ -75,7 +88,7 @@ const Home = () => {
               </div>
           </div>
           <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-150 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex flex-col justify-start gap-0 2xl:gap-20 xl:gap-20 lg:gap-15 md:gap-15 sm:gap-10">
-              <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 sm:block md:block lg:block xl:block 2xl:block w-full py-10">아래는 제가 다룰 수 있는 <span className="bg-cyan-300">기술들</span>이에요.</h1>
+              <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 sm:block md:block lg:block xl:block 2xl:block w-full py-10">{t("stackTitle")}</h1>
               {/* flex-wrap justify-between items-center flex */}
               <div className="w-full h-130 2xl:h-130 xl:h-130 grid grid-cols-2 gap-5 px-5 2xl:px-0 xl:px-0 lg:px-0 md:px-0 sm:px-0 content-center">
                 {/* 구조를 수정하려면 components -> common -> stackCard.tsx */}
@@ -99,13 +112,13 @@ const Home = () => {
                 />
               </div>
               <div className="name">
-                <h2 className="text-xl">최성우 <span className="font-bold">|</span> Sungwoo choi</h2>
+                <h2 className="text-xl">{t("profileName")} <span className="font-bold">|</span> {t("profileNameSub")}</h2>
               </div>
               <div className="interesting">
-                <p><span>분야</span>: Web, AI</p>
+                <p><span>{t("field")}</span>: Web, AI</p>
               </div>
               <div>
-                <p><span>연락처</span></p>
+                <p><span>{t("contact")}</span></p>
                 <ul>
                   <li className="flex items-center gap-1"><MdOutlineEmail/>:<Link href="mailto:choitjddn0311@naver.com">choitjddn0311@naver.com</Link></li>
                   <li className="flex items-center gap-1"><FaInstagram/>:<Link href="https://www.instagram.com/choitjddn31">choitjddn31</Link></li>
@@ -115,18 +128,18 @@ const Home = () => {
             </div>
             {/* w-200 h-150*/}
             <div className="w-full h-120 py-10 px-5 2xl:w-200 xl:w-200 2xl:h-150 xl:h-150 2xl:p-20 xl:p-20 flex flex-col justify-start gap-10">
-                <h1 className="text-xl 2xl:text-2xl xl:text-2xl">빠르진않지만 꾸준히, 열심히 배우고 있습니다.</h1>
+                <h1 className="text-xl 2xl:text-2xl xl:text-2xl">{t("introTitle")}</h1>
                 <ul className="aboutme flex flex-col justify-start gap-2 text-sm 2xl:text-base xl:text-base">
-                  <li><span className="font-bold">소속:</span> <span className="bg-maincolor">국민대학교</span> 인공지능학부 26학번 | <Link href="https://inpyung.icehs.kr/main.do" className="underline decoration-1">인평자동차고등학교</Link> <span className="bg-maincolor">자동차IT과</span>(졸업)</li>
-                  <li><span className="font-bold">경력:</span> 산학일체형도제학교 8기 <span className="bg-maincolor"><Link href="https://www.slexn.com/" className="underline decoration-1">(유)슬렉슨</Link></span> 근무 | 2024.08.01 ~ 2026.01.30</li>
-                  <li><span className="font-bold">수상실적:</span> 
+                  <li><span className="font-bold">{t("affiliation")}:</span> {t("affiliationText")}</li>
+                  <li><span className="font-bold">{t("career")}:</span> {t("careerText")}</li>
+                  <li><span className="font-bold">{t("awards")}:</span>
                     <ul>
                       {AwardRecord.map((items,index) => (
                         <li key={index}>{items.year} {items.contestName} <span className="bg-maincolor">{items.award}</span></li>
                       ))}
                     </ul>
                   </li>
-                  <li><span className="font-bold">자격증:</span> 
+                  <li><span className="font-bold">{t("licenses")}:</span>
                     <ul>
                       {license.map((items,index) => (
                         <li key={index}>{items.getDate} {items.licenseName}</li>

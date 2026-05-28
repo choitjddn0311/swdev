@@ -2,12 +2,14 @@
 
 import { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 
 const REPO = "choitjddn0311/swdev";
 
 const Comments = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
+  const t = useTranslations("post");
 
   const utterancesTheme = resolvedTheme === "dark" ? "github-dark" : "github-light";
 
@@ -38,7 +40,7 @@ const Comments = () => {
 
   return (
     <section className="mt-16 pt-10 border-t border-foreground/10">
-      <h2 className="text-lg font-semibold mb-6">댓글</h2>
+      <h2 className="text-lg font-semibold mb-6">{t("comments")}</h2>
       <div ref={ref} />
     </section>
   );

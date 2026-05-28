@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "home",
+    "posts": "posts",
+    "about": "about me"
+  },
+  "footer": {
+    "rights": "©2026 choitjddn0311. All rights reserved.",
+    "developer": "developer: Choi Sungwoo"
+  },
+  "home": {
+    "greeting": "Hello! I'm",
+    "greetingName": "Choi Sungwoo",
+    "greetingEnd": ", an aspiring developer!",
+    "greetingHighlight": "aspiring developer",
+    "greetingSub": "hello. thank you for comming! i'm",
+    "greetingSubName": "Sungwoo Choi",
+    "greetingSubEnd": "&& dreaming fullstack developer",
+    "stackTitle": "Here are the technologies I work with.",
+    "profileName": "Choi Sungwoo",
+    "profileNameSub": "최성우",
+    "field": "Fields",
+    "contact": "Contact",
+    "introTitle": "Slow but steady — always learning and growing.",
+    "affiliation": "Affiliation",
+    "career": "Career",
+    "affiliationText": "Kookmin Univ., Dept. of AI, Class of 2026 | Inpyung Auto High School, Auto-IT Dept. (graduated)",
+    "careerText": "Industry-Academic Apprentice 8th cohort, Slexn Co. | Aug 2024 – Jan 2026",
+    "awards": "Awards",
+    "licenses": "Certifications"
+  },
+  "posts": {
+    "title": "Posts",
+    "searchPlaceholder": "Search by title, content, or tag...",
+    "allLabel": "All",
+    "showMore": "+{count} more",
+    "collapse": "collapse ↑",
+    "noPostsMessage": "No posts yet.",
+    "backToHome": "Back to home",
+    "noResultsTitle": "No results found.",
+    "noResultsMessage": "No posts match your search.",
+    "resultCount": "{count} results",
+    "tagResultPrefix": "tag",
+    "previous": "← Prev",
+    "next": "Next →"
+  },
+  "post": {
+    "backToList": "← Back to list",
+    "prevPost": "← Previous",
+    "nextPost": "Next →",
+    "relatedPosts": "Related Posts",
+    "comments": "Comments"
+  },
+  "about": {
+    "aboutMe": "About Me",
+    "aboutMeContent1": "Please add your introduction here.",
+    "aboutMeContent2": "You can use multiple paragraphs.",
+    "whatILove": "What I Love",
+    "devTitle": "Development",
+    "devContent": "I mainly work with web development, handling both frontend and backend. I also have a strong interest in Computer Vision within the AI field.",
+    "photoTitle": "Photography · Video",
+    "photoContent": "I love capturing the world through a lens. I'm deeply into photography, color grading, and video editing — way beyond just a hobby.",
+    "myGoals": "My Goals",
+    "goal1Title": "Enter your goal title here",
+    "goal1Desc": "Enter a description of your goal here.",
+    "goal2Title": "Enter your goal title here",
+    "goal2Desc": "Enter a description of your goal here.",
+    "timeline": "My Timeline",
+    "contact": "Contact",
+    "heroSubtitle": "I want to build the life and world I dream of!",
+    "profileName": "Choi Sungwoo",
+    "profileNameSub": "최성우",
+    "t2026_1": "Enrolled at Kookmin University, Dept. of AI (Class of 2026)",
+    "t2025_1": "Progate Hackathon — 2nd Place",
+    "t2025_2": "Gwangju National Skills Competition — Web Design & Dev, Encouragement Award (14th)",
+    "t2025_3": "Web Design Development Craftsman Certificate",
+    "t2025_4": "Incheon Regional Skills Competition — Web Design & Dev, Silver Medal",
+    "t2025_5": "Industrial Engineer Information Processing (Process Evaluation)",
+    "t2024_1": "Programming Craftsman Certificate",
+    "t2024_2": "Industry-Academic Apprentice 8th cohort — Slexn Co.",
+    "t2024_3": "Incheon Regional Skills Competition — Web Design & Dev, Bronze Medal",
+    "t2023_1": "Joined Web Design & Development club",
+    "t2023_2": "Enrolled at Inpyung Auto High School, Auto-IT Dept."
+  },
+  "widget": {
+    "title": "Recent Posts",
+    "viewAll": "View all posts →"
+  }
+}

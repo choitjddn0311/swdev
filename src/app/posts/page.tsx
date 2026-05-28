@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/siteConfig";
+import { getTranslations } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Posts",
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
 const POSTS_PER_PAGE = 12;
 
 const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; q?: string; tag?: string }> }) => {
+  const t = await getTranslations("posts");
   const { page, q, tag } = await searchParams;
   const query = q?.trim() ?? "";
   const selectedTag = tag?.trim() ?? "";
@@ -62,16 +64,16 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
 
         {allPosts.length === 0 ? (
           <div className="flex flex-col gap-3 h-100 justify-start">
-            <p className="text-foreground/70">아직 작성된 글이 없습니다.</p>
-            <p className="text-cyan-500 underline"><Link href="/">홈으로 돌아가기</Link></p>
+            <p className="text-foreground/70">{t("noPostsMessage")}</p>
+            <p className="text-cyan-500 underline"><Link href="/">{t("backToHome")}</Link></p>
           </div>
         ) : filteredPosts.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-60 gap-3 text-foreground/50">
-            <p className="text-lg">검색 결과가 없습니다.</p>
+            <p className="text-lg">{t("noResultsTitle")}</p>
             <p className="text-sm text-center">
-              {selectedTag && <><span className="text-cyan-500">#{selectedTag}</span> 태그{query && " · "}</>}
+              {selectedTag && <><span className="text-cyan-500">#{selectedTag}</span> {t("tagResultPrefix")}{query && " · "}</>}
               {query && <>&apos;<span className="text-cyan-500">{query}</span>&apos;</>}
-              {" "}와 일치하는 포스트를 찾을 수 없어요.
+              {" "}{t("noResultsMessage")}
             </p>
           </div>
         ) : (
@@ -80,7 +82,7 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
               <p className="text-sm text-foreground/50 mb-6">
                 {selectedTag && <span className="text-cyan-500 mr-1">#{selectedTag}</span>}
                 {query && <>&apos;<span className="text-cyan-500">{query}</span>&apos; </>}
-                검색 결과 {filteredPosts.length}개
+                {t("resultCount", { count: filteredPosts.length })}
               </p>
             )}
 
@@ -97,7 +99,7 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
                     href={paginationHref(currentPage - 1)}
                     className="px-4 py-2 rounded-lg border border-foreground/20 text-sm hover:border-cyan-400 hover:text-cyan-500 transition-colors"
                   >
-                    &larr; 이전
+                    {t("previous")}
                   </Link>
                 )}
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
@@ -118,7 +120,7 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
                     href={paginationHref(currentPage + 1)}
                     className="px-4 py-2 rounded-lg border border-foreground/20 text-sm hover:border-cyan-400 hover:text-cyan-500 transition-colors"
                   >
-                    다음 &rarr;
+                    {t("next")}
                   </Link>
                 )}
               </div>

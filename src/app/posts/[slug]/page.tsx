@@ -9,6 +9,7 @@ import Comments from "@/components/posts/Comments";
 import PostNav from "@/components/posts/PostNav";
 import RelatedPosts from "@/components/posts/RelatedPosts";
 import { siteConfig } from "@/lib/siteConfig";
+import { getTranslations } from "next-intl/server";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -45,6 +46,7 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const tocItems = extractToc(content);
   const { prev, next } = getAdjacentPosts(slug);
   const relatedPosts = getRelatedPosts(slug, meta.tags);
+  const t = await getTranslations("post");
 
   return (
     <div className="w-full flex justify-center bg-background text-foreground min-h-165">
@@ -54,7 +56,7 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
             href="/posts"
             className="text-cyan-500 hover:text-cyan-400 mb-8 inline-block"
           >
-            &larr; 목록으로
+            {t("backToList")}
           </Link>
 
           <header className="mb-10">

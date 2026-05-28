@@ -3,12 +3,14 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 interface PostsFilterProps {
   tags: { tag: string; count: number }[];
 }
 
 const PostsFilter = ({ tags }: PostsFilterProps) => {
+  const t = useTranslations("posts");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -74,7 +76,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
               : "border border-foreground/20 text-foreground/60 hover:border-cyan-400 hover:text-cyan-500"
           }`}
         >
-          전체
+          {t("allLabel")}
         </button>
         {visibleTags.map(({ tag, count }) => (
           <button
@@ -96,7 +98,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
             onClick={() => setExpanded(true)}
             className="px-3 py-1 rounded-full text-sm border border-foreground/20 text-foreground/40 hover:border-cyan-400 hover:text-cyan-500 transition-colors"
           >
-            +{hiddenCount}개 더보기
+            {t("showMore", { count: hiddenCount })}
           </button>
         )}
         {expanded && (
@@ -104,7 +106,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
             onClick={() => setExpanded(false)}
             className="px-3 py-1 rounded-full text-sm border border-foreground/20 text-foreground/40 hover:border-cyan-400 hover:text-cyan-500 transition-colors"
           >
-            접기 ↑
+            {t("collapse")}
           </button>
         )}
       </div>
@@ -120,7 +122,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
           type="search"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          placeholder="제목, 내용, 태그 검색..."
+          placeholder={t("searchPlaceholder")}
           className="w-full pl-9 pr-4 py-2 rounded-lg border border-foreground/20 bg-background text-foreground text-sm placeholder:text-foreground/40 focus:outline-none focus:border-cyan-400 transition-colors"
         />
       </div>

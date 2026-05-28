@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { siteConfig } from "@/lib/siteConfig";
+import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import {
   FaGithub, FaInstagram,
@@ -32,7 +33,8 @@ const SectionHeader = ({ title }: { title: string }) => (
   </div>
 );
 
-const About = () => {
+const About = async () => {
+  const t = await getTranslations("about");
   const hashTags = [
     "developer",
     "photographer",
@@ -46,32 +48,32 @@ const About = () => {
     {
       year: "2026",
       items: [
-        { icon: <FaGraduationCap />, text: "국민대학교 인공지능학부 26학번 입학" },
+        { icon: <FaGraduationCap />, text: t("t2026_1") },
       ],
     },
     {
       year: "2025",
       items: [
-        { icon: <FaMedal />, text: "progate hackathon 2등" },
-        { icon: <FaMedal />, text: "광주 전국기능경기대회 웹 디자인 및 개발 장려상(14위)" },
-        { icon: <FaCertificate />, text: "웹디자인개발기능사 취득" },
-        { icon: <FaMedal />, text: "인천 지방기능경기대회 웹 디자인 및 개발 은메달" },
-        { icon: <FaCertificate />, text: "정보처리산업기사(과정평가형) 취득" },
+        { icon: <FaMedal />, text: t("t2025_1") },
+        { icon: <FaMedal />, text: t("t2025_2") },
+        { icon: <FaCertificate />, text: t("t2025_3") },
+        { icon: <FaMedal />, text: t("t2025_4") },
+        { icon: <FaCertificate />, text: t("t2025_5") },
       ],
     },
     {
       year: "2024",
       items: [
-        { icon: <FaCertificate />, text: "프로그래밍기능사(구 정보처리기능사) 취득" },
-        { icon: <FaBriefcase />, text: "산학일체형도제학교 8기 (유)슬렉슨 근무 시작" },
-        { icon: <FaMedal />, text: "인천 지방기능경기대회 웹 디자인 및 개발 동메달" },
+        { icon: <FaCertificate />, text: t("t2024_1") },
+        { icon: <FaBriefcase />, text: t("t2024_2") },
+        { icon: <FaMedal />, text: t("t2024_3") },
       ],
     },
     {
       year: "2023",
       items: [
-        { icon: <FaLaptopCode />, text: "웹 디자인 및 개발 기능반 입부" },
-        { icon: <FaSchool />, text: "인평자동차고등학교 자동차it과 입학" },
+        { icon: <FaLaptopCode />, text: t("t2023_1") },
+        { icon: <FaSchool />, text: t("t2023_2") },
       ],
     },
   ];
@@ -80,13 +82,13 @@ const About = () => {
   const goals: { icon: ReactNode; title: string; description: string }[] = [
     {
       icon: <FaBullseye />,
-      title: "목표 제목을 여기에 입력하세요",
-      description: "목표에 대한 설명을 여기에 입력하세요.",
+      title: t("goal1Title"),
+      description: t("goal1Desc"),
     },
     {
       icon: <FaRocket />,
-      title: "목표 제목을 여기에 입력하세요",
-      description: "목표에 대한 설명을 여기에 입력하세요.",
+      title: t("goal2Title"),
+      description: t("goal2Desc"),
     },
   ];
 
@@ -106,8 +108,8 @@ const About = () => {
           </div>
 
           <div className="flex flex-col items-center gap-1">
-            <h1 className="text-4xl md:text-5xl font-bold">최성우</h1>
-            <p className="text-foreground/50 text-base md:text-lg">Sungwoo Choi</p>
+            <h1 className="text-4xl md:text-5xl font-bold">{t("profileName")}</h1>
+            <p className="text-foreground/50 text-base md:text-lg">{t("profileNameSub")}</p>
           </div>
 
           <p className="text-lg md:text-xl">
@@ -135,41 +137,35 @@ const About = () => {
 
         {/* ── About Me ── */}
         <section>
-          <SectionHeader title="About Me" />
+          <SectionHeader title={t("aboutMe")} />
           {/* ✏️ 자기소개 내용을 여기서 수정하세요 */}
           <div className="text-foreground/70 leading-relaxed text-base md:text-lg space-y-4 max-w-2xl">
-            <p>자기소개 내용을 여기에 입력하세요.</p>
-            <p>여러 문단을 사용할 수 있어요.</p>
+            <p>{t("aboutMeContent1")}</p>
+            <p>{t("aboutMeContent2")}</p>
           </div>
         </section>
 
         {/* ── What I Love ── */}
         <section>
-          <SectionHeader title="What I Love" />
+          <SectionHeader title={t("whatILove")} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* ✏️ 카드 내용을 여기서 수정하세요 */}
             <div className="p-6 rounded-xl border border-foreground/10 hover:border-cyan-400/50 transition-colors">
               <FaDesktop className="text-3xl mb-4 text-foreground/60" />
-              <h3 className="text-lg font-bold mb-3">개발</h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
-                웹 개발을 주로 했기 때문에, 프론트와 백을 다루는 것을 좋아합니다.
-                또 잘 다루는건 아니지만 AI 분야 중 CV에 특히 관심이 있어요.
-              </p>
+              <h3 className="text-lg font-bold mb-3">{t("devTitle")}</h3>
+              <p className="text-sm text-foreground/60 leading-relaxed">{t("devContent")}</p>
             </div>
             <div className="p-6 rounded-xl border border-foreground/10 hover:border-cyan-400/50 transition-colors">
               <FaCamera className="text-3xl mb-4 text-foreground/60" />
-              <h3 className="text-lg font-bold mb-3">사진 · 영상</h3>
-              <p className="text-sm text-foreground/60 leading-relaxed">
-                세상을 작은 프레임 안에 담는 사진과 영상을 찍는 걸 좋아합니다.
-                사진 촬영, 색보정, 영상편집까지 할 정도로 엄청난 흥미를 가지고 있습니다.
-              </p>
+              <h3 className="text-lg font-bold mb-3">{t("photoTitle")}</h3>
+              <p className="text-sm text-foreground/60 leading-relaxed">{t("photoContent")}</p>
             </div>
           </div>
         </section>
 
         {/* ── 나의 목표 ── */}
         <section>
-          <SectionHeader title="나의 목표" />
+          <SectionHeader title={t("myGoals")} />
           <div className="flex flex-col gap-4">
             {goals.map((goal, i) => (
               <div
@@ -188,7 +184,7 @@ const About = () => {
 
         {/* ── 나의 연대기 ── */}
         <section>
-          <SectionHeader title="나의 연대기" />
+          <SectionHeader title={t("timeline")} />
           <div className="relative pl-8 border-l-2 border-foreground/10">
             {timeline.map((group, gi) => (
               <div key={gi} className="relative mb-10 last:mb-0">
@@ -214,7 +210,7 @@ const About = () => {
 
         {/* ── 연락처 ── */}
         <section>
-          <SectionHeader title="연락처" />
+          <SectionHeader title={t("contact")} />
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Link
               href="mailto:choitjddn0311@naver.com"

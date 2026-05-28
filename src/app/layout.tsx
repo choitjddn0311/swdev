@@ -5,6 +5,8 @@ import { Griun } from "@/fonts/fonts"
 import Theme from "@/_provider/themeProvider";
 import { Metadata } from "next";
 import { siteConfig } from "@/lib/siteConfig";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -49,19 +51,24 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
-      <html lang="ko" suppressHydrationWarning>
+      <html lang={locale} suppressHydrationWarning>
         <body className={Griun.className}>
-          <Theme>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </Theme>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <Theme>
+              <Header locale={locale} />
+              <main>{children}</main>
+              <Footer />
+            </Theme>
+          </NextIntlClientProvider>
         </body>
       </html>
   )

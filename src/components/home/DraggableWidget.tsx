@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { PostMeta } from "@/lib/posts";
+import { useTranslations } from "next-intl";
 
 interface DraggableWidgetProps {
   posts: PostMeta[];
@@ -11,6 +12,7 @@ interface DraggableWidgetProps {
 const WIDGET_WIDTH = 288;
 
 const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
+  const t = useTranslations("widget");
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isMinimized, setIsMinimized] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
@@ -92,7 +94,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
     >
       {/* 드래그 핸들 (헤더) */}
       <div
-        className={`flex items-center justify-between px-4 py-3 bg-foreground text-background ${
+        className={`flex items-center justify-between px-4 py-3 bg-cyan-500 text-white ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
         onMouseDown={(e) => {
@@ -104,7 +106,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
           startDrag(touch.clientX, touch.clientY);
         }}
       >
-        <span className="text-sm font-semibold select-none">최신 글</span>
+        <span className="text-sm font-semibold select-none">{t("title")}</span>
         <div className="flex items-center gap-2">
           <button
             onMouseDown={(e) => e.stopPropagation()}
@@ -150,7 +152,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
               href="/posts"
               className="text-xs text-foreground/50 hover:text-cyan-500 transition-colors flex justify-end"
             >
-              전체 글 보기 →
+              {t("viewAll")}
             </Link>
           </div>
         </>

@@ -1,0 +1,89 @@
+{
+  "nav": {
+    "home": "home",
+    "posts": "posts",
+    "about": "about me"
+  },
+  "footer": {
+    "rights": "©2026 choitjddn0311. All rights reserved.",
+    "developer": "developer: sungwoo choi(최성우)"
+  },
+  "home": {
+    "greeting": "안녕하세요. 무궁무진한 개발자를 꿈꾸는",
+    "greetingName": "최성우",
+    "greetingEnd": "입니다!",
+    "greetingHighlight": "무궁무진한 개발자",
+    "greetingSub": "hello. thank you for comming! i'm",
+    "greetingSubName": "sungwoo Choi",
+    "greetingSubEnd": "&& dreaming fullstack developer",
+    "stackTitle": "아래는 제가 다룰 수 있는 기술들이에요.",
+    "profileName": "최성우",
+    "profileNameSub": "Sungwoo choi",
+    "field": "분야",
+    "contact": "연락처",
+    "introTitle": "빠르진않지만 꾸준히, 열심히 배우고 있습니다.",
+    "affiliation": "소속",
+    "career": "경력",
+    "affiliationText": "국민대학교 인공지능학부 26학번 | 인평자동차고등학교 자동차IT과(졸업)",
+    "careerText": "산학일체형도제학교 8기 (유)슬렉슨 근무 | 2024.08.01 ~ 2026.01.30",
+    "awards": "수상실적",
+    "licenses": "자격증"
+  },
+  "posts": {
+    "title": "Posts",
+    "searchPlaceholder": "제목, 내용, 태그 검색...",
+    "allLabel": "전체",
+    "showMore": "+{count}개 더보기",
+    "collapse": "접기 ↑",
+    "noPostsMessage": "아직 작성된 글이 없습니다.",
+    "backToHome": "홈으로 돌아가기",
+    "noResultsTitle": "검색 결과가 없습니다.",
+    "noResultsMessage": "와 일치하는 포스트를 찾을 수 없어요.",
+    "resultCount": "검색 결과 {count}개",
+    "tagResultPrefix": "태그",
+    "previous": "← 이전",
+    "next": "다음 →"
+  },
+  "post": {
+    "backToList": "← 목록으로",
+    "prevPost": "← 이전글",
+    "nextPost": "다음글 →",
+    "relatedPosts": "연관 글",
+    "comments": "댓글"
+  },
+  "about": {
+    "aboutMe": "About Me",
+    "aboutMeContent1": "자기소개 내용을 여기에 입력하세요.",
+    "aboutMeContent2": "여러 문단을 사용할 수 있어요.",
+    "whatILove": "What I Love",
+    "devTitle": "개발",
+    "devContent": "웹 개발을 주로 했기 때문에, 프론트와 백을 다루는 것을 좋아합니다. 또 잘 다루는건 아니지만 AI 분야 중 CV에 특히 관심이 있어요.",
+    "photoTitle": "사진 · 영상",
+    "photoContent": "세상을 작은 프레임 안에 담는 사진과 영상을 찍는 걸 좋아합니다. 사진 촬영, 색보정, 영상편집까지 할 정도로 엄청난 흥미를 가지고 있습니다.",
+    "myGoals": "나의 목표",
+    "goal1Title": "목표 제목을 여기에 입력하세요",
+    "goal1Desc": "목표에 대한 설명을 여기에 입력하세요.",
+    "goal2Title": "목표 제목을 여기에 입력하세요",
+    "goal2Desc": "목표에 대한 설명을 여기에 입력하세요.",
+    "timeline": "나의 연대기",
+    "contact": "연락처",
+    "heroSubtitle": "꿈꾸는 삶과 세상을 만들어나가고싶습니다!",
+    "profileName": "최성우",
+    "profileNameSub": "Sungwoo Choi",
+    "t2026_1": "국민대학교 인공지능학부 26학번 입학",
+    "t2025_1": "progate hackathon 2등",
+    "t2025_2": "광주 전국기능경기대회 웹 디자인 및 개발 장려상(14위)",
+    "t2025_3": "웹디자인개발기능사 취득",
+    "t2025_4": "인천 지방기능경기대회 웹 디자인 및 개발 은메달",
+    "t2025_5": "정보처리산업기사(과정평가형) 취득",
+    "t2024_1": "프로그래밍기능사(구 정보처리기능사) 취득",
+    "t2024_2": "산학일체형도제학교 8기 (유)슬렉슨 근무 시작",
+    "t2024_3": "인천 지방기능경기대회 웹 디자인 및 개발 동메달",
+    "t2023_1": "웹 디자인 및 개발 기능반 입부",
+    "t2023_2": "인평자동차고등학교 자동차it과 입학"
+  },
+  "widget": {
+    "title": "최신 글",
+    "viewAll": "전체 글 보기 →"
+  }
+}
