@@ -14,7 +14,25 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
   const [isPending, startTransition] = useTransition();
 
   const [searchValue, setSearchValue] = useState(searchParams.get("q") ?? "");
+  const [expanded, setExpanded] = useState(false);
   const selectedTag = searchParams.get("tag") ?? "";
+
+  const VISIBLE_COUNT = 5;
+  const hasMore = tags.length > VISIBLE_COUNT;
+  const hiddenCount = tags.length - VISIBLE_COUNT;
+
+  // 선택된 태그가 접힌 영역에 있으면 항상 노출
+  const selectedTagHidden =
+    !expanded &&
+    selectedTag !== "" &&
+    !tags.slice(0, VISIBLE_COUNT).some((t) => t.tag === selectedTag);
+
+  const visibleTags = expanded
+    ? tags
+    : [
+        ...tags.slice(0, VISIBLE_COUNT),
+        ...(selectedTagHidden ? tags.filter((t) => t.tag === selectedTag) : []),
+      ];
 
   // ref로 최신 selectedTag를 유지 — debounce 클로저에서 stale 값 방지
   const selectedTagRef = useRef(selectedTag);
@@ -58,7 +76,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
         >
           전체
         </button>
-        {tags.map(({ tag, count }) => (
+        {visibleTags.map(({ tag, count }) => (
           <button
             key={tag}
             onClick={() => handleTagSelect(tag)}
@@ -72,6 +90,23 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
             <span className="ml-1 text-xs opacity-70">{count}</span>
           </button>
         ))}
+
+        {hasMore && !expanded && (
+          <button
+            onClick={() => setExpanded(true)}
+            className="px-3 py-1 rounded-full text-sm border border-foreground/20 text-foreground/40 hover:border-cyan-400 hover:text-cyan-500 transition-colors"
+          >
+            +{hiddenCount}개 더보기
+          </button>
+        )}
+        {expanded && (
+          <button
+            onClick={() => setExpanded(false)}
+            className="px-3 py-1 rounded-full text-sm border border-foreground/20 text-foreground/40 hover:border-cyan-400 hover:text-cyan-500 transition-colors"
+          >
+            접기 ↑
+          </button>
+        )}
       </div>
 
       {/* 검색창 */}
