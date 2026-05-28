@@ -92,7 +92,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
     >
       {/* 드래그 핸들 (헤더) */}
       <div
-        className={`flex items-center justify-between px-4 py-3 bg-cyan-300 text-white ${
+        className={`flex items-center justify-between px-4 py-3 bg-foreground text-background ${
           isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
         onMouseDown={(e) => {
@@ -133,7 +133,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
               <li key={post.slug}>
                 <Link
                   href={`/posts/${post.slug}`}
-                  className="flex items-start justify-between gap-2 px-4 py-3 hover:bg-foreground/5 transition-colors group"
+                  className="flex items-start justify-between gap-2 px-4 py-3  transition-colors group"
                 >
                   <span className="text-sm line-clamp-1 group-hover:text-cyan-500 transition-colors flex-1">
                     {post.title}
@@ -148,7 +148,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
           <div className="px-4 py-3 border-t border-foreground/10">
             <Link
               href="/posts"
-              className="text-xs text-cyan-500 hover:text-cyan-400 transition-colors flex justify-end"
+              className="text-xs text-foreground/50 hover:text-cyan-500 transition-colors flex justify-end"
             >
               전체 글 보기 →
             </Link>

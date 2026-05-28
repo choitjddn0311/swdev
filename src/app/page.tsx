@@ -75,7 +75,7 @@ const Home = () => {
               </div>
           </div>
           <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-150 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex flex-col justify-start gap-0 2xl:gap-20 xl:gap-20 lg:gap-15 md:gap-15 sm:gap-10">
-              <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 sm:block md:block lg:block xl:block 2xl:block w-full py-20">아래는 제가 다룰 수 있는 <span className="bg-cyan-300">기술들</span>이에요.</h1>
+              <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 sm:block md:block lg:block xl:block 2xl:block w-full py-10">아래는 제가 다룰 수 있는 <span className="bg-cyan-300">기술들</span>이에요.</h1>
               {/* flex-wrap justify-between items-center flex */}
               <div className="w-full h-130 2xl:h-130 xl:h-130 grid grid-cols-2 gap-5 px-5 2xl:px-0 xl:px-0 lg:px-0 md:px-0 sm:px-0 content-center">
                 {/* 구조를 수정하려면 components -> common -> stackCard.tsx */}

@@ -3,9 +3,9 @@ import clsx from "clsx";
 
 // 버튼 형태별 스타일
 const variantStyles = {
-    primary: "bg-black text-white",
-    secondary: "bg-neutral-200 text-black",
-    outline: "border border-black text-black",
+    primary: "bg-foreground text-background",
+    secondary: "bg-foreground/10 text-foreground",
+    outline: "border border-foreground text-foreground",
 };
 
 // 버튼 사이즈

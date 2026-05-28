@@ -12,7 +12,7 @@ const Header = () => {
     ];
 
     return (
-        <header className="w-full h-20 2xl:h-25 xl:h-25 lg:h-25 md:h-25 sm:h-20 flex justify-center sticky top-0 z-10 bg-background text-foreground dark:bg-foreground">
+        <header className="w-full h-20 2xl:h-25 xl:h-25 lg:h-25 md:h-25 sm:h-20 flex justify-center sticky top-0 z-10 bg-background text-foreground dark:bg-background/90 dark:backdrop-blur-sm">
             <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 flex justify-between items-center px-5 sm:px-0">
                 <Link href="/" className="h-full content-center font-bold text-2xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-4xl text-cyan-400">
                     <h1>S<sub className="text-s">ung</sub>W<sub className="text-s">oo</sub> dev</h1>
@@ -48,7 +48,7 @@ const Header = () => {
 
             {/* 모바일 드롭다운 메뉴 */}
             {menuOpen && (
-                <nav className="sm:hidden absolute top-20 left-0 w-full bg-background dark:bg-foreground shadow-md">
+                <nav className="sm:hidden absolute top-20 left-0 w-full bg-background dark:bg-background/90 dark:backdrop-blur-sm shadow-md">
                     <ul className="flex flex-col items-center gap-6 py-6 bg-background text-foreground">
                         {headerMenu.map((item, index) => (
                             <li key={index} className="font-semibold w-full flex justify-center items-center">

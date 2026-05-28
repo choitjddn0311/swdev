@@ -194,14 +194,14 @@ const About = () => {
               <div key={gi} className="relative mb-10 last:mb-0">
                 {/* 타임라인 점 */}
                 <div className="absolute -left-[45px] w-6 h-6 rounded-full bg-cyan-500 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-white" />
+                  <div className="w-2 h-2 rounded-full bg-background" />
                 </div>
 
-                <time className="text-black font-bold text-lg">{group.year}</time>
+                <time className="text-foreground font-bold text-lg">{group.year}</time>
 
                 <ul className="mt-3 flex flex-col gap-2">
                   {group.items.map((item, ii) => (
-                    <li key={ii} className="flex items-start gap-2 text-sm md:text-base text-foreground/70 hover:text-black hover:cursor-pointer">
+                    <li key={ii} className="flex items-start gap-2 text-sm md:text-base text-foreground/70 hover:text-foreground transition-colors">
                       <span className="shrink-0 mt-1">{item.icon}</span>
                       {item.text}
                     </li>
