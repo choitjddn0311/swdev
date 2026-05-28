@@ -9,7 +9,7 @@ const PostCard = ({ post }: { post: PostMeta }) => {
         <time className="text-xs 2xl:text-sm xl:text-sm lg:text-sm md:text-xs sm:text-xs text-foreground/50">{post.date}</time>
         <p className="mt-0 2xl:mt-3 xl:mt-3 lg:mt-1 md:mt-1 sm:mt-0 text-sm hidden 2xl:block xl:block lg:block md:block sm:hidden text-foreground/70 line-clamp-2">{post.summary}</p>
         {post.tags.length > 0 && (
-          <div className="mt-4 flex flex-wrap gap-2 overflow-y-scroll h-6">
+          <div className="mt-2 flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <span
                 key={tag}

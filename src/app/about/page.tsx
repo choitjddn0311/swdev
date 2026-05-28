@@ -22,29 +22,28 @@ const About = () => {
     ]
     return(
         <div className="bg-background w-full flex flex-col items-center">
-            <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex py-5">
-                <div className="w-80 h-80">
+            <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex flex-col md:flex-row py-8 px-5 md:px-0 gap-6 md:gap-0">
+                <div className="relative w-32 h-32 md:w-50 md:h-50 xl:w-80 xl:h-80 shrink-0 mx-auto md:mx-0">
                     <Image
                       src="/img/about_profile.jpg"
                       alt="profile"
-                      width={320}
-                      height={320}
-                      className="rounded-full"
+                      fill
+                      className="rounded-full object-cover"
                     />
                 </div>
-                <div className="flex flex-col justify-between p-20 py-0 w-220">
-                    <div className="h-20 w-full flex flex-col justify-center gap-2">
-                        <h1 className="w-full text-3xl text-start content-center">Make <span className="text-cyan-500">life</span> what i <span className="text-cyan-500">dream!</span></h1>
-                        <p className="w-full">꿈꾸는 삶과 세상을 만들어나가고싶습니다!</p>
+                <div className="flex flex-col gap-4 md:gap-0 md:justify-between md:px-10 xl:px-20 w-full">
+                    <div className="w-full flex flex-col justify-center gap-2">
+                        <h1 className="w-full text-2xl md:text-3xl text-start">Make <span className="text-cyan-500">life</span> what i <span className="text-cyan-500">dream!</span></h1>
+                        <p className="w-full text-sm md:text-base">꿈꾸는 삶과 세상을 만들어나가고싶습니다!</p>
                     </div>
-                    <div className="h-20 w-full flex items-center">
-                        <h1 className="text-4xl">최성우</h1>
+                    <div className="w-full flex items-center">
+                        <h1 className="text-3xl md:text-4xl">최성우</h1>
                     </div>
-                    <div className="w-full h-20 flex items-center">
-                        <ul className="flex gap-5 overflow-y-scroll">
+                    <div className="w-full flex items-center">
+                        <ul className="flex gap-3 md:gap-5 overflow-x-auto">
                             {hashTag.map((items,index) => (
                                 <li
-                                      className={`underline ${index % 2 === 0 ? "text-cyan-500" : ""}`}
+                                      className={`underline whitespace-nowrap text-sm md:text-base ${index % 2 === 0 ? "text-cyan-500" : ""}`}
                                       key={index}
                                     >
                                       #{items}
