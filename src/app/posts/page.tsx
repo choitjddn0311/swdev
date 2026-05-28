@@ -52,7 +52,7 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
 
   return (
     <div className="w-full flex justify-center bg-background text-foreground">
-      <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 py-20 px-5 xl:px-0">
+      <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 py-20 px-5 xl:px-0 ">
 
         <h1 className="text-2xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl font-bold mb-6">Posts</h1>
 
@@ -84,7 +84,7 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
               </p>
             )}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 min-h-120">
               {posts.map((post) => (
                 <PostCard key={post.slug} post={post} />
               ))}
