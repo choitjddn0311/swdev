@@ -99,55 +99,81 @@ const Home = async () => {
                 <StackCard title="server" items={ServerStack}/>
               </div>
           </div>
-          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-250 2xl:h-160 xl:h-160 lg:h-160 md:h-150 sm:h-150 flex flex-col 2xl:flex-row xl:flex-row lg:flex-row md:flex-row sm:flex-row">
-            {/* gap 10 pt-20 */}
-            <div className="w-full 2xl:w-100 xl:w-100 h-130 2xl:h-full xl:h-full flex flex-col justify-center items-center gap-5 2xl:gap-10 xl:gap-10 py-10 2xl:py-15 xl:py-15">
-              <div className="profile w-50 h-50 2xl:w-60 2xl:h-60 xl:w-60 xl:h-60 rounded-[50%]">
+          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex flex-col md:flex-row gap-10 pt-16 pb-32 px-5 xl:px-0">
+
+            {/* 왼쪽: 프로필 */}
+            <div className="flex flex-col items-center md:items-start gap-5 md:w-56 shrink-0">
+              <div className="relative w-28 h-28 md:w-36 md:h-36 shrink-0">
                 <Image
                   src="/img/profile2.jpg"
                   alt="profile"
-                  width={240}
-                  height={240}
-                  className="rounded-full"
+                  fill
+                  className="rounded-full object-cover"
                 />
               </div>
-              <div className="name">
-                <h2 className="text-xl">{t("profileName")} <span className="font-bold">|</span> {t("profileNameSub")}</h2>
+              <div className="text-center md:text-left">
+                <h2 className="text-lg font-bold">{t("profileName")}</h2>
+                <p className="text-sm text-foreground/50">{t("profileNameSub")}</p>
               </div>
-              <div className="interesting">
-                <p><span>{t("field")}</span>: Web, AI</p>
+              <span className="text-xs px-3 py-1 rounded-full border border-cyan-400/60 text-cyan-500">
+                Web · AI
+              </span>
+              <div className="flex flex-col gap-2 w-full">
+                <Link href="mailto:choitjddn0311@naver.com" className="flex items-center gap-2 text-sm text-foreground/60 hover:text-cyan-500 transition-colors">
+                  <MdOutlineEmail className="shrink-0" /> choitjddn0311@naver.com
+                </Link>
+                <Link href="https://www.instagram.com/choitjddn31" className="flex items-center gap-2 text-sm text-foreground/60 hover:text-cyan-500 transition-colors">
+                  <FaInstagram className="shrink-0" /> choitjddn31
+                </Link>
+                <Link href="https://www.github.com/choitjddn0311" className="flex items-center gap-2 text-sm text-foreground/60 hover:text-cyan-500 transition-colors">
+                  <FaGithub className="shrink-0" /> choitjddn0311
+                </Link>
               </div>
+            </div>
+
+            {/* 오른쪽: 소개 */}
+            <div className="flex-1 flex flex-col gap-6">
+              <p className="text-lg md:text-xl font-medium">{t("introTitle")}</p>
+
+              {/* 소속 / 경력 */}
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-1 p-4 rounded-xl border border-foreground/10">
+                  <span className="text-xs font-semibold text-foreground/40 uppercase tracking-wider">{t("affiliation")}</span>
+                  <p className="text-sm text-foreground/70 leading-relaxed">{t("affiliationText")}</p>
+                </div>
+                <div className="flex flex-col gap-1 p-4 rounded-xl border border-foreground/10">
+                  <span className="text-xs font-semibold text-foreground/40 uppercase tracking-wider">{t("career")}</span>
+                  <p className="text-sm text-foreground/70 leading-relaxed">{t("careerText")}</p>
+                </div>
+              </div>
+
+              {/* 수상실적 */}
               <div>
-                <p><span>{t("contact")}</span></p>
-                <ul>
-                  <li className="flex items-center gap-1"><MdOutlineEmail/>:<Link href="mailto:choitjddn0311@naver.com">choitjddn0311@naver.com</Link></li>
-                  <li className="flex items-center gap-1"><FaInstagram/>:<Link href="https://www.instagram.com/choitjddn31">choitjddn31</Link></li>
-                  <li className="flex items-center gap-1"><FaGithub/>:<Link href="https://www.github.com/choitjddn0311">choitjddn0311</Link></li>
-                </ul>
+                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">{t("awards")}</p>
+                <div className="flex flex-wrap gap-2">
+                  {AwardRecord.map((items, index) => (
+                    <span key={index} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70">
+                      <span className="font-semibold">{items.year}</span>
+                      {items.contestName.split(" ").slice(-2).join(" ")}
+                      <span className="font-semibold">{items.award}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* 자격증 */}
+              <div>
+                <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">{t("licenses")}</p>
+                <div className="flex flex-wrap gap-2">
+                  {license.map((items, index) => (
+                    <span key={index} className="text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70">
+                      {items.licenseName}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-            {/* w-200 h-150*/}
-            <div className="w-full h-120 py-10 px-5 2xl:w-200 xl:w-200 2xl:h-150 xl:h-150 2xl:p-20 xl:p-20 flex flex-col justify-start gap-10">
-                <h1 className="text-xl 2xl:text-2xl xl:text-2xl">{t("introTitle")}</h1>
-                <ul className="aboutme flex flex-col justify-start gap-2 text-sm 2xl:text-base xl:text-base">
-                  <li><span className="font-bold">{t("affiliation")}:</span> {t("affiliationText")}</li>
-                  <li><span className="font-bold">{t("career")}:</span> {t("careerText")}</li>
-                  <li><span className="font-bold">{t("awards")}:</span>
-                    <ul>
-                      {AwardRecord.map((items,index) => (
-                        <li key={index}>{items.year} {items.contestName} <span className="bg-maincolor">{items.award}</span></li>
-                      ))}
-                    </ul>
-                  </li>
-                  <li><span className="font-bold">{t("licenses")}:</span>
-                    <ul>
-                      {license.map((items,index) => (
-                        <li key={index}>{items.getDate} {items.licenseName}</li>
-                      ))}
-                    </ul>
-                  </li>
-                </ul>
-            </div>
+
           </div>
         </main>
         {/* mdx, https://nextjs.org/docs/app/getting-started/project-structure , https://velog.io/@hg024246/Next.js-%ED%8F%B4%EB%8D%94-%EA%B5%AC%EC%A1%B0%EC%99%80-%ED%99%9C%EC%9A%A9-%EC%A0%84%EB%9E%B5 */}
