@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 const Home = async () => {
   const t = await getTranslations("home");
   const locale = await getLocale();
-  // stack을 정의할때 구조는 다음과 같다: 스텍명(language name) , icon() from react-icons, iconColor()
+  // stack을 정의할때 구조는 다음과 같다: 스텍명(language name) , icon() from react-icons
   const FrontStack = [
     {stack: "html", icon: <FaHtml5/> , iconColor: "text-orange-500"},
     {stack: "css" , icon: <FaCss3Alt/> , iconColor: "text-sky-500"},
