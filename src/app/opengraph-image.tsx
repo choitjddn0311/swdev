@@ -18,7 +18,7 @@ export default function Image() {
           height: "630px",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#0f0f0f",
+          backgroundColor: "#ffffff",
           padding: "70px 90px",
           fontFamily: "Griun",
         }}
@@ -48,7 +48,7 @@ export default function Image() {
         <div
           style={{
             fontSize: "30px",
-            color: "#888888",
+            color: "#555555",
             marginTop: "24px",
             flex: "1",
           }}
@@ -57,7 +57,7 @@ export default function Image() {
         </div>
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <span style={{ fontSize: "22px", color: "#444444" }}>
+          <span style={{ fontSize: "22px", color: "#aaaaaa" }}>
             swdev-coral.vercel.app
           </span>
         </div>

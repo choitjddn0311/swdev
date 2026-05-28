@@ -26,7 +26,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           height: "630px",
           display: "flex",
           flexDirection: "column",
-          backgroundColor: "#0f0f0f",
+          backgroundColor: "#ffffff",
           padding: "70px 90px",
           fontFamily: "Griun",
         }}
@@ -64,7 +64,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           style={{
             fontSize: titleSize,
             fontWeight: "bold",
-            color: "#ffffff",
+            color: "#111111",
             lineHeight: "1.3",
             flex: "1",
           }}
@@ -79,7 +79,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
             alignItems: "center",
           }}
         >
-          <span style={{ fontSize: "22px", color: "#555555" }}>{meta.date}</span>
+          <span style={{ fontSize: "22px", color: "#aaaaaa" }}>{meta.date}</span>
           <span style={{ fontSize: "24px", color: "#22d3ee", fontWeight: "bold" }}>
             sungwoo dev blog
           </span>
