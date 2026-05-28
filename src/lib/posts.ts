@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { cache } from "react";
 
 export interface PostMeta {
   title: string;
@@ -12,7 +13,7 @@ export interface PostMeta {
 
 const postsDirectory = path.join(process.cwd(), "src/posts");
 
-export function getAllPosts(): PostMeta[] {
+export const getAllPosts = cache((): PostMeta[] => {
   if (!fs.existsSync(postsDirectory)) return [];
 
   const files = fs.readdirSync(postsDirectory).filter((f) => f.endsWith(".mdx"));
@@ -33,7 +34,7 @@ export function getAllPosts(): PostMeta[] {
   });
 
   return posts.sort((a, b) => (a.date > b.date ? -1 : 1));
-}
+});
 
 export function getPostBySlug(slug: string) {
   const decoded = decodeURIComponent(slug);

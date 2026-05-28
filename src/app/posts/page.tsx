@@ -1,7 +1,6 @@
 import { getAllPosts, getTagList } from "@/lib/posts";
 import PostCard from "@/components/posts/postCard";
-import SearchInput from "@/components/posts/SearchInput";
-import TagFilter from "@/components/posts/TagFilter";
+import PostsFilter from "@/components/posts/PostsFilter";
 import Link from "next/link";
 import { Suspense } from "react";
 import type { Metadata } from "next";
@@ -55,22 +54,11 @@ const Posts = async ({ searchParams }: { searchParams: Promise<{ page?: string; 
     <div className="w-full flex justify-center bg-background text-foreground">
       <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 py-20 px-5 xl:px-0">
 
-        {/* 헤더 행: 제목 + 검색 */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <h1 className="text-2xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl font-bold">Posts</h1>
-          <Suspense fallback={<div className="w-full sm:w-80 h-9 rounded-lg bg-foreground/10 animate-pulse" />}>
-            <SearchInput />
-          </Suspense>
-        </div>
+        <h1 className="text-2xl 2xl:text-4xl xl:text-4xl lg:text-3xl md:text-3xl sm:text-2xl font-bold mb-6">Posts</h1>
 
-        {/* 태그 필터 행 */}
-        {tagList.length > 0 && (
-          <div className="mb-10">
-            <Suspense fallback={<div className="h-8 rounded-lg bg-foreground/10 animate-pulse" />}>
-              <TagFilter tags={tagList} />
-            </Suspense>
-          </div>
-        )}
+        <Suspense fallback={<div className="h-20 rounded-lg bg-foreground/10 animate-pulse mb-10" />}>
+          <PostsFilter tags={tagList} />
+        </Suspense>
 
         {allPosts.length === 0 ? (
           <div className="flex flex-col gap-3 h-100 justify-start">
