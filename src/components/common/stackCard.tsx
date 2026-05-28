@@ -13,22 +13,20 @@ interface StackCardProps {
 
 const StackCard = ({ title, items }: StackCardProps) => {
   return (
-    <ul className="w-full h-25 2xl:w-130 2xl:h-50 xl:w-130 xl:h-50 lg:w-full lg:h-30 md:w-full md:h-30 sm:w-full sm:h-25 p-3 border-2 border-maincolor rounded-lg flex flex-col gap-3">
-      <h1 className="text-md 2xl:text-xl xl:text-xl font-semibold">{title}</h1>
-      <div className="flex flex-wrap gap-1 items-center justify-start w-full">
+    <div className="w-full 2xl:w-130 xl:w-130 lg:w-full md:w-full sm:w-full p-4 border border-foreground/10 rounded-xl flex flex-col gap-3 hover:border-cyan-400/40 transition-colors">
+      <h2 className="text-xs font-semibold text-foreground/40 uppercase tracking-wider">{title}</h2>
+      <ul className="flex flex-wrap gap-3">
         {items.map((item) => (
           <li
             key={item.stack}
-            className="flex flex-col items-center justify-center w-15 h-7 2xl:w-30 2xl:h-30 xl:w-30 xl:h-30 lg:h-10 lg:w-30 md:w-30 md:h-10 sm:w-30 sm:h-10 gap-5"
+            className="flex flex-col items-center gap-1.5 px-4 py-3 rounded-xl border border-foreground/10 hover:border-cyan-400/50 transition-colors min-w-14"
           >
-            <span className={`text-3xl ${item.iconColor}`}>
-              {item.icon}
-            </span>
-            <span className="text-sm hidden sm:hidden md:hidden lg:hidden xl:block 2xl:block text-foreground text-center">{item.stack}</span>
+            <span className={`text-2xl ${item.iconColor}`}>{item.icon}</span>
+            <span className="text-xs text-foreground/60">{item.stack}</span>
           </li>
         ))}
-      </div>
-    </ul>
+      </ul>
+    </div>
   );
 };
 
