@@ -20,7 +20,7 @@ const LanguageToggle = ({ currentLocale }: { currentLocale: string }) => {
     <button
       onClick={toggle}
       disabled={isPending}
-      className="text-xs font-semibold px-2 py-1 rounded border border-foreground/20 hover:border-cyan-400 hover:text-cyan-500 transition-colors disabled:opacity-50"
+      className="text-xs font-bold px-2 rounded  disabled:opacity-50"
     >
       {currentLocale === "ko" ? "EN" : "KO"}
     </button>
