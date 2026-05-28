@@ -213,14 +213,14 @@ const About = async () => {
           <SectionHeader title={t("contact")} />
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <Link
-              href="mailto:choitjddn0311@naver.com"
+              href={`mailto:${siteConfig.social.email}`}
               className="flex items-center gap-4 p-5 rounded-xl border border-foreground/10 hover:border-cyan-400 transition-colors group"
             >
               <MdOutlineEmail className="text-2xl text-foreground/40 group-hover:text-cyan-500 transition-colors shrink-0" />
               <div className="min-w-0">
                 <p className="text-xs text-foreground/40 mb-0.5">Email</p>
                 <p className="text-sm font-medium group-hover:text-cyan-500 transition-colors truncate">
-                  choitjddn0311@naver.com
+                  {siteConfig.social.email}
                 </p>
               </div>
             </Link>

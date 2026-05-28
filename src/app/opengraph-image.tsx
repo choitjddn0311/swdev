@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const runtime = "nodejs";
 export const alt = "sungwoo dev blog";
@@ -58,7 +59,7 @@ export default function Image() {
 
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
           <span style={{ fontSize: "22px", color: "#aaaaaa" }}>
-            swdev-coral.vercel.app
+            {new URL(siteConfig.url).host}
           </span>
         </div>
       </div>

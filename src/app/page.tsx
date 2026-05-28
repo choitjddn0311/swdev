@@ -42,7 +42,7 @@ const Home = async () => {
   ]
   const DbStack = [
     {stack: "oracle" , icon: <GrOracle /> , iconColor: "text-red-600"},
-    {stack: "jsp" , icon: <SiMysql/> , iconColor: "text-cyan-700"}
+    {stack: "mysql" , icon: <SiMysql/> , iconColor: "text-cyan-700"}
   ]
   const ServerStack = [
     {stack: "linux", icon: <FaLinux/> , iconColor: "text-foreground"},
@@ -118,8 +118,8 @@ const Home = async () => {
                 Web · AI
               </span>
               <div className="flex flex-col gap-2 w-full">
-                <Link href="mailto:choitjddn0311@naver.com" className="flex items-center gap-2 text-sm text-foreground/60 hover:text-cyan-500 transition-colors">
-                  <MdOutlineEmail className="shrink-0" /> choitjddn0311@naver.com
+                <Link href={`mailto:${siteConfig.social.email}`} className="flex items-center gap-2 text-sm text-foreground/60 hover:text-cyan-500 transition-colors">
+                  <MdOutlineEmail className="shrink-0" /> {siteConfig.social.email}
                 </Link>
                 <Link href="https://www.instagram.com/choitjddn31" className="flex items-center gap-2 text-sm text-foreground/60 hover:text-cyan-500 transition-colors">
                   <FaInstagram className="shrink-0" /> choitjddn31
