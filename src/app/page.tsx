@@ -87,10 +87,9 @@ const Home = async () => {
                 </div>
               </div>
           </div>
-          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-150 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex flex-col justify-start gap-0 2xl:gap-20 xl:gap-20 lg:gap-15 md:gap-15 sm:gap-10">
-              <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 sm:block md:block lg:block xl:block 2xl:block w-full py-10">{t("stackTitle")}</h1>
-              {/* flex-wrap justify-between items-center flex */}
-              <div className="w-full h-130 2xl:h-130 xl:h-130 grid grid-cols-2 gap-5 px-5 2xl:px-0 xl:px-0 lg:px-0 md:px-0 sm:px-0 content-center">
+          <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 sm:h-210 md:h-210 lg:h-210 xl:h-210 2xl:h-210 flex flex-col justify-start gap-5 sm:gap-10 md:gap-15 lg:gap-15 xl:gap-20 2xl:gap-20">
+              <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-4xl pl-5 w-full py-10 sm:py-0">{t("stackTitle")}</h1>
+              <div className="w-full sm:h-130 md:h-130 lg:h-130 xl:h-130 2xl:h-130 grid grid-cols-1 sm:grid-cols-2 gap-5 px-5 sm:px-0 md:px-0 lg:px-0 xl:px-0 2xl:px-0 content-center pb-10 sm:pb-0">
                 {/* 구조를 수정하려면 components -> common -> stackCard.tsx */}
                 {/* 스텍을 추가하려면 상단에 ~~Stack 변수에 추가하면 된다 */}
                 <StackCard title="frontend" items={FrontStack}/>
