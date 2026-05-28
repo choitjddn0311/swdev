@@ -62,14 +62,16 @@ const Home = () => {
   return (
     <div className="w-full">
         <main className="w-full flex items-center flex-col bg-background text-foreground">
-          <div className="relative overflow-hidden w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300  flex flex-col justify-center items-center h-160 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 gap-50">
+          <div className="relative w-full h-160 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex justify-center">
               <HeroSpotlight />
-              <div className="flex flex-col gap-2 px-5">
-                <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl text-center">안녕하세요. <span className="bg-cyan-300">무궁무진한 개발자</span>를 꿈꾸는 <span className="text-cyan-500">최성우</span>입니다! </h1>
-                <h2 className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl  text-center">hello. thank you for comming! i'm <span className="text-cyan-500">sungwoo Choi</span> && <span className="bg-cyan-300">dreaming fullstack developer</span></h2>
-              </div>
-              <div className="border-2 border-cyan-400 w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 lg:w-15 lg:h-15 xl:w-15 xl:h-15 2xl:w-15 2xl:h-15 flex justify-center items-center rounded-[50%] animate-bounce text-xl hover:cursor-pointer">
-                <FaLongArrowAltDown className="text-maincolor"/>
+              <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 flex flex-col justify-center items-center gap-50">
+                <div className="flex flex-col gap-2 px-5">
+                  <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl 2xl:text-4xl text-center">안녕하세요. <span className="bg-cyan-300">무궁무진한 개발자</span>를 꿈꾸는 <span className="text-cyan-500">최성우</span>입니다! </h1>
+                  <h2 className="text-lg sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-2xl  text-center">hello. thank you for comming! i'm <span className="text-cyan-500">sungwoo Choi</span> && <span className="bg-cyan-300">dreaming fullstack developer</span></h2>
+                </div>
+                <div className="border-2 border-cyan-400 w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 lg:w-15 lg:h-15 xl:w-15 xl:h-15 2xl:w-15 2xl:h-15 flex justify-center items-center rounded-[50%] animate-bounce text-xl hover:cursor-pointer">
+                  <FaLongArrowAltDown className="text-maincolor"/>
+                </div>
               </div>
           </div>
           <div className="w-full sm:w-150 md:w-200 lg:w-250 xl:w-300 2xl:w-300 h-150 2xl:h-210 xl:h-210 lg:h-210 md:h-210 sm:h-210 flex flex-col justify-start gap-0 2xl:gap-20 xl:gap-20 lg:gap-15 md:gap-15 sm:gap-10">
