@@ -10,6 +10,7 @@ import PostNav from "@/components/posts/PostNav";
 import RelatedPosts from "@/components/posts/RelatedPosts";
 import { siteConfig } from "@/lib/siteConfig";
 import { getTranslations } from "next-intl/server";
+import ReadingProgressBar from "@/components/posts/ReadingProgressBar";
 
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
@@ -50,6 +51,7 @@ const PostPage = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
   return (
     <div className="w-full flex justify-center bg-background text-foreground min-h-165">
+      <ReadingProgressBar />
       <div className="flex gap-10 w-full max-w-screen-xl px-6 py-20 items-start">
         <article className="min-w-0 flex-1">
           <Link
