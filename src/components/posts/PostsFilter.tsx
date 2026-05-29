@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 
@@ -13,7 +13,6 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
   const t = useTranslations("posts");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
 
   const [searchValue, setSearchValue] = useState(searchParams.get("q") ?? "");
   const [expanded, setExpanded] = useState(false);
@@ -23,7 +22,6 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
   const hasMore = tags.length > VISIBLE_COUNT;
   const hiddenCount = tags.length - VISIBLE_COUNT;
 
-  // 선택된 태그가 접힌 영역에 있으면 항상 노출
   const selectedTagHidden =
     !expanded &&
     selectedTag !== "" &&
@@ -36,20 +34,20 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
         ...(selectedTagHidden ? tags.filter((t) => t.tag === selectedTag) : []),
       ];
 
-  // ref로 최신 selectedTag를 유지 — debounce 클로저에서 stale 값 방지
+  // 렌더 중 뮤테이션 대신 useEffect로 ref 동기화
   const selectedTagRef = useRef(selectedTag);
-  selectedTagRef.current = selectedTag;
+  useEffect(() => {
+    selectedTagRef.current = selectedTag;
+  }, [selectedTag]);
 
-  // 검색 디바운스 (300ms) — tag 파라미터 유지
+  // 검색 디바운스 (300ms) — useTransition 제거, router.replace 직접 호출
   useEffect(() => {
     const timer = setTimeout(() => {
       const params = new URLSearchParams();
       if (searchValue.trim()) params.set("q", searchValue.trim());
       if (selectedTagRef.current) params.set("tag", selectedTagRef.current);
       const qs = params.toString();
-      startTransition(() => {
-        router.replace(qs ? `/posts?${qs}` : "/posts");
-      });
+      router.replace(qs ? `/posts?${qs}` : "/posts");
     }, 300);
     return () => clearTimeout(timer);
   }, [searchValue, router]);
@@ -59,9 +57,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
     if (searchValue.trim()) params.set("q", searchValue.trim());
     if (tag && tag !== selectedTag) params.set("tag", tag);
     const qs = params.toString();
-    startTransition(() => {
-      router.push(qs ? `/posts?${qs}` : "/posts");
-    });
+    router.push(qs ? `/posts?${qs}` : "/posts");
   };
 
   return (
@@ -113,11 +109,7 @@ const PostsFilter = ({ tags }: PostsFilterProps) => {
 
       {/* 검색창 */}
       <div className="relative w-full sm:w-72 shrink-0">
-        <FaSearch
-          className={`absolute left-3 top-1/2 -translate-y-1/2 text-sm transition-colors ${
-            isPending ? "text-cyan-400 animate-pulse" : "text-foreground/40"
-          }`}
-        />
+        <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-foreground/40" />
         <input
           type="search"
           value={searchValue}

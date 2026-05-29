@@ -31,20 +31,23 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
   }, []);
 
   useEffect(() => {
+    let isMounted = true;
+
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isDraggingRef.current) return;
+      if (!isDraggingRef.current || !isMounted) return;
       const newX = Math.max(0, Math.min(window.innerWidth - WIDGET_WIDTH, e.clientX - dragOffset.current.x));
       const newY = Math.max(0, Math.min(window.innerHeight - 48, e.clientY - dragOffset.current.y));
       setPosition({ x: newX, y: newY });
     };
 
     const handleMouseUp = () => {
+      if (!isMounted) return;
       isDraggingRef.current = false;
       setIsDragging(false);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!isDraggingRef.current) return;
+      if (!isDraggingRef.current || !isMounted) return;
       e.preventDefault();
       const touch = e.touches[0];
       const newX = Math.max(0, Math.min(window.innerWidth - WIDGET_WIDTH, touch.clientX - dragOffset.current.x));
@@ -53,6 +56,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
     };
 
     const handleTouchEnd = () => {
+      if (!isMounted) return;
       isDraggingRef.current = false;
       setIsDragging(false);
     };
@@ -63,6 +67,7 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
     document.addEventListener("touchend", handleTouchEnd);
 
     return () => {
+      isMounted = false;
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("touchmove", handleTouchMove);
