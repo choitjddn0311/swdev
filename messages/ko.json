@@ -2,6 +2,7 @@
   "nav": {
     "home": "home",
     "posts": "posts",
+    "projects": "projects",
     "about": "about me"
   },
   "footer": {
@@ -81,6 +82,11 @@
     "t2024_3": "인천 지방기능경기대회 웹 디자인 및 개발 동메달",
     "t2023_1": "웹 디자인 및 개발 기능반 입부",
     "t2023_2": "인평자동차고등학교 자동차it과 입학"
+  },
+  "projects": {
+    "github": "GitHub",
+    "demo": "경로",
+    "noProjects": "등록된 프로젝트가 없습니다."
   },
   "widget": {
     "title": "최신 글",

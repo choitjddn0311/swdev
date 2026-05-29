@@ -2,6 +2,7 @@
   "nav": {
     "home": "home",
     "posts": "posts",
+    "projects": "projects",
     "about": "about me"
   },
   "footer": {
@@ -81,6 +82,11 @@
     "t2024_3": "Incheon Regional Skills Competition — Web Design & Dev, Bronze Medal",
     "t2023_1": "Joined Web Design & Development club",
     "t2023_2": "Enrolled at Inpyung Auto High School, Auto-IT Dept."
+  },
+  "projects": {
+    "github": "GitHub",
+    "demo": "url",
+    "noProjects": "No projects yet."
   },
   "widget": {
     "title": "Recent Posts",

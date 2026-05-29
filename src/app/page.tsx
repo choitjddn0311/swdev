@@ -151,7 +151,7 @@ const Home = async () => {
                 <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">{t("awards")}</p>
                 <div className="flex flex-wrap gap-2">
                   {AwardRecord.map((items, index) => (
-                    <span key={index} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70">
+                    <span key={index} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70 hover:text-cyan-500 hover:border-cyan-500 hover:cursor-pointer">
                       <span className="font-semibold">{items.year}</span>
                       {items.contestName.split(" ").slice(-2).join(" ")}
                       <span className="font-semibold">{items.award}</span>
@@ -165,7 +165,7 @@ const Home = async () => {
                 <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">{t("licenses")}</p>
                 <div className="flex flex-wrap gap-2">
                   {license.map((items, index) => (
-                    <span key={index} className="text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70">
+                    <span key={index} className="text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70 hover:text-cyan-500 hover:border-cyan-500 hover:cursor-pointer">
                       {items.licenseName}
                     </span>
                   ))}

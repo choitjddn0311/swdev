@@ -12,6 +12,7 @@ const Header = ({ locale }: { locale: string }) => {
     const headerMenu = [
         { label: t("home"), href: "/" },
         { label: t("posts"), href: "/posts" },
+        { label: t("projects"), href: "/projects" },
         { label: t("about"), href: "/about" }
     ];
 
