@@ -22,12 +22,19 @@ export const metadata: Metadata = {
 const projects = [
   {
     title: "sungwoo dev blog",
-    period: "2025.02 ~",
+    period: "2026.02 ~",
     description: "Next.js와 MDX로 만든 개인 포트폴리오 겸 개발 블로그입니다.",
     techs: ["Next.js", "TypeScript", "Tailwind CSS", "MDX"],
     github: "https://github.com/choitjddn0311/swdev",
     url: "https://swdev-coral.vercel.app",
   },
+  {
+    title: "나의 감정을 한눈에 볼수있는 그림일기",
+    period: "2026.05 ~ 2026.06",
+    description: "react와 python flask를 활용한 그림일기 형태의 프로젝트입니다. image generation api를 활용해 일기에 관해 그림도 그려줍니다.",
+    techs: ["React","Python","Flask","Sqlite","api"],
+    github: "https://github.com/choitjddn0311/softwareThinkingProject"
+  }
 ];
 
 const Projects = async () => {
