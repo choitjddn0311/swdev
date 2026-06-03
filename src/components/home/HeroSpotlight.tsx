@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 
 const LERP = 0.07;   // 낮을수록 더 느리게 따라옴 (관성 강도)
 const RADIUS = 200;  // 빛 퍼지는 반경 (px)
-const COLOR = "rgba(34, 211, 238, 0.2)"; // cyan, 밝기 조절
+const COLOR = "rgba(34, 211, 238, 0.15)"; // cyan, 밝기 조절
 
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 
