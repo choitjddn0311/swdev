@@ -3,6 +3,7 @@ import { siteConfig } from "@/lib/siteConfig";
 import { getTranslations } from "next-intl/server";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import Link from "next/link";
+import projects from "@/data/projects.json";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -17,32 +18,6 @@ export const metadata: Metadata = {
   },
 };
 
-// ✏️ 프로젝트를 추가하려면 아래 배열에 항목을 추가하세요.
-// 구조: title(프로젝트명), period(기간), description(설명), techs(기술스택), github(선택), demo(선택)
-const projects = [
-  {
-    title: "sungwoo dev blog",
-    period: "2026.02 ~",
-    description: "Next.js와 MDX로 만든 개인 포트폴리오 겸 개발 블로그입니다.",
-    techs: ["Next.js", "TypeScript", "Tailwind CSS", "MDX"],
-    github: "https://github.com/choitjddn0311/swdev",
-    url: "https://swdev-coral.vercel.app",
-  },
-  {
-    title: "나의 감정을 한눈에 볼수있는 그림일기",
-    period: "2026.05 ~ 2026.06",
-    description: "react와 python flask를 활용한 그림일기 형태의 프로젝트입니다. image generation api를 활용해 일기에 관해 그림도 그려줍니다.",
-    techs: ["React","Python","Flask","Sqlite","api"],
-    github: "https://github.com/choitjddn0311/softwareThinkingProject"
-  },
-  {
-    title: "환율을 한눈에, mac에서 간단하고 쉽게 dollarBox",
-    period: "2026.06 ~",
-    description: "환율을 확인하고, 그래프에서 환율 추세를 확인할 수 있습니다. 또한 환전 기록을 기록하여 수익률을 확인할 수 있습니다.",
-    techs: ['swift'],
-    github: "https://github.com/choitjddn0311/dollarBox"
-  }
-];
 
 const Projects = async () => {
   const t = await getTranslations("projects");
