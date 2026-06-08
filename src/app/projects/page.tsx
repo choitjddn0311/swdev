@@ -34,6 +34,13 @@ const projects = [
     description: "react와 python flask를 활용한 그림일기 형태의 프로젝트입니다. image generation api를 활용해 일기에 관해 그림도 그려줍니다.",
     techs: ["React","Python","Flask","Sqlite","api"],
     github: "https://github.com/choitjddn0311/softwareThinkingProject"
+  },
+  {
+    title: "환율을 한눈에, mac에서 간단하고 쉽게 dollarBox",
+    period: "2026.06 ~",
+    description: "환율을 확인하고, 그래프에서 환율 추세를 확인할 수 있습니다. 또한 환전 기록을 기록하여 수익률을 확인할 수 있습니다.",
+    techs: ['swift'],
+    github: "https://github.com/choitjddn0311/dollarBox"
   }
 ];
 
