@@ -1,21 +1,17 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { MdComputer } from "react-icons/md";
+import { useHydrated } from "@/lib/useHydrated";
 
 const CYCLE: Record<string, string> = { light: 'dark', dark: 'system', system: 'light' };
 
 const ThemeToggle = () => {
     const { theme, resolvedTheme, setTheme } = useTheme();
-    const [mounted, setMounted] = useState(false);
+    const hydrated = useHydrated();
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
-
-    if (!mounted) return null;
+    if (!hydrated) return null;
 
     const icon =
         theme === 'system' ? <MdComputer /> :

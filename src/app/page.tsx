@@ -1,4 +1,3 @@
-import Button from "@/components/common/button";
 import RecentPostsWidget from "@/components/home/RecentPostsWidget";
 import HeroSpotlight from "@/components/home/HeroSpotlight";
 import { getTranslations, getLocale } from "next-intl/server";
