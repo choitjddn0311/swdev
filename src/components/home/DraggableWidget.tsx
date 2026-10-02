@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { PostMeta } from "@/lib/posts";
 import { useTranslations } from "next-intl";
+import { useHydrated } from "@/lib/useHydrated";
 
 interface DraggableWidgetProps {
   posts: PostMeta[];
@@ -13,22 +14,15 @@ const WIDGET_WIDTH = 288;
 
 const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
   const t = useTranslations("widget");
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const hydrated = useHydrated();
+  // 사용자가 드래그하기 전까지는 null → 화면 우측 하단 기본 위치를 렌더 시점에 계산
+  const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
   const [isMinimized, setIsMinimized] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
-  const [initialized, setInitialized] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
   const isDraggingRef = useRef(false);
   const dragOffset = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    setPosition({
-      x: window.innerWidth - WIDGET_WIDTH - 24,
-      y: window.innerHeight - 380,
-    });
-    setInitialized(true);
-  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -75,26 +69,30 @@ const DraggableWidget = ({ posts }: DraggableWidgetProps) => {
     };
   }, []);
 
+  if (!hydrated || isClosed) return null;
+
+  const currentPosition = position ?? {
+    x: window.innerWidth - WIDGET_WIDTH - 24,
+    y: window.innerHeight - 380,
+  };
+
   const startDrag = (clientX: number, clientY: number) => {
     isDraggingRef.current = true;
     setIsDragging(true);
     dragOffset.current = {
-      x: clientX - position.x,
-      y: clientY - position.y,
+      x: clientX - currentPosition.x,
+      y: clientY - currentPosition.y,
     };
   };
-
-  if (!initialized || isClosed) return null;
 
   return (
     <div
       className="fixed z-50 shadow-2xl rounded-xl overflow-hidden border border-foreground/10 bg-background text-foreground"
       style={{
-        left: position.x,
-        top: position.y,
+        left: currentPosition.x,
+        top: currentPosition.y,
         width: WIDGET_WIDTH,
         userSelect: "none",
-        opacity: initialized ? 1 : 0,
       }}
     >
       {/* 드래그 핸들 (헤더) */}

@@ -7,40 +7,67 @@
   },
   "footer": {
     "rights": "©2026 choitjddn0311. All rights reserved.",
-    "developer": "developer: Choi Sungwoo"
+    "developer": "developer: Sungwoo Choi(최성우)"
   },
   "home": {
     "greeting": "Hello! I'm",
-    "greetingName": "Choi Sungwoo",
-    "greetingEnd": ", an aspiring developer!",
-    "greetingHighlight": "aspiring developer",
-    "greetingSub": "hello. thank you for comming! i'm",
+    "greetingName": "Sungwoo Choi",
+    "greetingEnd": ", a developer who dreams without limits!",
+    "greetingHighlight": "developer who dreams without limits",
+    "greetingSub": "Hello, thank you for coming! I'm",
     "greetingSubName": "Sungwoo Choi",
     "greetingSubEnd": "dreaming fullstack developer",
-    "stackTitle": "Here are the technologies I work with.",
-    "profileName": "Choi Sungwoo",
+    "stackTitle": "Here are the technologies I can work with.",
+    "profileName": "Sungwoo Choi",
     "profileNameSub": "최성우",
     "field": "Fields",
     "contact": "Contact",
-    "introTitle": "Slow but steady — always learning and growing.",
+    "introTitle": "Not the fastest, but always learning — steadily and earnestly.",
     "affiliation": "Affiliation",
     "career": "Career",
-    "affiliationText": "Kookmin Univ., Dept. of AI, Class of 2026 | Inpyung Auto High School, Auto-IT Dept. (graduated)",
-    "careerText": "Industry-Academic Apprentice 8th cohort, Slexn Co. | Aug 2024 – Jan 2026",
+    "affiliationText": "Kookmin University, School of AI (Class of 2026) | Inpyung Automotive High School, Automotive IT Dept. (graduated)",
+    "careerText": "Industry-Academia Apprenticeship School, 8th cohort — Slexn Co., Ltd. | Aug 2024 – Jan 2026",
     "awards": "Awards",
-    "licenses": "Certifications"
+    "licenses": "Certifications",
+    "awardItems": {
+      "incheon2024": {
+        "contest": "Incheon Regional Skills Competition",
+        "category": "Web Design and Development",
+        "award": "Bronze Medal"
+      },
+      "incheon2025": {
+        "contest": "Incheon Regional Skills Competition",
+        "category": "Web Design and Development",
+        "award": "Silver Medal"
+      },
+      "national2025": {
+        "contest": "National Skills Competition (Gwangju)",
+        "category": "Web Design and Development",
+        "award": "Encouragement Award (14th)"
+      },
+      "progate2025": {
+        "contest": "Progate Hackathon",
+        "category": "",
+        "award": "2nd Place"
+      }
+    },
+    "licenseItems": {
+      "programming": "Craftsman Programming (formerly Craftsman Information Processing)",
+      "webDesign": "Craftsman Web Design Development",
+      "infoProcessing": "Industrial Engineer Information Processing (Course-based)"
+    }
   },
   "posts": {
     "title": "Posts",
-    "searchPlaceholder": "Search by title, content, or tag...",
+    "searchPlaceholder": "Search titles, content, tags...",
     "allLabel": "All",
     "showMore": "+{count} more",
-    "collapse": "collapse ↑",
+    "collapse": "Collapse ↑",
     "noPostsMessage": "No posts yet.",
     "backToHome": "Back to home",
     "noResultsTitle": "No results found.",
-    "noResultsMessage": "No posts match your search.",
-    "resultCount": "{count} results",
+    "noResultsMessage": "— no matching posts found.",
+    "resultCount": "{count, plural, one {# result} other {# results}}",
     "tagResultPrefix": "tag",
     "previous": "← Prev",
     "next": "Next →"
@@ -54,38 +81,38 @@
   },
   "about": {
     "aboutMe": "About Me",
-    "aboutMeContent1": "Please add your introduction here.",
-    "aboutMeContent2": "You can use multiple paragraphs.",
+    "aboutMeContent1": "I'm someone who never gives up.",
+    "aboutMeContent2": "Building on my many experiences, I try never to stop taking on challenges. And I don't stop at just starting them — I keep developing with the goal of seeing every challenge through to the end.",
     "whatILove": "What I Love",
     "devTitle": "Development",
-    "devContent": "I mainly work with web development, handling both frontend and backend. I also have a strong interest in Computer Vision within the AI field.",
-    "photoTitle": "Photography · Video",
-    "photoContent": "I love capturing the world through a lens. I'm deeply into photography, color grading, and video editing — way beyond just a hobby.",
+    "devContent": "Since I've mostly worked on the web, I enjoy handling both frontend and backend. I'm not an expert yet, but within AI I'm especially interested in computer vision.",
+    "photoTitle": "Photo · Video",
+    "photoContent": "I love capturing the world in a small frame through photos and videos. I'm into it enough to do everything from shooting to color grading and video editing.",
     "myGoals": "My Goals",
-    "goal1Title": "Enter your goal title here",
-    "goal1Desc": "Enter a description of your goal here.",
-    "goal2Title": "Enter your goal title here",
-    "goal2Desc": "Enter a description of your goal here.",
+    "goal1Title": "Don't be an ordinary developer",
+    "goal1Desc": "Instead of building what everyone else builds, I want to start from what I need, what bothers me, and what I'm curious about — and become a developer who brings positive value to everyone.",
+    "goal2Title": "Don't get boxed in",
+    "goal2Desc": "I want to be a developer the world needs — not one who only codes, or one stuck inside a box.",
     "timeline": "My Timeline",
     "contact": "Contact",
-    "heroSubtitle": "I want to build the life and world I dream of!",
-    "profileName": "Choi Sungwoo",
+    "heroSubtitle": "I want to build the life and the world I dream of!",
+    "profileName": "Sungwoo Choi",
     "profileNameSub": "최성우",
-    "t2026_1": "Enrolled at Kookmin University, Dept. of AI (Class of 2026)",
+    "t2026_1": "Entered Kookmin University, School of AI (Class of 2026)",
     "t2025_1": "Progate Hackathon — 2nd Place",
-    "t2025_2": "Gwangju National Skills Competition — Web Design & Dev, Encouragement Award (14th)",
-    "t2025_3": "Web Design Development Craftsman Certificate",
-    "t2025_4": "Incheon Regional Skills Competition — Web Design & Dev, Silver Medal",
-    "t2025_5": "Industrial Engineer Information Processing (Process Evaluation)",
-    "t2024_1": "Programming Craftsman Certificate",
-    "t2024_2": "Industry-Academic Apprentice 8th cohort — Slexn Co.",
-    "t2024_3": "Incheon Regional Skills Competition — Web Design & Dev, Bronze Medal",
-    "t2023_1": "Joined Web Design & Development club",
-    "t2023_2": "Enrolled at Inpyung Auto High School, Auto-IT Dept."
+    "t2025_2": "National Skills Competition (Gwangju), Web Design & Development — Encouragement Award (14th)",
+    "t2025_3": "Earned Craftsman Web Design Development",
+    "t2025_4": "Incheon Regional Skills Competition, Web Design & Development — Silver Medal",
+    "t2025_5": "Earned Industrial Engineer Information Processing (Course-based)",
+    "t2025_6": "Earned Craftsman Programming (formerly Craftsman Information Processing)",
+    "t2024_1": "Started at Slexn Co., Ltd. via Industry-Academia Apprenticeship School (8th cohort)",
+    "t2024_2": "Incheon Regional Skills Competition, Web Design & Development — Bronze Medal",
+    "t2023_1": "Joined the Web Design & Development skills team",
+    "t2023_2": "Entered Inpyung Automotive High School, Automotive IT Dept."
   },
   "projects": {
     "github": "GitHub",
-    "demo": "url",
+    "demo": "Link",
     "noProjects": "No projects yet."
   },
   "widget": {

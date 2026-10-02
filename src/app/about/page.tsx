@@ -59,14 +59,14 @@ const About = async () => {
         { icon: <FaCertificate />, text: t("t2025_3") },
         { icon: <FaMedal />, text: t("t2025_4") },
         { icon: <FaCertificate />, text: t("t2025_5") },
+        { icon: <FaCertificate />, text: t("t2025_6") },
       ],
     },
     {
       year: "2024",
       items: [
-        { icon: <FaCertificate />, text: t("t2024_1") },
-        { icon: <FaBriefcase />, text: t("t2024_2") },
-        { icon: <FaMedal />, text: t("t2024_3") },
+        { icon: <FaBriefcase />, text: t("t2024_1") },
+        { icon: <FaMedal />, text: t("t2024_2") },
       ],
     },
     {

@@ -1,4 +1,3 @@
-import Button from "@/components/common/button";
 import RecentPostsWidget from "@/components/home/RecentPostsWidget";
 import HeroSpotlight from "@/components/home/HeroSpotlight";
 import { getTranslations, getLocale } from "next-intl/server";
@@ -49,18 +48,21 @@ const Home = async () => {
     {stack: "ubuntu" , icon: <FaUbuntu/> , iconColor: "text-orange-500"},
     {stack: "docker" , icon: <FaDocker/> , iconColor: "text-blue-600"}
   ]
-  // 입상 기록을 정의할때 구조는 다음과 같다: 대회진행 년도(contest Year), 대회명(contestName), 수상명(award)
+  // 입상 기록을 정의할때 구조는 다음과 같다: 대회진행 년도(contest Year), 번역 키(key)
+  // 대회명(contest), 직종(category), 수상명(award)은 messages/{ko,en}.json의 home.awardItems.{key}에 작성한다.
   const AwardRecord = [
-    {year: "2024", contestName: "인천지방기능경기대회 웹 디자인 및 개발" , award: "동메달"},
-    {year: "2025", contestName: "인천지방기능경기대회 웹 디자인 및 개발" , award: "은메달"},
-    {year: "2025", contestName: "광주전국기능경기대회 웹 디자인 및 개발" , award: "장려상(14위)"},
-    {year: "2025", contestName: "progate hackathon" , award: "2등"}
+    {year: "2024", key: "incheon2024"},
+    {year: "2025", key: "incheon2025"},
+    {year: "2025", key: "national2025"},
+    {year: "2025", key: "progate2025"}
   ]
-  // 자격증을 정의할때 구조는 다음과 같다: 취득 상세일자(license get detail Date), 자격증명(license name) 만약 자격증의 이름이 바뀌었다면 현재 바뀐 이름이 먼저 나오고 뒤에 (구 ~~)라고 붙인다.
+  // 자격증을 정의할때 구조는 다음과 같다: 취득 상세일자(license get detail Date), 번역 키(key)
+  // 자격증명은 messages/{ko,en}.json의 home.licenseItems.{key}에 작성한다. 영문명은 Q-Net의 공식 영문 종목명을 사용한다.
+  // 만약 자격증의 이름이 바뀌었다면 현재 바뀐 이름이 먼저 나오고 뒤에 (구 ~~)라고 붙인다.
   const license = [
-    {getDate: "2025.01.06" , licenseName: "프로그래밍기능사(구 정보처리기능사)"},
-    {getDate: "2025.06.05" , licenseName: "웹디자인개발기능사"},
-    {getDate: "2025.03.19" , licenseName: "정보처리산업기사(과정평가형)"}
+    {getDate: "2025.01.06" , key: "programming"},
+    {getDate: "2025.06.05" , key: "webDesign"},
+    {getDate: "2025.03.19" , key: "infoProcessing"}
   ]
   return (
     <div className="w-full">
@@ -151,10 +153,10 @@ const Home = async () => {
                 <p className="text-xs font-semibold text-foreground/40 uppercase tracking-wider mb-3">{t("awards")}</p>
                 <div className="flex flex-wrap gap-2">
                   {AwardRecord.map((items, index) => (
-                    <span key={index} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70 hover:text-cyan-500 hover:border-cyan-500 hover:cursor-pointer">
+                    <span key={index} title={t(`awardItems.${items.key}.category`)} className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70 hover:text-cyan-500 hover:border-cyan-500 hover:cursor-pointer">
                       <span className="font-semibold">{items.year}</span>
-                      {items.contestName.split(" ").slice(-2).join(" ")}
-                      <span className="font-semibold">{items.award}</span>
+                      {t(`awardItems.${items.key}.contest`)}
+                      <span className="font-semibold">{t(`awardItems.${items.key}.award`)}</span>
                     </span>
                   ))}
                 </div>
@@ -166,7 +168,7 @@ const Home = async () => {
                 <div className="flex flex-wrap gap-2">
                   {license.map((items, index) => (
                     <span key={index} className="text-xs px-3 py-1.5 rounded-full border border-foreground/10 text-foreground/70 hover:text-cyan-500 hover:border-cyan-500 hover:cursor-pointer">
-                      {items.licenseName}
+                      {t(`licenseItems.${items.key}`)}
                     </span>
                   ))}
                 </div>
